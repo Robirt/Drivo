@@ -12,11 +12,6 @@ namespace Drivo.WebAPI.Controllers
     [Route("[Controller]")]
     public class AdsController : ControllerBase
     {
-        public AdsController() : base()
-        {
-
-        }
-
         public AdsController(DatabaseContext context)
         {
             Context = context;

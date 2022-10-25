@@ -12,10 +12,6 @@ namespace Drivo.WebAPI.Controllers
     [Route("[Controller]")]
     public class CourseModulsControllers : ControllerBase
     {
-        public CourseModulsControllers() : base()
-        {
-
-        }
         public CourseModulsControllers(DatabaseContext context)
         {
             Context = context;

@@ -10,44 +10,44 @@ namespace Drivo.WebAPI.Controllers
 
     [ApiController]
     [Route("[Controller]")]
-    public class ResourcesControllers : ControllerBase
+    public class PaymentsControllers : ControllerBase
     {
-        public ResourcesControllers(DatabaseContext context)
+        public PaymentsControllers(DatabaseContext context)
         {
             Context = context;
         }
         private DatabaseContext Context;
 
         [HttpGet("{id}")]
-        public async Task<ResourceEntity> GetResource(int id)
+        public async Task<PaymentEntity> GetPayment(int id)
         {
-            return await Context.Resources.FindAsync(id);
+            return await Context.Payments.FindAsync(id);
         }
 
         [HttpGet]
-        public async Task<List<ResourceEntity>> GetResources()
+        public async Task<List<PaymentEntity>> GetPayments()
         {
-            return await Context.Resources.ToListAsync();
+            return await Context.Payments.ToListAsync();
         }
 
         [HttpPost]
-        public async Task PostResource(ResourceEntity resource)
+        public async Task PostPayment(PaymentEntity payment)
         {
-            await Context.Resources.AddAsync(resource);
+            await Context.Payments.AddAsync(payment);
             await Context.SaveChangesAsync();
         }
 
         [HttpPut]
-        public async Task PutResource(ResourceEntity resource)
+        public async Task PutPayment(PaymentEntity payment)
         {
-            Context.Resources.Update(resource);
+            Context.Payments.Update(payment);
             await Context.SaveChangesAsync();
         }
 
         [HttpDelete("{id}")]
-        public async Task DeleteResource(int id)
+        public async Task DeletePayment(int id)
         {
-            Context.Resources.Remove(await Context.Resources.FindAsync(id));
+            Context.Payments.Remove(await Context.Payments.FindAsync(id));
             await Context.SaveChangesAsync();
         }
     }
