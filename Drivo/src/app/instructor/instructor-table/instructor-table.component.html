@@ -1,0 +1,17 @@
+<table>
+    <thead>
+        <tr>
+            <th>Imię </th>
+            <th> Nazwisko</th>
+            <th>Data urodzenia</th>
+            <th>Grupa Studentów</th>
+         </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let instructor of instructors">
+         <td>{{instructor.firstName}}</td>
+            <td>{{instructor.surname}}</td>
+            
+         </tr>
+    </tbody>
+</table>

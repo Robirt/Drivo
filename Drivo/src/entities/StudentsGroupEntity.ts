@@ -1,3 +1,7 @@
+import { DrivingEntity } from "./DrivingEntity"
+import { LectureEntity } from "./LectureEntity"
+import { StudentEntity } from "./StudentEntity"
+
 export class StudentsGroupEntity
 {
     public id: number

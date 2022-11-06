@@ -1,3 +1,5 @@
+import { StudentsGroupEntity } from "./StudentsGroupEntity"
+
 export class LecturerEntity {
     public id: number
     public firstName: string

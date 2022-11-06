@@ -1,0 +1,20 @@
+<table>
+    <thead>
+        <tr>
+            <th>Imię </th>
+            <th> Nazwisko</th>
+            <th>Data urodzenia</th>
+            <th>Grupa</th>
+            <th>Płatności</th>
+         </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of students">
+         <td>{{student.firstName}}</td>
+            <td>{{student.surname}}</td>
+            <td>{{student.birthDate | date:'shortDate'}}</td>
+            <td></td>
+            <td></td>
+         </tr>
+    </tbody>
+</table>

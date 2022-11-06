@@ -1,3 +1,5 @@
+import { PaymentEntity } from "./PaymentEntity"
+
 export class StudentEntity {
     public id: number
     public firstName: string

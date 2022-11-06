@@ -1,11 +1,17 @@
 <section>
-    <form (ngSubmit)="signIn()" [(ngModel)]="signIn">
+    <section>
+        <img src="../../assets/logo.png">
+        <div id="header">
+            <p>Zaloguj się!</p>
+        </div>
+    </section>
+    <form>
         <span>
-            <label>Nazwa uzytkownika:</label>
+            <label>Nazwa użytkownika:</label>
         </span>
-        <input type="text" [(ngModel)]=""name="login" />
+        <input type="text"  name="login" />
         <span>
-            <label>Has�o:</label>
+            <label>Hasło:</label>
         </span>
         <input type="password" name="password" />
     </form>

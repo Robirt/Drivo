@@ -1,3 +1,6 @@
+import { InstructorEntity } from "./InstructorEntity"
+import { StudentEntity } from "./StudentEntity"
+
 export class AdminEntity
 {
     public id: number

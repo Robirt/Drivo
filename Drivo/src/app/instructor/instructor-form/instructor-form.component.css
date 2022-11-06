@@ -1,0 +1,77 @@
+section
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: Candara;
+    color: #072b89;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+section:nth-child(2)
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    flex-direction: column;
+    margin: 10px;
+}
+
+section:nth-child(2) >form
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+section >section >form >span
+{
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+    width: 50%;
+    flex-direction: row;
+    margin: 10px;
+}
+label
+{
+    font-family: Candara;
+    color: #072b89;
+    font-size: 18px;
+    width: 350px;
+}
+input
+{
+    width: 400px;
+    height: 10px;
+    padding: 10px;
+    
+    text-align: left;
+
+    border: 2px solid #072b89;
+    font-size: 15px;
+    color: #072b89;
+
+}
+input[type="submit"]
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width:140px;
+    border: #072b89 2px solid;
+    border-radius: 20px;
+    box-shadow: 4px 3px 5px rgb(204, 202, 202);
+    font-family: Candara;
+    background-color: #072b89;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
