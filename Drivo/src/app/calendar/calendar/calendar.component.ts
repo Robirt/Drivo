@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EventEntity } from 'src/entities/EventEntity';
 
 @Component({
   selector: 'app-calendar',
@@ -11,6 +12,6 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  public info: EventEntity
   public selectedDate: Date;
 }
