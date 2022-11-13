@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ResourceEntity } from 'src/entities/ResourceEntity';
 
 @Component({
   selector: 'app-resources-item',
@@ -11,5 +12,4 @@ export class ResourcesItemComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

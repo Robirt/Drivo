@@ -5,13 +5,16 @@
             <th> Nazwisko</th>
             <th>Data urodzenia</th>
             <th>Grupa Studentów</th>
+            <th>Akcje</th>
          </tr>
     </thead>
     <tbody>
         <tr *ngFor="let instructor of instructors">
-         <td>{{instructor.firstName}}</td>
+            <td>{{instructor.firstName}}</td>
             <td>{{instructor.surname}}</td>
-            
+            <td></td>
+            <td></td>
+            <td><a>&#59151;</a><a>&#59213;</a></td>
          </tr>
     </tbody>
 </table>

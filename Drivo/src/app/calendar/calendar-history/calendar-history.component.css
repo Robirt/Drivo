@@ -22,3 +22,13 @@ th, td
     width: 200px;
 }
 
+td:last-child {
+    display: flex;
+
+    justify-content: space-evenly;
+}
+
+a {
+    font-family: 'Segoe MDL2 Assets';
+}
+

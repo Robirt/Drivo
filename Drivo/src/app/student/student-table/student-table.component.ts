@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { StudentEntity } from 'src/entities/StudentEntity';
 
 @Component({
@@ -13,4 +13,16 @@ export class StudentTableComponent implements OnInit {
   ngOnInit(): void {
   }
 @Input() students: Array<StudentEntity>;
+
+@Output() onEdit: EventEmitter<StudentEntity> = new EventEmitter<StudentEntity>();
+
+@Output() onDelete: EventEmitter<StudentEntity> = new EventEmitter<StudentEntity>();
+
+public edit(student: StudentEntity): void {
+  this.onEdit.emit(student);
+}
+
+public delete(student: StudentEntity): void {
+  this.onDelete.emit(student);
+}
 }

@@ -4,6 +4,7 @@ import { LecturerComponent } from './lecturer/lecturer.component';
 import { LecturerFormComponent } from './lecturer-form/lecturer-form.component';
 import { LecturerTableComponent } from './lecturer-table/lecturer-table.component';
 import { FormsModule } from '@angular/forms';
+import { CalendarModule } from 'primeng/calendar';
 
 
 
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    CalendarModule
   ]
 })
 export class LecturerModule { }

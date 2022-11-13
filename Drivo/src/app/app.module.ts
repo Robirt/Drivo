@@ -17,7 +17,6 @@ import { LecturerModule } from './lecturer/lecturer.module';
 import { AdModule } from './ad/ad.module';
 import { CalendarPageModule } from './calendar/calendar.module';
 import { ResourcesModule } from './resources/resources.module';
-import { CalendarModule } from 'primeng/calendar';
 
 
 @NgModule({
@@ -41,8 +40,7 @@ import { CalendarModule } from 'primeng/calendar';
       LecturerModule,
       AdModule,
       CalendarPageModule,
-      ResourcesModule,
-      CalendarModule
+      ResourcesModule
   ],
   providers: [],
   bootstrap: [
