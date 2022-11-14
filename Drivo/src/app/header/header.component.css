@@ -1,0 +1,42 @@
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: Candara;
+    color: #072b89;
+    width: 100%;
+    height: 170px;
+
+}
+
+section > div {
+    display: flex;
+
+    padding: 10px;
+
+    width: 100%;
+    height: 75px;
+
+    justify-content: flex-end;
+    align-items: center;
+}
+
+a, a:visited, a:link {
+    text-align: center;
+    text-decoration: none;
+    font-family: Candara;
+    font-size: 17.5px;
+    color: #072b89;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img
+{
+    padding: 10px;
+    border-radius: 50px;
+    width: 25%;
+}

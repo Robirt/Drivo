@@ -1,0 +1,62 @@
+section
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 5px;
+    height: 100%;
+    width: 100%;
+   
+}
+section > section
+{
+    height: 90%;
+    width: 56%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: #072b89 10px solid;
+}
+
+#title
+{
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+   
+    justify-content: center;
+    align-items: center;
+    height: 45%;
+    width: 100%;
+   
+}
+
+#add
+{
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    height: 45%;
+    width: 100%;
+}
+
+h1
+{
+    font-family: Candara Light;;
+    
+    color: #072b89;
+    font-size: 40px;
+}
+
+p
+{
+    font-family: Tahoma;
+    margin: 10px;
+    padding: 5px;
+    font-weight: 700;
+}

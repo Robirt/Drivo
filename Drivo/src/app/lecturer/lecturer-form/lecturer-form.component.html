@@ -1,0 +1,24 @@
+<section>
+    <section>
+        <p>Dodaj nowego wykładowcę</p>
+    </section>
+    <section>
+        <form (ngSubmit)="add(lecturer)" [(ngModel)]="lecturer" > 
+            <span>
+                <label>Imię:</label>
+                <input type="text"  placeholder="Jan" [(ngModel)]="lecturer.firstName" name="firstName">
+            </span>
+            <span>
+                <label>Nazwisko:</label>
+                <input type="text"  placeholder="Kowalski" [(ngModel)]="lecturer.surname" name="surname">
+            </span>
+            <span>
+                <label>Data urodzenia:</label>
+                <input type="date" [(ngModel)]="lecturer.birthDate" name="birthDate">
+            </span>
+            <input type="submit" value= "Dodaj" />
+        </form>
+    </section>
+        
+</section>
+

@@ -1,0 +1,56 @@
+<div id="main">
+<section>
+    <section>
+        <p-calendar [inline]="true"></p-calendar>
+    </section>
+    <section>
+    <form>
+        <div id="radio">
+            <span>
+                <input type="radio" value="Wykład" [(ngModel)]="info.type" name="type">
+                     <label>Wykład</label>
+            </span>
+            <span>
+                <input type="radio" value="Jazdy" [(ngModel)]="info.type" name="type">
+                    <label>Jazdy</label>
+            </span>
+            <span>
+                <input type="radio" value="Egzamin" [(ngModel)]="info.type" name="type">
+                <label>Egzamin wewnętrzny</label>
+            </span>
+            <span>
+                <label>Miejsce</label>
+            </span>
+            <span>
+                <input type="radio" value="Miejsce" [(ngModel)]="info.type" name="type">
+                <label>Sala</label>
+            </span>
+            <span>
+                <input type="radio" value="Miejsce" [(ngModel)]="info.type" name="type">
+                <label>Wyznaczone przez instruktora</label>
+            </span>
+            <span>
+                <label>Grupa</label>
+            </span>
+            <span>
+                <input type="radio" value="Grupa" [(ngModel)]="info.type" name="type">
+                <label>A</label>
+            </span>
+            <span>
+                <input type="radio" value="Grupa" [(ngModel)]="info.type" name="type">
+                <label>B</label>
+            </span>
+            <span>
+                <input type="radio" value="Grupa" [(ngModel)]="info.type" name="type">
+                <label>C</label>
+            </span>
+        </div>
+        <input type="submit" value="Dodaj">
+    </form>
+</section>
+</section>
+
+<div id="history">
+    <app-calendar-history></app-calendar-history>
+</div>
+</div>

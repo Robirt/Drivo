@@ -1,0 +1,39 @@
+<section>
+    <section>
+        <figure  [routerLink]="['study']">
+            <div style="background-image: url(../../assets/study.jpg);">
+
+            </div>
+            <figcaption>
+                Nauka
+            </figcaption>
+        </figure>
+        <figure [routerLink]="['Calendar']">
+            <div style="background-image: url(../../assets/calendar.jpg);">
+
+            </div>
+            <figcaption >
+                Kalendarz
+            </figcaption>
+        </figure>
+        <figure [routerLink]="['Ad']">
+            <div style="background-image: url(../../assets/board.jpg);">
+                
+            </div>
+            <figcaption >
+                Tablica ogłoszeń
+            </figcaption>
+        </figure>
+    </section>
+    <section>
+        <div class="container" routerLink="Student">
+            Kursanci
+        </div>
+        <div class="container" routerLink="Lecturer">
+            Wykładowcy
+        </div>
+        <div class="container" routerLink="Instructor">
+            Instruktorzy
+        </div>
+    </section>
+</section>

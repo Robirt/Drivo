@@ -1,0 +1,18 @@
+section
+{
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    height: calc(100vh - 360px);
+    
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    box-sizing: padding-box;
+    
+    gap: 20px;
+    
+}
