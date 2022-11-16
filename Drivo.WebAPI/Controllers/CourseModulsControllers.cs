@@ -19,35 +19,35 @@ namespace Drivo.WebAPI.Controllers
         private DatabaseContext Context;
 
         [HttpGet("{id}")]
-        public async Task<CourseModulEntity> GetCourseModul(int id)
+        public async Task<CourseModuleEntity> GetCourseModul(int id)
         {
-            return await Context.CourseModuls.FindAsync(id);
+            return await Context.CourseModules.FindAsync(id);
         }
 
         [HttpGet]
-        public async Task<List<CourseModulEntity>> GetCourseModuls()
+        public async Task<List<CourseModuleEntity>> GetCourseModuls()
         {
-            return await Context.CourseModuls.ToListAsync();
+            return await Context.CourseModules.ToListAsync();
         }
 
         [HttpPost]
-        public async Task PostCourseModul(CourseModulEntity courseModul)
+        public async Task PostCourseModul(CourseModuleEntity courseModul)
         {
-            await Context.CourseModuls.AddAsync(courseModul);
+            await Context.CourseModules.AddAsync(courseModul);
             await Context.SaveChangesAsync();
         }
 
         [HttpPut]
-        public async Task PutCourseModul(CourseModulEntity courseModul)
+        public async Task PutCourseModul(CourseModuleEntity courseModul)
         {
-            Context.CourseModuls.Update(courseModul);
+            Context.CourseModules.Update(courseModul);
             await Context.SaveChangesAsync();
         }
 
         [HttpDelete("{id}")]
         public async Task DeleteCourseModul(int id)
         {
-            Context.CourseModuls.Remove(await Context.CourseModuls.FindAsync(id));
+            Context.CourseModules.Remove(await Context.CourseModules.FindAsync(id));
             await Context.SaveChangesAsync();
         }
     }

@@ -7,7 +7,7 @@ namespace Drivo.WebAPI.Controllers
 {
     
     [ApiController]
-    [Route("Controller]")]
+    [Route("[Controller]")]
     public class ExternalExamsController : ControllerBase
     {
         public ExternalExamsController(DatabaseContext context)

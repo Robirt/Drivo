@@ -8,13 +8,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drivo.MAUI", "Drivo.MAUI\Drivo.MAUI.csproj", "{46CF743C-B7DE-4F4D-B550-1964ABDAB7F8}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Drivo", "Drivo\Drivo.esproj", "{7B1F9D13-8B91-4A5D-8660-35EE906B37DE}"
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drivo.Entities", "Drivo.Entities\Drivo.Entities.csproj", "{18C8F69E-2712-4712-904D-E8D299C9A920}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drivo.Entities", "Drivo.Entities\Drivo.Entities.csproj", "{8C8238A2-8AE8-4CC9-BAD7-651AB3E3F8B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drivo.Entities", "Drivo.Entities\Drivo.Entities.csproj", "{18C8F69E-2712-4712-904D-E8D299C9A920}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drivo.Responses", "Drivo.Responses\Drivo.Responses.csproj", "{F155BBF8-7A88-4925-A5D5-8C911F775B4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drivo.Responses", "Drivo.Responses\Drivo.Responses.csproj", "{F155BBF8-7A88-4925-A5D5-8C911F775B4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drivo.Requests", "Drivo.Requests\Drivo.Requests.csproj", "{9FE09CCB-C931-419D-A800-532F396BF217}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drivo.Requests", "Drivo.Requests\Drivo.Requests.csproj", "{9FE09CCB-C931-419D-A800-532F396BF217}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,10 +37,10 @@ Global
 		{7B1F9D13-8B91-4A5D-8660-35EE906B37DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B1F9D13-8B91-4A5D-8660-35EE906B37DE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7B1F9D13-8B91-4A5D-8660-35EE906B37DE}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{8C8238A2-8AE8-4CC9-BAD7-651AB3E3F8B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C8238A2-8AE8-4CC9-BAD7-651AB3E3F8B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C8238A2-8AE8-4CC9-BAD7-651AB3E3F8B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C8238A2-8AE8-4CC9-BAD7-651AB3E3F8B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18C8F69E-2712-4712-904D-E8D299C9A920}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18C8F69E-2712-4712-904D-E8D299C9A920}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18C8F69E-2712-4712-904D-E8D299C9A920}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18C8F69E-2712-4712-904D-E8D299C9A920}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F155BBF8-7A88-4925-A5D5-8C911F775B4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F155BBF8-7A88-4925-A5D5-8C911F775B4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F155BBF8-7A88-4925-A5D5-8C911F775B4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
