@@ -12,7 +12,7 @@ export class StudentTableComponent implements OnInit {
 
   ngOnInit(): void {
   }
-@Input() students: Array<StudentEntity>;
+@Input() students: Array<StudentEntity> = new Array<StudentEntity>();
 
 @Output() onEdit: EventEmitter<StudentEntity> = new EventEmitter<StudentEntity>();
 

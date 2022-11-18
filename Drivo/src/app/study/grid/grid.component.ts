@@ -13,5 +13,5 @@ export class GridComponent implements OnInit {
 
   ngOnInit(): void {
   }
-@Input() study: Array<CourseModulEntity> = new Array<CourseModulEntity>
+@Input() studies: Array<CourseModulEntity> = new Array<CourseModulEntity>();
 }

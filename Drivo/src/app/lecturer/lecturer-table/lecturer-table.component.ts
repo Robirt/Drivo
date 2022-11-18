@@ -12,5 +12,5 @@ export class LecturerTableComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  @Input() lecturers: Array<LecturerEntity>;
+  @Input() lecturers: Array<LecturerEntity>= new Array<LecturerEntity>();
 }

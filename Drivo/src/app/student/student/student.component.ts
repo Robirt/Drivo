@@ -12,40 +12,36 @@ export class StudentComponent implements OnInit {
   constructor(private studentsService: StudentsService) { }
 
   async ngOnInit(): Promise<void> {
-    let student= new StudentEntity();
-    student.firstName = "Kazimierz";
-    student.surname = "Wielki";
-    student.birthDate = new Date('02-02-1998');
-    student
-    this.student.push(student);
-    this.student.push(student);
-    this.student.push(student);
-    this.student.push(student);
-    this.getStudents();
+   
   }
-public student: Array<StudentEntity> = new Array<StudentEntity>(); 
-
-public async getStudents()
+public students: Array<StudentEntity> = new Array<StudentEntity>(); 
+public student: StudentEntity
+public async getStudents(): Promise<void>
 {
-  await this.studentsService.getStudents();
+  this.students = await this.studentsService.getStudents();
 }
-public async getStudent(id: number)
+public async getStudentByName(name: string): Promise<void>
 {
-  await this.studentsService.getStudent(id);
-}
-
-public async postStudent(student:StudentEntity)
-{
-  await this.studentsService.postStudent(student);
+  this.student =await this.studentsService.getStudentByName(name);
 }
 
-public async putStudent(student:StudentEntity)
+public async searchStudent(searchString: string): Promise<void>
 {
-  await this.studentsService.putStudent(student);
+  this.students = await this.studentsService.searchStudent(searchString);
 }
 
-public async deleteStudent(id: number)
+public async postStudent(student:StudentEntity): Promise<void>
 {
-  await this.studentsService.deleteStudent(id);
+  this.student = await this.studentsService.postStudent(student);
+}
+
+public async putStudent(student:StudentEntity): Promise<void>
+{
+  this.student = await this.studentsService.putStudent(student);
+}
+
+public async deleteStudent(id: number): Promise<void>
+{
+  this.student = await this.studentsService.deleteStudent(id);
 }
 }

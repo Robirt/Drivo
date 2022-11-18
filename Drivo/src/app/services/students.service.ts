@@ -20,9 +20,9 @@ export class StudentsService {
     return await firstValueFrom(this.httpClient.get<StudentEntity>(`https://localhost:5001/Student/${name}`));
   }
 
-  public async searchStudent(searchString: string): Promise<Array<string>>
+  public async searchStudent(searchString: string): Promise<Array<StudentEntity>>
   {
-    return await firstValueFrom(this.httpClient.get<Array<string>>(`https://localhost:5001/Student/Search/${searchString}`));
+    return await firstValueFrom(this.httpClient.get<Array<StudentEntity>>(`https://localhost:5001/Student/Search/${searchString}`));
   }
 
   public async postStudent(student: StudentEntity): Promise<StudentEntity>

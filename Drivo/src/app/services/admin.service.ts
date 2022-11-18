@@ -6,7 +6,7 @@ import { AdminEntity } from 'src/entities/AdminEntity';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminServiceService {
+export class AdminService {
 
   constructor(private httpClient: HttpClient) { }
 

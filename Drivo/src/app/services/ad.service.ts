@@ -6,7 +6,7 @@ import { AdEntity } from 'src/entities/AdEntity';
 @Injectable({
   providedIn: 'root'
 })
-export class AdServiceService {
+export class AdService {
 
   constructor(private httpClient: HttpClient) { }
 

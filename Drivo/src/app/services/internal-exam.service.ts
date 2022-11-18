@@ -6,7 +6,7 @@ import { InternalExamEntity } from 'src/entities/InternalExamEntity';
 @Injectable({
   providedIn: 'root'
 })
-export class InternalExamServiceService {
+export class InternalExamService {
 
   constructor(private httpClient: HttpClient) { }
 

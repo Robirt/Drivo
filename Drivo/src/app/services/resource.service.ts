@@ -7,7 +7,7 @@ import { ResourceEntity } from 'src/entities/ResourceEntity';
 @Injectable({
   providedIn: 'root'
 })
-export class ResourceServiceService {
+export class ResourceService {
 
   
   constructor(private httpClient: HttpClient) { }

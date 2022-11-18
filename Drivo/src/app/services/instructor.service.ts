@@ -6,7 +6,7 @@ import { InstructorEntity } from 'src/entities/InstructorEntity';
 @Injectable({
   providedIn: 'root'
 })
-export class InstructorServiceService {
+export class InstructorService {
 
   constructor(private httpClient: HttpClient) { }
 
@@ -20,9 +20,9 @@ export class InstructorServiceService {
     return await firstValueFrom(this.httpClient.get<InstructorEntity>(`https://localhost:5001/Instructor/${name}`));
   }
 
-  public async searchInstructor(searchString: string): Promise<Array<string>>
+  public async searchInstructor(searchString: string): Promise<Array<InstructorEntity>>
   {
-    return await firstValueFrom(this.httpClient.get<Array<string>>(`https://localhost:5001/Instructor/Search/${searchString}`));
+    return await firstValueFrom(this.httpClient.get<Array<InstructorEntity>>(`https://localhost:5001/Instructor/Search/${searchString}`));
   }
 
   public async postInstructor(instructor: InstructorEntity): Promise<InstructorEntity>

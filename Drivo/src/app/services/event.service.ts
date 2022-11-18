@@ -6,7 +6,7 @@ import { EventEntity } from 'src/entities/EventEntity';
 @Injectable({
   providedIn: 'root'
 })
-export class EventServiceService {
+export class EventService {
 
   
   constructor(private httpClient: HttpClient) { }

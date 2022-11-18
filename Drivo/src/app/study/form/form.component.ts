@@ -12,7 +12,7 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
   }
-public study: CourseModulEntity = new CourseModulEntity()
+public study: CourseModulEntity;
 @Output() onAdd: EventEmitter<CourseModulEntity> = new EventEmitter<CourseModulEntity>();
 public add()
 {

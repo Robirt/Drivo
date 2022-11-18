@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdComponent } from './ad/ad.component';
-import { NewAddComponent } from './ad/new-add/new-add.component';
+
 import { FormsModule } from '@angular/forms';
+import { NewAddComponent } from './new-add/new-add.component';
 
 
 

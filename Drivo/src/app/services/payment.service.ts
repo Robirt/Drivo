@@ -7,7 +7,7 @@ import { StudentEntity } from 'src/entities/StudentEntity';
 @Injectable({
   providedIn: 'root'
 })
-export class PaymentServiceService {
+export class PaymentService {
 
   constructor(private httpClient: HttpClient) { }
 

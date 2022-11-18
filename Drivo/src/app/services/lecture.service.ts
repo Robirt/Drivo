@@ -6,12 +6,12 @@ import { LectureEntity } from 'src/entities/LectureEntity';
 @Injectable({
   providedIn: 'root'
 })
-export class LectureServiceService {
+export class LectureService {
 
   
   constructor(private httpClient: HttpClient) { }
 
-  public async getLecture(): Promise<Array<LectureEntity>>
+  public async getLectures(): Promise<Array<LectureEntity>>
   {
     return await firstValueFrom(this.httpClient.get<Array<LectureEntity>>("https://localhost:5001/Lecture"));
   }
@@ -21,9 +21,9 @@ export class LectureServiceService {
     return await firstValueFrom(this.httpClient.get<LectureEntity>(`https://localhost:5001/Lecture/${name}`));
   }
 
-  public async searchLecture(searchString: string): Promise<Array<string>>
+  public async searchLecture(searchString: string): Promise<Array<LectureEntity>>
   {
-    return await firstValueFrom(this.httpClient.get<Array<string>>(`https://localhost:5001/Lecture/Search/${searchString}`));
+    return await firstValueFrom(this.httpClient.get<Array<LectureEntity>>(`https://localhost:5001/Lecture/Search/${searchString}`));
   }
 
   public async postLecture(lecture: LectureEntity): Promise<LectureEntity>

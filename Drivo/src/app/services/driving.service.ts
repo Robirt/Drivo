@@ -7,7 +7,7 @@ import { StudentEntity } from 'src/entities/StudentEntity';
 @Injectable({
   providedIn: 'root'
 })
-export class DrivingServiceService {
+export class DrivingService {
   
 
   constructor(private httpClient: HttpClient)
