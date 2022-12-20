@@ -4,8 +4,15 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Views="clr-namespace:Drivo.MAUI.Views"
-    Shell.NavBarIsVisible="False">
+    Shell.NavBarIsVisible="False"
+    Shell.BackgroundColor="{StaticResource SecondaryBackgroundColor}"
+    Shell.TitleColor="{StaticResource AccentColor}"
+    Shell.UnselectedColor="{StaticResource SecondaryForegroundColor}">
     <TabBar>
-        <ShellContent Title="Home" ContentTemplate="{DataTemplate Views:HomePage}"/>
+       
+        <ShellContent Title="Strona Główna" Icon="learning" ContentTemplate="{DataTemplate Views:HomePage}"/>
+        <ShellContent Title="Kalendarz" Icon="Icons/Calendar.png" ContentTemplate="{DataTemplate Views:ResourcesPage}"/>
+        <ShellContent Title="Nauka" Icon="Icons/Learning.png" ContentTemplate="{DataTemplate Views:CourseModulePage}"/>
+        <ShellContent Title="Profil" Icon="Icons/Profile.png" ContentTemplate="{DataTemplate Views:ProfilePage}" />
     </TabBar>
 </Shell>
