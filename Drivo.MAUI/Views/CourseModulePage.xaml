@@ -4,10 +4,30 @@
              xmlns:ViewModels="clr-namespace:Drivo.MAUI.ViewModels"
              x:Class="Drivo.MAUI.Views.CourseModulePage"
              Title="CourseModulePage">
+    <ContentPage.Resources>
+        <ResourceDictionary Source="../Resources/CourseModulePageResourceDictionary.xaml"/>
+    </ContentPage.Resources>
     <ContentPage.BindingContext>
         <ViewModels:CourseModulesViewModel/>
     </ContentPage.BindingContext>
-    <ScrollView>
-        <ListView/>
-    </ScrollView>
+    <Grid Margin="0">
+        <ScrollView>
+            <FlexLayout Wrap="Wrap" JustifyContent="Center" AlignItems="Center"  Direction="Row" >
+                <Border>
+                    <StackLayout>
+                        <Image Source="https://www.idfy.com/wp-content/uploads/2021/09/Driving-License-Verification-API-.png" Aspect="Fill"/>
+                        <Label Text="Znaki ostrzegawcze "/>
+                    </StackLayout>
+                </Border>
+                <Border>
+                    <StackLayout>
+                        <Image Source="https://www.idfy.com/wp-content/uploads/2021/09/Driving-License-Verification-API-.png" Aspect="Fill"/>
+                        <Label Text="Znaki ostrzegawcze "/>
+                    </StackLayout>
+                </Border>
+
+
+            </FlexLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

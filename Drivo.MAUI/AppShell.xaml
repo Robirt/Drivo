@@ -9,9 +9,10 @@
     Shell.TitleColor="{StaticResource AccentColor}"
     Shell.UnselectedColor="{StaticResource SecondaryForegroundColor}">
     <TabBar>
-        <ShellContent Title="Strona Główna" ContentTemplate="{DataTemplate Views:HomePage}"/>
-        <ShellContent Title="Kalendarz"  ContentTemplate="{DataTemplate Views:CalendarPage}"/>
-        <ShellContent Title="Nauka"  ContentTemplate="{DataTemplate Views:CourseModulePage}"/>
-        <ShellContent Title="Profil"  ContentTemplate="{DataTemplate Views:ProfilePage}" />
+       
+        <ShellContent Title="Strona Główna" Icon="learning" ContentTemplate="{DataTemplate Views:HomePage}"/>
+        <ShellContent Title="Kalendarz" Icon="Icons/Calendar.png" ContentTemplate="{DataTemplate Views:ResourcesPage}"/>
+        <ShellContent Title="Nauka" Icon="Icons/Learning.png" ContentTemplate="{DataTemplate Views:CourseModulePage}"/>
+        <ShellContent Title="Profil" Icon="Icons/Profile.png" ContentTemplate="{DataTemplate Views:ProfilePage}" />
     </TabBar>
 </Shell>
