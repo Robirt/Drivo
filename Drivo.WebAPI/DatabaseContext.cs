@@ -23,7 +23,11 @@ public class DatabaseContext : IdentityDbContext<UserEntity, RoleEntity, int>
 
 	private IConfiguration Configuration { get; }
 
-    public virtual DbSet<StudentsGroupEntity> StudentsGroup { get; set; }
+	public virtual DbSet<AdministratorEntity> Administrators { get; set; }
+	public virtual DbSet<LecturerEntity> Lecturers { get; set; }
+	public virtual DbSet<InstructorEntity> Instructors { get; set; }
+	public virtual DbSet<StudentEntity> Students { get; set; }
+    public virtual DbSet<StudentsGroupEntity> StudentsGroups { get; set; }
     public virtual DbSet<LectureEntity> Lectures { get; set; }
     public virtual DbSet<DrivingEntity> Drivings { get; set; }
     public virtual DbSet<AdEntity> Ads { get; set; }
@@ -37,8 +41,7 @@ public class DatabaseContext : IdentityDbContext<UserEntity, RoleEntity, int>
 	{
 		base.OnConfiguring(optionsBuilder);
 
-		optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Initial Catalog=Drivo;Integrated Security=True;").UseLazyLoadingProxies();
-
+		optionsBuilder.UseSqlServer(Configuration.GetConnectionString("Drivo")).UseLazyLoadingProxies();
     }
 
 	protected override void OnModelCreating(ModelBuilder builder)
@@ -46,5 +49,9 @@ public class DatabaseContext : IdentityDbContext<UserEntity, RoleEntity, int>
 		base.OnModelCreating(builder);
 
 		builder.Entity<UserEntity>().Ignore(user => user.FullName);
-	}
+
+        builder.Entity<LectureEntity>().Ignore(lecture => lecture.NumberOfHours);
+
+        builder.Entity<DrivingEntity>().Ignore(driving => driving.NumberOfHours);
+    }
 }

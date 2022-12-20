@@ -1,54 +1,48 @@
 ﻿using Drivo.Entities;
-using Microsoft.AspNetCore.Http;
+using Drivo.Responses;
+using Drivo.WebAPI.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
-namespace Drivo.WebAPI.Controllers
+namespace Drivo.WebAPI.Controllers;
+
+[ApiController]
+[Route("[Controller]")]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+public class InternalExamsController : ControllerBase
 {
-    
-    [ApiController]
-    [Route("[Controller]")]
-    public class InternalExamsController : ControllerBase
+    public InternalExamsController(InternalExamsService internalExamsService)
     {
-        public InternalExamsController(DatabaseContext context)
-        {
-            Context = context;
-        }
-        private DatabaseContext Context;
+        InternalExamsService = internalExamsService;
+    }
 
+    private InternalExamsService InternalExamsService { get; }
 
-        [HttpGet("{id}")]
-        public async Task<InternalExamEntity> GetInternalExam(int id)
-        {
-            return await Context.InternalExams.FindAsync(id);
-        }
+    [HttpPost]
+    [Authorize(Roles = "Instructor")]
+    public async Task<ActionResult<ActionResponse>> AddInternalExamAsync([FromBody] InternalExamEntity internalExam)
+    {
+        var response = await InternalExamsService.AddInternalExamAsync(internalExam);
 
-        [HttpGet]
-        public async Task<List<InternalExamEntity>> GetInternalExam()
-        {
-            return await Context.InternalExams.ToListAsync();
-        }
+        return response.IsSucceeded ? Ok(response) : BadRequest(response);
+    }
 
-        [HttpPost]
-        public async Task PostInternalExam(InternalExamEntity internalExam)
-        {
-            await Context.InternalExams.AddAsync(internalExam);
-            await Context.SaveChangesAsync();
-        }
+    [HttpPut]
+    [Authorize(Roles = "Instructor")]
+    public async Task<ActionResult<ActionResponse>> UpdateInternalExamAsync([FromBody] InternalExamEntity internalExam)
+    {
+        var response = await InternalExamsService.UpdateInternalExamAsync(internalExam);
 
-        [HttpPut]
-        public async Task PutInternalExam(InternalExamEntity internalExam)
-        {
-            Context.InternalExams.Update(internalExam);
-            await Context.SaveChangesAsync();
-        }
+        return response.IsSucceeded ? Ok(response) : BadRequest(response);
+    }
 
-        [HttpDelete("{id}")]
-        public async Task DeleteInternalExam(int id)
-        {
-            Context.InternalExams.Remove(await Context.InternalExams.FindAsync(id));
-            await Context.SaveChangesAsync();
-        }
+    [HttpDelete("{internalExamId}")]
+    [Authorize(Roles = "Instructor")]
+    public async Task<ActionResult<ActionResponse>> RemoveInternalExamAsync([FromRoute] int internalExamId)
+    {
+        var response = await InternalExamsService.RemoveInternalExamAsync(internalExamId);
 
+        return response.IsSucceeded ? Ok(response) : BadRequest(response);
     }
 }

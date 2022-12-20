@@ -1,54 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Drivo.Entities;
+﻿using Drivo.Entities;
+using Drivo.Responses;
+using Drivo.WebAPI.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
-namespace Drivo.WebAPI.Controllers
+namespace Drivo.WebAPI.Controllers;
+
+[ApiController]
+[Route("[Controller]")]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+public class AdsController : ControllerBase
 {
-
-    [ApiController]
-    [Route("[Controller]")]
-    public class AdsController : ControllerBase
+    public AdsController(AdsService adsService)
     {
-        public AdsController(DatabaseContext context)
-        {
-            Context = context;
-        }
-        private DatabaseContext Context;
+        AdsService = adsService;
+    }
 
-        [HttpGet("{id}")]
-        public async Task<AdEntity> GetAd(int id)
-        {
-            return await Context.Ads.FindAsync(id);
-        }
+    private AdsService AdsService { get; }
 
-        [HttpGet]
-        public async Task<List<AdEntity>> GetAds()
-        {
-            return await Context.Ads.ToListAsync();
-        }
+    [HttpGet]
+    public async Task<ActionResult<List<AdEntity>>> GetAdsAsync()
+    {
+        return Ok(await AdsService.GetAdsAsync());
+    }
 
-        [HttpPost]
-        public async Task PostAd(AdEntity ad)
-        {
-            await Context.Ads.AddAsync(ad); 
-            await Context.SaveChangesAsync();   
-        }
+    [HttpGet("{adid}")]
+    public async Task<ActionResult<AdEntity>> GetAdByIdAsync([FromRoute] int adId)
+    {
+        var ad = await AdsService.GetAdById(adId);
 
-        [HttpPut]
-        public async Task PutAd(AdEntity ad)
-        {
-            Context.Ads.Update(ad);
-            await Context.SaveChangesAsync();
-        }
+        return ad is not null ? Ok(ad) : BadRequest();
+    }
 
-        [HttpDelete("{id}")]
-        public async Task DeleteAd(int id)
-        {
-            Context.Ads.Remove(await Context.Ads.FindAsync(id));
-            await Context.SaveChangesAsync();   
-        }
+    [HttpPost]
+    [Authorize(Roles = "Administrator")]
+    public async Task<ActionResult<ActionResponse>> AddAdAsync([FromBody] AdEntity ad)
+    {
+        var response = await AdsService.AddAdAsync(ad);
+
+        return response.IsSucceeded ? Ok(response) : BadRequest(response);
+    }
+
+    [HttpPut]
+    [Authorize(Roles = "Administrator")]
+    public async Task<ActionResult<ActionResponse>> UpdateAdAsync([FromBody] AdEntity ad)
+    {
+        var response = await AdsService.UpdateAdAsync(ad);
+
+        return response.IsSucceeded ? Ok(response) : BadRequest(response);
+    }
+
+    [HttpDelete("{adId}")]
+    [Authorize(Roles = "Administrator")]
+    public async Task<ActionResult<ActionResponse>> DeleteAdAsync([FromRoute] int adId)
+    {
+        var response = await AdsService.RemoveAdAsync(adId);
+
+        return response.IsSucceeded ? Ok(response) : BadRequest(response);
     }
 }

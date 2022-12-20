@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Drivo.WebAPI.Controllers;
 
-[Route("[controller]")]
+[Route("[Controller]")]
 [ApiController]
 public class UsersController : ControllerBase
 {
