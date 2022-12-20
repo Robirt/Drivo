@@ -9,10 +9,12 @@ public class UserEntity : IdentityUser<int>
 
     }
 
-    public UserEntity(string firstName, string lastName) : base()
+    public UserEntity(string userName, string email, string firstName, string lastName, DateTime birthDate) : base(userName)
     {
+        Email = email;
         FirstName = firstName;
         LastName = lastName;
+        BirthDate = birthDate;
     }
 
     public string FirstName { get; set; }

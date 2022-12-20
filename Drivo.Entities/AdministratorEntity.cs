@@ -6,4 +6,9 @@ public class AdministratorEntity : UserEntity
 	{
 
 	}
+
+	public AdministratorEntity(string userName, string email, string firstName, string lastName, DateTime birthDate) : base(userName, email, firstName, lastName, birthDate)
+	{
+
+	}
 }

@@ -1,55 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Drivo.Entities;
+﻿using Drivo.Entities;
+using Drivo.Responses;
+using Drivo.WebAPI.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
-namespace Drivo.WebAPI.Controllers
+namespace Drivo.WebAPI.Controllers;
+
+[ApiController]
+[Route("[Controller]")]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
+public class ResourcesControllers : ControllerBase
 {
-
-    [ApiController]
-    [Route("[Controller]")]
-    public class ResourcesControllers : ControllerBase
+    public ResourcesControllers(ResourcesService resourcesService)
     {
-        public ResourcesControllers(DatabaseContext context)
-        {
-            Context = context;
-        }
-        private DatabaseContext Context;
-
-        [HttpGet("{id}")]
-        public async Task<ResourceEntity> GetResource(int id)
-        {
-            return await Context.Resources.FindAsync(id);
-        }
-
-        [HttpGet]
-        public async Task<List<ResourceEntity>> GetResources()
-        {
-            return await Context.Resources.ToListAsync();
-        }
-
-        [HttpPost]
-        public async Task PostResource(ResourceEntity resource)
-        {
-            await Context.Resources.AddAsync(resource);
-            await Context.SaveChangesAsync();
-        }
-
-        [HttpPut]
-        public async Task PutResource(ResourceEntity resource)
-        {
-            Context.Resources.Update(resource);
-            await Context.SaveChangesAsync();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task DeleteResource(int id)
-        {
-            Context.Resources.Remove(await Context.Resources.FindAsync(id));
-            await Context.SaveChangesAsync();
-        }
+        ResourcesService = resourcesService;
     }
 
+    private ResourcesService ResourcesService { get; }
+
+    public async Task<ActionResult<ActionResponse>> AddResourceAsync(ResourceEntity resource)
+    {
+        var response = await ResourcesService.AddResourceAsync(resource);
+
+        return response.IsSucceeded ? Ok(response) : BadRequest(response);
+    }
+
+    [HttpPut]
+    public async Task<ActionResult<ActionResponse>> UpdateResourceAsync(ResourceEntity resource)
+    {
+        var response = await ResourcesService.UpdateResourceAsync(resource);
+
+        return response.IsSucceeded ? Ok(response) : BadRequest(response);
+    }
+
+    [HttpDelete("{resourceId}")]
+    public async Task<ActionResult<ActionResponse>> RemoveResourceAsync(int resourceId)
+    {
+        var response = await ResourcesService.RemoveResourceAsync(resourceId);
+
+        return response.IsSucceeded ? Ok(response) : BadRequest(response);
+    }
 }

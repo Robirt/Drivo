@@ -2,6 +2,18 @@
 {
     public class InstructorEntity : UserEntity
     {
-        public List<StudentEntity> Students { get; set; }   
+        public InstructorEntity() : base()
+        {
+
+        }
+
+        public InstructorEntity(string userName, string email, string firstName, string lastName, DateTime birthDate) : base(userName, email, firstName, lastName, birthDate)
+        {
+
+        }
+
+        public virtual List<StudentEntity> Students { get; set; }
+        public virtual List<DrivingEntity> Drivings { get; set; }
+        public virtual List<InternalExamEntity> InternalExams { get; set; }
     }
 }

@@ -1,52 +1,45 @@
 ﻿using Drivo.Entities;
-using Microsoft.AspNetCore.Http;
+using Drivo.Responses;
+using Drivo.WebAPI.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
-namespace Drivo.WebAPI.Controllers
+namespace Drivo.WebAPI.Controllers;
+
+[ApiController]
+[Route("[Controller]")]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Instructor")]
+public class DrivingsController : ControllerBase
 {
-    
-    [ApiController]
-    [Route("[Controller]")]
-    public class DrivingsController : ControllerBase
+    public DrivingsController(DrivingsService drivingsService)
     {
-        public DrivingsController(DatabaseContext context)
-        {
-            Context = context;
-        }
-        private DatabaseContext Context;
+        DrivingsService = drivingsService;
+    }
 
+    private DrivingsService DrivingsService { get; }
 
-        [HttpGet("{id}")]
-        public async Task<DrivingEntity> GetDriving(int id)
-        {
-            return await Context.Drivings.FindAsync(id);
-        }
+    [HttpPost]
+    public async Task<ActionResult<ActionResponse>> AddDrivingAsync([FromBody] DrivingEntity driving)
+    {
+        var response = await DrivingsService.AddDrivingAsync(driving);
 
-        [HttpGet]
-        public async Task<List<DrivingEntity>> GetDrivingList()
-        {
-            return await Context.Drivings.ToListAsync();
-        }
+        return response.IsSucceeded ? Ok(response) : BadRequest(response);
+    }
 
-        [HttpPost]
-        public async Task PostDriving(DrivingEntity driving)
-        {
-            await Context.Drivings.AddAsync(driving);
-            await Context.SaveChangesAsync();   
-        }
-        [HttpPut]
-        public async Task PutDriving(DrivingEntity driving)
-        {
-            Context.Drivings.Update(driving);
-            await Context.SaveChangesAsync();
-        }
+    [HttpPut]
+    public async Task<ActionResult<ActionResponse>> UpdateDrivingAsync([FromBody] DrivingEntity driving)
+    {
+        var response = await DrivingsService.UpdateDrivingAsync(driving);
 
-        [HttpDelete("{id}")]
-        public async Task DeleteDriving(int id)
-        {
-            Context.Drivings.Remove(await Context.Drivings.FindAsync(id));
-            await Context.SaveChangesAsync();
-        }
+        return response.IsSucceeded ? Ok(response) : BadRequest(response);
+    }
+
+    [HttpDelete("{drivingId}")]
+    public async Task<ActionResult<ActionResponse>> RemoveDrivingAsync([FromRoute] int drivingId)
+    {
+        var response = await DrivingsService.RemoveDrivingAsync(drivingId);
+
+        return response.IsSucceeded ? Ok(response) : BadRequest(response);
     }
 }

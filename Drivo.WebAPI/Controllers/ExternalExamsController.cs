@@ -1,54 +1,53 @@
 ﻿using Drivo.Entities;
-using Microsoft.AspNetCore.Http;
+using Drivo.Responses;
+using Drivo.WebAPI.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
-namespace Drivo.WebAPI.Controllers
+namespace Drivo.WebAPI.Controllers;
+
+[ApiController]
+[Route("[Controller]")]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Student")]
+public class ExternalExamsController : ControllerBase
 {
-    
-    [ApiController]
-    [Route("[Controller]")]
-    public class ExternalExamsController : ControllerBase
+    public ExternalExamsController(ExternalExamsService externalExamsService)
     {
-        public ExternalExamsController(DatabaseContext context)
-        {
-            Context = context;
-        }
-        private DatabaseContext Context;
+        ExternalExamsService = externalExamsService;
+    }
 
+    private ExternalExamsService ExternalExamsService { get; }
 
-        [HttpGet("{id}")]
-        public async Task<ExternalExamEntity> GetExternalExam(int id)
-        {
-            return await Context.ExternalExams.FindAsync(id);
-        }
+    [HttpGet]
+    public async Task<ActionResult<List<ExternalExamEntity>>> GetExternalExamsAsync()
+    {
+        var externalExams = await ExternalExamsService.GetExternalExamsByStudentAsync(User.Identity.Name);
 
-        [HttpGet]
-        public async Task<List<ExternalExamEntity>> GetExternalExam()
-        {
-            return await Context.ExternalExams.ToListAsync();
-        }
+        return externalExams.Any() ? Ok(externalExams) : NotFound();
+    }
 
-        [HttpPost]
-        public async Task PostExternalExam(ExternalExamEntity externalExam)
-        {
-            await Context.ExternalExams.AddAsync(externalExam);
-            await Context.SaveChangesAsync();
-        }
+    [HttpPost]
+    public async Task<ActionResult<ActionResponse>> AddExternalExamAsync([FromBody] ExternalExamEntity externalExam)
+    {
+        var response = await ExternalExamsService.AddExternalExamAsync(externalExam, User.Identity.Name);
 
-        [HttpPut]
-        public async Task PutExternalExam(ExternalExamEntity externalExam)
-        {
-            Context.ExternalExams.Update(externalExam);
-            await Context.SaveChangesAsync();
-        }
+        return response.IsSucceeded ? Ok(response) : BadRequest(response);
+    }
 
-        [HttpDelete("{id}")]
-        public async Task DeleteExternalExam(int id)
-        {
-            Context.ExternalExams.Remove(await Context.ExternalExams.FindAsync(id));
-            await Context.SaveChangesAsync();
-        }
+    [HttpPut]
+    public async Task<ActionResult<ActionResponse>> UpdateExternalExamAsync([FromBody] ExternalExamEntity externalExam)
+    {
+        var response = await ExternalExamsService.UpdateExternalExamAsync(externalExam, User.Identity.Name);
 
+        return response.IsSucceeded ? Ok(response) : BadRequest(response);
+    }
+
+    [HttpDelete]
+    public async Task<ActionResult<ActionResponse>> RemoveExternalExamAsync([FromRoute] int externalExamId)
+    {
+        var response = await ExternalExamsService.RemoveExternalExamAsync(externalExamId, User.Identity.Name);
+
+        return response.IsSucceeded ? Ok(response) : BadRequest(response);
     }
 }
