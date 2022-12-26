@@ -13,6 +13,11 @@ public class LecturesSevice
 
     private LecturesRepository LecturesRepository { get; }
 
+    public async Task<List<LectureEntity>> GetLecturesByUserName(string userName)
+    {
+        return await LecturesRepository.GetLecturesByUserName(userName);
+    }
+
     public async Task<LectureEntity> GetLectureByIdAsync(int lectureId)
     {
         return await LecturesRepository.GetLectureByIdAsync(lectureId);
@@ -30,6 +35,6 @@ public class LecturesSevice
 
     public async Task<ActionResponse> RemoveLectureAsync(int lectureId)
     {
-        return await LecturesRepository.RemoveLectureAsync(await );
+        return await LecturesRepository.RemoveLectureAsync(await GetLectureByIdAsync(lectureId));
     }
 }

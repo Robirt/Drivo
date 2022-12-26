@@ -8,12 +8,16 @@ namespace Drivo.WebAPI.Services;
 
 public class InstructorsService
 {
-    public InstructorsService(UserManager<UserEntity> userManager)
+    public InstructorsService(UserManager<UserEntity> userManager, MailsService mailsService, PasswordService passwordService)
     {
         UserManager = userManager;
+        MailsService = mailsService;
+        PasswordService = passwordService;
     }
 
     private UserManager<UserEntity> UserManager { get; }
+    private MailsService MailsService { get; }
+    private PasswordService PasswordService { get; }
 
     public async Task<List<InstructorEntity>> GetInstructorsAsync()
     {
@@ -34,7 +38,9 @@ public class InstructorsService
             userName += $"{usersWithSameUserNameCount++}";
         }
 
-        if ((await UserManager.CreateAsync(new InstructorEntity(userName, request.Email, request.FirstName, request.LastName, request.BirthDate)) is var createResult && createResult.Succeeded == false))
+        var password = PasswordService.GeneratePassword();
+
+        if ((await UserManager.CreateAsync(new InstructorEntity(userName, request.Email, request.FirstName, request.LastName, request.BirthDate), password) is var createResult && createResult.Succeeded == false))
         {
             return new ActionResponse(false, createResult.Errors.First().Description);
         }
@@ -44,6 +50,11 @@ public class InstructorsService
         if ((await UserManager.AddToRoleAsync(instructor, "Instructor")) is var addToRoleResult && addToRoleResult.Succeeded == false)
         {
             return new ActionResponse(false, addToRoleResult.Errors.First().Description);
+        }
+
+        if ((await MailsService.SendWelcomeMail(instructor, password)) is var sendWelcomeMailResult && sendWelcomeMailResult.IsSucceeded == false)
+        {
+            return sendWelcomeMailResult;
         }
 
         return new ActionResponse(true, "Instructor was created successfully.");

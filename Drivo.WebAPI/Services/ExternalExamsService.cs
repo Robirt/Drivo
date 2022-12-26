@@ -15,7 +15,7 @@ public class ExternalExamsService
     private ExternalExamsRepository ExternalExamsRepository { get; }
     private StudentsService StudentsService { get; }
 
-    public async Task<List<ExternalExamEntity>> GetExternalExamsByStudentAsync(string studentUserName)
+    public async Task<List<ExternalExamEntity>> GetExternalExamsByStudentNameAsync(string studentUserName)
     {
         return await ExternalExamsRepository.GetExternalExamsByStudentAsync(await StudentsService.GetStudentByUserNameAsync(studentUserName));
     }

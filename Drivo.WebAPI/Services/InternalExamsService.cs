@@ -13,6 +13,11 @@ public class InternalExamsService
 
     private InternalExamsRepository InternalExamsRepository { get; }
 
+    public async Task<List<InternalExamEntity>> GetInternalExamsByUserName(string userName)
+    {
+        return await InternalExamsRepository.GetInternalExamsByUserNameAsync(userName);
+    }
+
     public async Task<InternalExamEntity> GetInternalExamByIdAsync(int internalExamId)
     {
         return await InternalExamsRepository.GetInternalExamByIdAsync(internalExamId);

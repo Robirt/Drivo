@@ -8,7 +8,7 @@ namespace Drivo.WebAPI.Controllers;
 
 [ApiController]
 [Route("[Controller]")]
-[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
 public class StudentsGroupsController : ControllerBase
 {
     public StudentsGroupsController(StudentsGroupsService studentsGroupsService)
@@ -18,6 +18,7 @@ public class StudentsGroupsController : ControllerBase
 
     private StudentsGroupsService StudentsGroupsService { get; }
 
+    [HttpGet]
     public async Task<ActionResult<List<StudentsGroupEntity>>> GetStudentsGroups()
     {
         return Ok(await StudentsGroupsService.GetStudentsGroupsAsync());

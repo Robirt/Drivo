@@ -19,6 +19,13 @@ public class InternalExamsController : ControllerBase
 
     private InternalExamsService InternalExamsService { get; }
 
+    [HttpGet]
+    [Authorize(Roles = "Instructor, Student")]
+    public async Task<List<InternalExamEntity>> GetInternalExamsByUserNameAsync()
+    {
+        return await InternalExamsService.GetInternalExamsByUserName(User.Identity.Name);
+    }
+
     [HttpPost]
     [Authorize(Roles = "Instructor")]
     public async Task<ActionResult<ActionResponse>> AddInternalExamAsync([FromBody] InternalExamEntity internalExam)

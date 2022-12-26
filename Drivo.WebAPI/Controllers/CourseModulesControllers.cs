@@ -51,24 +51,6 @@ public class CourseModulesControllers : ControllerBase
         return response.IsSucceeded ? Ok(response) : BadRequest(response);
     }
 
-    [HttpPut("{courseModuleName}/AddResource")]
-    [Authorize(Roles = "Administrator, Lecturer")]
-    public async Task<ActionResult<ActionResponse>> AddResourceToCourseModuleAsync([FromRoute] string courseModuleName, [FromBody] ResourceEntity resource)
-    {
-        var response = await CourseModulesService.AddResourceToCourseModuleAsync(courseModuleName, resource);
-
-        return response.IsSucceeded ? Ok(response) : BadRequest(response);
-    }
-
-    [HttpPut("{courseModuleName}/RemoveResource")]
-    [Authorize(Roles = "Administrator, Lecturer")]
-    public async Task<ActionResult<ActionResponse>> RemoveResourceFromCourseModuleAsync([FromRoute] string courseModuleName, [FromBody] ResourceEntity resource)
-    {
-        var response = await CourseModulesService.RemoveResourceFromCourseModuleAsync(courseModuleName, resource);
-
-        return response.IsSucceeded ? Ok(response) : BadRequest(response);
-    }
-
     [HttpDelete("{courseModulename}")]
     [Authorize(Roles = "Administrator, Lecturer")]
     public async Task<ActionResult<ActionResponse>> RemoveCourseModuleAsync([FromRoute] string courseModuleName)

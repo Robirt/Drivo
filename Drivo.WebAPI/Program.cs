@@ -1,5 +1,6 @@
 using Drivo.Entities;
 using Drivo.WebAPI;
+using Drivo.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -16,9 +17,17 @@ builder.Services.AddAuthentication(options => options.DefaultAuthenticateScheme 
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddRepositories();
+builder.Services.AddScoped<PasswordService>();
 
-builder.Services.AddServices();
+builder.Services.AddMailsService(builder.Configuration.GetSection("Smpt"));
+
+builder.Services.AddUsersServices();
+
+builder.Services.AddEntitiesRepositories();
+
+builder.Services.AddEntitiesServices();
+
+builder.Services.AddHostedService<BackgroundNotificationsService>();
 
 builder.Services.AddControllers().AddJsonOptions(options => options.ConfigureJsonOptions());
 

@@ -9,7 +9,7 @@ namespace Drivo.WebAPI.Controllers;
 
 [ApiController]
 [Route("[Controller]")]
-[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Instructor")]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 public class DrivingsController : ControllerBase
 {
     public DrivingsController(DrivingsService drivingsService)
@@ -19,7 +19,15 @@ public class DrivingsController : ControllerBase
 
     private DrivingsService DrivingsService { get; }
 
+    [HttpGet]
+    [Authorize(Roles = "Instructor, Student")]
+    public async Task<List<DrivingEntity>> GetDrivingsByUserNameAsync()
+    {
+        return await DrivingsService.GetDrivingsByUserNameAsync(User.Identity.Name);
+    }
+
     [HttpPost]
+    [Authorize(Roles = "Instructor")]
     public async Task<ActionResult<ActionResponse>> AddDrivingAsync([FromBody] DrivingEntity driving)
     {
         var response = await DrivingsService.AddDrivingAsync(driving);
@@ -28,6 +36,7 @@ public class DrivingsController : ControllerBase
     }
 
     [HttpPut]
+    [Authorize(Roles = "Instructor")]
     public async Task<ActionResult<ActionResponse>> UpdateDrivingAsync([FromBody] DrivingEntity driving)
     {
         var response = await DrivingsService.UpdateDrivingAsync(driving);
@@ -36,6 +45,7 @@ public class DrivingsController : ControllerBase
     }
 
     [HttpDelete("{drivingId}")]
+    [Authorize(Roles = "Instructor")]
     public async Task<ActionResult<ActionResponse>> RemoveDrivingAsync([FromRoute] int drivingId)
     {
         var response = await DrivingsService.RemoveDrivingAsync(drivingId);
