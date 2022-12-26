@@ -34,7 +34,7 @@ public class AdsRepository
 
         catch (Exception exception)
         {
-            return new ActionResponse(false, exception.Message);
+            return new ActionResponse(false, exception.Message ?? exception.InnerException?.Message ?? "An exception occured.");
         }
 
         return new ActionResponse(true, "Ad was added successfully.");
@@ -51,7 +51,7 @@ public class AdsRepository
 
         catch (Exception exception)
         {
-            return new ActionResponse(false, exception.Message);
+            return new ActionResponse(false, exception.Message ?? exception.InnerException?.Message ?? "An exception occured.");
         }
 
         return new ActionResponse(true, "Ad was updated successfully.");
@@ -68,7 +68,7 @@ public class AdsRepository
 
         catch (Exception exception)
         {
-            return new ActionResponse(false, exception.Message);
+            return new ActionResponse(false, exception.Message ?? exception.InnerException?.Message ?? "An exception occured.");
         }
 
         return new ActionResponse(true, "Ad was removed successfully.");

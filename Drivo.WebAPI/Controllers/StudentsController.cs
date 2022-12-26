@@ -21,12 +21,14 @@ namespace Drivo.WebAPI.Controllers
         private StudentsService StudentsService { get; }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult<List<StudentEntity>>> GetStudentsAsync()
         {
             return Ok(await StudentsService.GetStudentsAsync());
         }
 
         [HttpGet("{userName}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult<StudentEntity>> GetStudentByUserNameAsync([FromRoute] string userName)
         {
             var student = await StudentsService.GetStudentByUserNameAsync(userName);

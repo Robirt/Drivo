@@ -13,6 +13,11 @@ public class DrivingsRepository
 
     private DatabaseContext Context { get; }
 
+    public async Task<List<DrivingEntity>> GetDrivingsByUserAsync(string userName)
+    {
+        return await Context.Drivings.Where(driving => driving.Instructor.UserName == userName || driving.Student.UserName == userName).ToListAsync();
+    }
+
     public async Task<DrivingEntity> GetDrivingByIdAsync(int drivingId)
     {
         return await Context.Drivings.FirstOrDefaultAsync(driving => driving.Id == drivingId);

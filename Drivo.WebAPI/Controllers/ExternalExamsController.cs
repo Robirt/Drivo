@@ -20,9 +20,9 @@ public class ExternalExamsController : ControllerBase
     private ExternalExamsService ExternalExamsService { get; }
 
     [HttpGet]
-    public async Task<ActionResult<List<ExternalExamEntity>>> GetExternalExamsAsync()
+    public async Task<ActionResult<List<ExternalExamEntity>>> GetExternalExamsByStudentNameAsync()
     {
-        var externalExams = await ExternalExamsService.GetExternalExamsByStudentAsync(User.Identity.Name);
+        var externalExams = await ExternalExamsService.GetExternalExamsByStudentNameAsync(User.Identity.Name);
 
         return externalExams.Any() ? Ok(externalExams) : NotFound();
     }
@@ -43,7 +43,7 @@ public class ExternalExamsController : ControllerBase
         return response.IsSucceeded ? Ok(response) : BadRequest(response);
     }
 
-    [HttpDelete]
+    [HttpDelete("{externalExamId}")]
     public async Task<ActionResult<ActionResponse>> RemoveExternalExamAsync([FromRoute] int externalExamId)
     {
         var response = await ExternalExamsService.RemoveExternalExamAsync(externalExamId, User.Identity.Name);

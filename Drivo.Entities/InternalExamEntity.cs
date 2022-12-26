@@ -1,10 +1,7 @@
 ﻿namespace Drivo.Entities
 {
-    public class InternalExamEntity
+    public class InternalExamEntity : EventEntity
     {
-        public int Id { get; set; }
-        public DateTime Date { get; set; }
-        public string StartPlace { get; set; }
         public StudentEntity? Student { get; set; }
         public int? StudentId { get; set; }
         public InstructorEntity? Instructor { get; set; }

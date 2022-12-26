@@ -13,6 +13,11 @@ public class LecturesRepository
 
     private DatabaseContext Context { get; }
 
+    public async Task<List<LectureEntity>> GetLecturesByUserName(string userName)
+    {
+        return await Context.Lectures.Where(driving => driving.Lecturer.UserName == userName || driving.StudentsGroup.Students.Select(student => student.UserName).Contains(userName)).ToListAsync();
+    }
+
     public async Task<LectureEntity> GetLectureByIdAsync(int lectureId)
     {
         return await Context.Lectures.FirstOrDefaultAsync(lecture => lecture.Id == lectureId);

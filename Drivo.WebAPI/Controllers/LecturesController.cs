@@ -9,7 +9,7 @@ namespace Drivo.WebAPI.Controllers;
 
 [ApiController]
 [Route("[Controller]")]
-[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Lecturer")]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 public class LecturesController : ControllerBase
 {
     public LecturesController(LecturesSevice lecturesService)
@@ -19,7 +19,15 @@ public class LecturesController : ControllerBase
 
     private LecturesSevice LecturesService { get; }
 
+    [HttpGet]
+    [Authorize(Roles = "Lecturer, Student")]
+    public async Task<List<LectureEntity>> GetLecturesByUserNameAsync()
+    {
+        return await LecturesService.GetLecturesByUserName(User.Identity.Name);
+    }
+
     [HttpPost]
+    [Authorize(Roles = "Lecturer")]
     public async Task<ActionResult<ActionResponse>> AddLectureAsync([FromBody] LectureEntity lecture)
     {
         var response = await LecturesService.AddLectureAsync(lecture);
@@ -28,6 +36,7 @@ public class LecturesController : ControllerBase
     }
 
     [HttpPut]
+    [Authorize(Roles = "Lecturer")]
     public async Task<ActionResult<ActionResponse>> UpdateLectureAsync([FromBody] LectureEntity lecture)
     {
         var response = await LecturesService.UpdateLectureAsync(lecture);
@@ -36,6 +45,7 @@ public class LecturesController : ControllerBase
     }
 
     [HttpDelete("{lectureId}")]
+    [Authorize(Roles = "Lecturer")]
     public async Task<ActionResult<ActionResponse>> RemoveLectureAsync([FromRoute] int lectureId)
     {
         var response = await LecturesService.RemoveLectureAsync(lectureId);

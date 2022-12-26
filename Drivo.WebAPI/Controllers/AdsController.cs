@@ -25,7 +25,7 @@ public class AdsController : ControllerBase
         return Ok(await AdsService.GetAdsAsync());
     }
 
-    [HttpGet("{adid}")]
+    [HttpGet("{adId}")]
     public async Task<ActionResult<AdEntity>> GetAdByIdAsync([FromRoute] int adId)
     {
         var ad = await AdsService.GetAdById(adId);

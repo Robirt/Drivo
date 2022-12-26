@@ -3,6 +3,8 @@ using Drivo.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -18,7 +20,19 @@ public static class ProgramExtensions
         options.TokenValidationParameters.ValidateLifetime = true;
     }
 
-    public static IServiceCollection AddRepositories(this IServiceCollection services)
+    public static IServiceCollection AddUsersServices(this IServiceCollection services)
+    {
+        services.AddScoped<UsersService>();
+
+        services.AddScoped<AdministratorsService>();
+        services.AddScoped<LecturersService>();
+        services.AddScoped<InstructorsService>();
+        services.AddScoped<StudentsService>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddEntitiesRepositories(this IServiceCollection services)
     {
         services.AddScoped<StudentsGroupsRepository>();
         services.AddScoped<LecturesRepository>();
@@ -33,15 +47,8 @@ public static class ProgramExtensions
         return services;
     }
 
-    public static IServiceCollection AddServices(this IServiceCollection services)
+    public static IServiceCollection AddEntitiesServices(this IServiceCollection services)
     {
-        services.AddScoped<UsersService>();
-
-        services.AddScoped<AdministratorsService>();
-        services.AddScoped<LecturersService>();
-        services.AddScoped<InstructorsService>();
-        services.AddScoped<StudentsService>();
-
         services.AddScoped<StudentsGroupsService>();
         services.AddScoped<LecturesSevice>();
         services.AddScoped<DrivingsService>();
@@ -51,6 +58,14 @@ public static class ProgramExtensions
         services.AddScoped<ExternalExamsService>();
         services.AddScoped<InternalExamsService>();
         services.AddScoped<PaymentsService>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddMailsService(this IServiceCollection services, IConfigurationSection configuration)
+    {
+        services.AddScoped(serviceProvider => new SmtpClient(configuration.GetValue<string>("Host"), configuration.GetValue<int>("Port")) { Credentials = new NetworkCredential(configuration.GetValue<string>("Credentials:UserName"), configuration.GetValue<string>("Credentials:Password")), EnableSsl = true });
+        services.AddScoped<MailsService>();
 
         return services;
     }

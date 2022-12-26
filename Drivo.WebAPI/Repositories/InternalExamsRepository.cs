@@ -13,6 +13,11 @@ public class InternalExamsRepository
 
     private DatabaseContext Context { get; }
 
+    public async Task<List<InternalExamEntity>> GetInternalExamsByUserNameAsync(string userName)
+    {
+        return await Context.InternalExams.Where(driving => driving.Instructor.UserName == userName || driving.Student.UserName == userName).ToListAsync();
+    }
+
     public async Task<InternalExamEntity> GetInternalExamByIdAsync(int internalExamId)
     {
         return await Context.InternalExams.FirstOrDefaultAsync(internalExam => internalExam.Id == internalExamId);
@@ -68,3 +73,4 @@ public class InternalExamsRepository
 
         return new ActionResponse(true, "InternalExam was removed successfully.");
     }
+}

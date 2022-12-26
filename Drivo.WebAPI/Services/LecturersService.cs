@@ -8,12 +8,16 @@ namespace Drivo.WebAPI.Services;
 
 public class LecturersService
 {
-    public LecturersService(UserManager<UserEntity> userManager)
+    public LecturersService(UserManager<UserEntity> userManager, MailsService mailsService, PasswordService passwordService)
     {
         UserManager = userManager;
+        MailsService = mailsService;
+        PasswordService = passwordService;
     }
 
     private UserManager<UserEntity> UserManager { get; }
+    private MailsService MailsService { get; }
+    private PasswordService PasswordService { get; }
 
     public async Task<List<LecturerEntity>> GetLecturersAsync()
     {
@@ -34,7 +38,9 @@ public class LecturersService
             userName += $"{usersWithSameUserNameCount++}";
         }
 
-        if ((await UserManager.CreateAsync(new LecturerEntity(userName, request.Email, request.FirstName, request.LastName, request.BirthDate)) is var createResult && createResult.Succeeded == false))
+        var password = PasswordService.GeneratePassword();
+
+        if ((await UserManager.CreateAsync(new LecturerEntity(userName, request.Email, request.FirstName, request.LastName, request.BirthDate), password) is var createResult && createResult.Succeeded == false))
         {
             return new ActionResponse(false, createResult.Errors.First().Description);
         }
@@ -44,6 +50,11 @@ public class LecturersService
         if ((await UserManager.AddToRoleAsync(lecturer, "Lecturer")) is var addToRoleResult && addToRoleResult.Succeeded == false)
         {
             return new ActionResponse(false, addToRoleResult.Errors.First().Description);
+        }
+
+        if ((await MailsService.SendWelcomeMail(lecturer, password)) is var sendWelcomeMailResult && sendWelcomeMailResult.IsSucceeded == false)
+        {
+            return sendWelcomeMailResult;
         }
 
         return new ActionResponse(true, "Lecturer was created successfully.");

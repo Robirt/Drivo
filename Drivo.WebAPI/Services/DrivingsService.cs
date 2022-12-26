@@ -13,6 +13,11 @@ public class DrivingsService
 
     private DrivingsRepository DrivingsRepository { get; }
 
+    public async Task<List<DrivingEntity>> GetDrivingsByUserNameAsync(string userName)
+    {
+        return await DrivingsRepository.GetDrivingsByUserAsync(userName);
+    }
+
     public async Task<DrivingEntity> GetDrivingByIdAsync(int drivingId)
     {
         return await DrivingsRepository.GetDrivingByIdAsync(drivingId);
