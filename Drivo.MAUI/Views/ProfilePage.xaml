@@ -6,6 +6,9 @@
     <ContentPage.Resources>
         <ResourceDictionary Source="../Resources/ProfilePageResourceDictionary.xaml"/>
     </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <ViewModels:ProfilePageViewModel/>
+    </ContentPage.BindingContext>
     <FlexLayout Direction="Column" JustifyContent="Center" AlignItems="Center">
         <Border>
             <Grid RowDefinitions="6*, 6*" >
@@ -20,10 +23,10 @@
                         </Border>
                     </StackLayout>
                     <StackLayout Grid.Row="1" Grid.Column="2" HorizontalOptions="End">
-                        <Label Text="Imie: " Style="{StaticResource DataLabel}"/>
-                        <Label Text="Nazwisko: " Style="{StaticResource DataLabel}"/>
-                        <Label Text="Data urodzenia: " Style="{StaticResource DataLabel}"/>
-                        <Label Text="Start kursu: " Style="{StaticResource DataLabel}"/>
+                        <Label Text="{Binding User.FirstName, StringFormat='Imie: {0}'}" Style="{StaticResource DataLabel}" />
+                        <Label Text="{Binding User.LastName, StringFormat='Nazwisko: {0}'}" Style="{StaticResource DataLabel}"/>
+                        <Label Text="{Binding User.BirthDate, StringFormat='Data urodzenia: {0}'}" Style="{StaticResource DataLabel}"/>
+                        <Label Text="{Binding FirstLecture, StringFormat='Start kursu: {0}'}" Style="{StaticResource DataLabel}"/>
                     </StackLayout>
                 </Grid>
                 
@@ -36,20 +39,19 @@
             <Grid RowDefinitions="6*">
                 <StackLayout Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="PODSUMOWANIE PŁATNOŚCI" />
-                    <Label Text="I RATA: 25.01.2022 800ZŁ"/>
-                    <Label Text="II RATA: 26.02.2022 400ZŁ"/>
-                    <Label Text="III RATA: 30.03.2022 500ZŁ"/>
+                    <Label Text="{Binding NextPayment.EndDate, StringFormat='{}{0:dd.MM.yyyy}'}"/>
+                    <Label Text="{Binding NextPayment.Ammount}"/>
                 </StackLayout>
             </Grid>
         </Border>
     
     <StackLayout Orientation="Horizontal" >
             <Border HeightRequest="100" WidthRequest="175" >
-                <Label Text="Wykłady 12/30" Style="{StaticResource CaptionLabel}"/>
+                <Label Text="{Binding Lectures.Count, StringFormat='WYKŁADY {0}/30'}" Style="{StaticResource CaptionLabel}"/>
                 
             </Border>
             <Border HeightRequest="100" WidthRequest="175" >
-                <Label Text="Jazdy 12/30" Style="{StaticResource CaptionLabel}"/>
+                <Label Text="{Binding Drivings.Count, StringFormat='JAZDY {0}/30'}" Style="{StaticResource CaptionLabel}"/>
             </Border>
      </StackLayout>
 
@@ -58,13 +60,13 @@
                 <StackLayout Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="Znasz już datę egzaminu zewnętrznego?" />
                     <Label Text="Dodaj do kalendarza"/>
-                    <Button Text="Egzamin teoretyczny" />
-                    <Button Text="Egzamin praktyczny" />
+                    <Button Text="Egzamin teoretyczny" Command="{Binding GoToCalendarPageCommand}"/>
+                    <Button Text="Egzamin praktyczny" Command="{Binding GoToCalendarPageCommand}"/>
                 </StackLayout>
             </Grid>
         </Border>
 
-        <Button Text="Wyloguj się" WidthRequest="120" VerticalOptions="End" HorizontalOptions="End"/>
+        <Button Text="Wyloguj się" WidthRequest="120" VerticalOptions="End" HorizontalOptions="End" Command="{Binding SignOutCommand}"/>
          
     </FlexLayout>
 </ContentPage>
