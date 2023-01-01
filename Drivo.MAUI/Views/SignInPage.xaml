@@ -8,7 +8,7 @@
         <ResourceDictionary Source="../Resources/SignInPageResourceDictionary.xaml"/>
     </ContentPage.Resources>
     <ContentPage.BindingContext>
-        <ViewModels:SignInPage/>
+        <ViewModels:SignInPageViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <FlexLayout Direction="Column" JustifyContent="Center" AlignItems="Center">
@@ -19,16 +19,16 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <StackLayout Margin="10, 0">
-                    <Label Text="Nazwa użytkownika"/>
-                    <Label Text="Hasło"/>
+                    <Label Text="{Binding SignInRequest.UserName, StringFormat='Nazwa użytkownika: {0}'}"/>
+                    <Label Text="{Binding SignInRequest.Password, StringFormat='Hasło: {0}'}"/>
                 </StackLayout>
                 <StackLayout Margin="10, 0">
                     <Entry/>
                     <Entry IsPassword="True"/>
                 </StackLayout>
             </StackLayout>
-            <Label Text="Error" Style="{StaticResource ErrorLabel}"/>
-            <Button Text="Zaloguj się" />
+            <Label Text="{Binding SignInResponse.Message}" Style="{StaticResource ErrorLabel}"/>
+            <Button Text="Zaloguj się" Command="{Binding SignInCommand}"/>
         </FlexLayout>
         
   

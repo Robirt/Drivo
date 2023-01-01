@@ -54,6 +54,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\Drivo.Entities\Drivo.Entities.csproj" />
+	  <ProjectReference Include="..\Drivo.Requests\Drivo.Requests.csproj" />
+	  <ProjectReference Include="..\Drivo.Responses\Drivo.Responses.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Compile Update="Views\HomePage.xaml.cs">
 	    <DependentUpon>HomePage.xaml</DependentUpon>
 	  </Compile>

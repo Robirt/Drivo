@@ -8,25 +8,28 @@
         <ResourceDictionary Source="../Resources/CourseModulePageResourceDictionary.xaml"/>
     </ContentPage.Resources>
     <ContentPage.BindingContext>
-        <ViewModels:CourseModulesViewModel/>
+        <ViewModels:CourseModulesPageViewModel/>
     </ContentPage.BindingContext>
     <Grid Margin="0">
         <ScrollView>
             <FlexLayout Wrap="Wrap" JustifyContent="Center" AlignItems="Center"  Direction="Row" >
-                <Border>
-                    <StackLayout>
-                        <Image Source="https://www.idfy.com/wp-content/uploads/2021/09/Driving-License-Verification-API-.png" Aspect="Fill"/>
-                        <Label Text="Znaki ostrzegawcze "/>
-                    </StackLayout>
-                </Border>
-                <Border>
-                    <StackLayout>
-                        <Image Source="https://www.idfy.com/wp-content/uploads/2021/09/Driving-License-Verification-API-.png" Aspect="Fill"/>
-                        <Label Text="Znaki ostrzegawcze "/>
-                    </StackLayout>
-                </Border>
+                <ListView ItemsSource="{Binding CourseModules}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <Border>
+                                <StackLayout>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GoToResourcesPage}"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{Binding Image}" Aspect="Fill"/>
+                                    <Label Text="{Binding Name}" />
+                                </StackLayout>
+                            </Border>
 
-
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+     
             </FlexLayout>
         </ScrollView>
     </Grid>
