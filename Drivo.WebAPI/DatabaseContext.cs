@@ -41,7 +41,7 @@ public class DatabaseContext : IdentityDbContext<UserEntity, RoleEntity, int>
 	{
 		base.OnConfiguring(optionsBuilder);
 
-		optionsBuilder.UseSqlServer(Configuration.GetConnectionString("Drivo")).UseLazyLoadingProxies();
+		optionsBuilder.UseSqlServer("Server=(LocalDB)\\MSSQLLocalDB;Database=Drivo;Integrated Security=True;").UseLazyLoadingProxies();
     }
 
 	protected override void OnModelCreating(ModelBuilder builder)

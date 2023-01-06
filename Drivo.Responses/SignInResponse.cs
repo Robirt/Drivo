@@ -12,10 +12,5 @@ public class SignInResponse : ActionResponse
 
 	}
 
-	public SignInResponse(bool isSucceeded, string message, string jwtBearerToken) : base(isSucceeded, message)
-	{
-
-	}
-
     public string JwtBearerToken { get; set; }
 }

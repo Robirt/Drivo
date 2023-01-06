@@ -1,11 +1,10 @@
-export class DrivingEntity
-{
-    public id: number
-    public name: string
-    public date: Date
-    public startTime: Date
-    public endTime: Date
-    public numberOfHours: number
-    public currentNumberOfHours: number
-    public place: string
+import { EventEntity } from "./event.entity"
+import { InstructorEntity } from "./InstructorEntity";
+import { StudentEntity } from "./StudentEntity";
+
+export class DrivingEntity extends EventEntity {
+    student: StudentEntity | null;
+    studentId: number | null;
+    instructor: InstructorEntity | null;
+    instructorId: number | null;
 }

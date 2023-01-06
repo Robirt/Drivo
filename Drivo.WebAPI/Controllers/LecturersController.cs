@@ -43,11 +43,11 @@ public class LecturersController : ControllerBase
         return response.IsSucceeded ? Ok(response) : BadRequest(response);
     }
 
-    [HttpDelete]
+    [HttpDelete("{userName}")]
     [Authorize(Roles = "Administrator")]
-    public async Task<ActionResult<ActionResponse>> DeleteLecturerAsync(string lecturerUserName)
+    public async Task<ActionResult<ActionResponse>> DeleteLecturerAsync([FromRoute] string userName)
     {
-        var response = await LecturersService.DeleteLecturerAsync(lecturerUserName);
+        var response = await LecturersService.DeleteLecturerAsync(userName);
 
         return response.IsSucceeded ? Ok(response) : BadRequest(response);
     }

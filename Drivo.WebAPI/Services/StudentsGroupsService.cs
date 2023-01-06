@@ -18,13 +18,23 @@ public class StudentsGroupsService
         return await StudentsGroupsRepository.GetStudentsGroupsAsync();
     }
 
+    public async Task<StudentsGroupEntity> GetStudentsGroupByIdAsync(int studentsGroupId)
+    {
+        return await StudentsGroupsRepository.GetStudentsGroupByIdAsync(studentsGroupId);
+    }
+
     public async Task<ActionResponse> AddStudentsGroupAsync(StudentsGroupEntity studentsGroup)
     {
         return await StudentsGroupsRepository.AddStudentsGroupAsync(studentsGroup);
     }
 
-    public async Task<ActionResponse> RemoveStudentsGroupAsync(StudentsGroupEntity studentsGroup)
+    public async Task<ActionResponse> UpdateStudentsGroupAsync(StudentsGroupEntity studentsGroup)
     {
-        return await StudentsGroupsRepository.RemoveStudentsGroupAsync(studentsGroup);
+        return await StudentsGroupsRepository.UpdateStudentsGroupAsync(studentsGroup);
+    }
+
+    public async Task<ActionResponse> RemoveStudentsGroupAsync(int studentsGroupId)
+    {
+        return await StudentsGroupsRepository.RemoveStudentsGroupAsync(await StudentsGroupsRepository.GetStudentsGroupByIdAsync(studentsGroupId));
     }
 }

@@ -1,6 +1,9 @@
-﻿using Drivo.WebAPI.Repositories;
+﻿using Drivo.Entities;
+using Drivo.Requests;
+using Drivo.WebAPI.Repositories;
 using Drivo.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Net;
@@ -74,5 +77,35 @@ public static class ProgramExtensions
     {
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
         options.JsonSerializerOptions.WriteIndented = true;
+    }
+
+    public static IApplicationBuilder MapRoles(this IApplicationBuilder app)
+    {
+        using (IServiceScope serviceScope = app.ApplicationServices.CreateScope())
+        {
+            var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<RoleEntity>>();
+
+            if (!roleManager.Roles.Any())
+            {
+                roleManager.CreateAsync(new RoleEntity("Administrator")).Wait();
+                roleManager.CreateAsync(new RoleEntity("Lecturer")).Wait();
+                roleManager.CreateAsync(new RoleEntity("Instructor")).Wait();
+                roleManager.CreateAsync(new RoleEntity("Student")).Wait();
+            }
+        }
+
+        return app;
+    }
+
+    public static IApplicationBuilder CreateSuperAdministrator(this IApplicationBuilder app, IConfigurationSection configuration)
+    {
+        using (IServiceScope serviceScope = app.ApplicationServices.CreateScope())
+        {
+            var administratorsService = serviceScope.ServiceProvider.GetRequiredService<AdministratorsService>();
+
+            //administratorsService.CreateAdministratorAsync(configuration.Get<CreateUserRequest>()).Wait();
+        }
+
+        return app;
     }
 }

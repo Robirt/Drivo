@@ -2,9 +2,9 @@
 {
     public class InternalExamEntity : EventEntity
     {
-        public StudentEntity? Student { get; set; }
+        public virtual StudentEntity? Student { get; set; }
         public int? StudentId { get; set; }
-        public InstructorEntity? Instructor { get; set; }
+        public virtual InstructorEntity? Instructor { get; set; }
         public int? InstructorId { get; set; }
     }
 }

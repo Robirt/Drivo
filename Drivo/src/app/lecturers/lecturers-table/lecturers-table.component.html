@@ -1,0 +1,22 @@
+<table>
+    <thead>
+        <tr>
+            <th>Imię </th>
+            <th>Nazwisko</th>
+            <th>Data urodzenia</th>
+            <th>Email</th>
+            <th>Numer telefonu</th>
+            <th>Akcje</th>
+         </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let lecturer of lecturers">
+            <td>{{ lecturer.firstName }}</td>
+            <td>{{ lecturer.lastName }}</td>
+            <td>{{ lecturer.birthDate | date: 'dd.MM.YYYY' }}</td>
+            <td>{{ lecturer.email }}</td>
+            <td>{{ lecturer.phoneNumber }}</td>
+            <td><a [routerLink]="['/Lecturers', lecturer.userName]">&#59151;</a><a (click)="deleteLecturerAsync(lecturer)">&#59213;</a></td>
+         </tr>
+    </tbody>
+</table>

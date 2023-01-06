@@ -7,14 +7,14 @@ namespace Drivo.WebAPI.Services;
 
 public class UsersService
 {
-    public UsersService(UserManager<UserEntity> userManager, JwtBearerTokenService jwtBearerTokenService)
+    public UsersService(UserManager<UserEntity> userManager, JwtBearerTokensService jwtBearerTokenService)
     {
         UserManager = userManager;
         JwtBearerTokenService = jwtBearerTokenService;
     }
 
     private UserManager<UserEntity> UserManager { get; }
-    private JwtBearerTokenService JwtBearerTokenService { get; }
+    private JwtBearerTokensService JwtBearerTokenService { get; }
 
     public async Task<UserEntity> GetUserByUserName(string userName)
     {
@@ -34,7 +34,7 @@ public class UsersService
 
         if (await UserManager.CheckPasswordAsync(await GetUserByUserName(request.UserName), request.Password))
         {
-            return new SignInResponse(true, "User successfully logged in.", JwtBearerTokenService.GetToken(request.UserName, await GetRoleNameByUserName(request.UserName)));
+            return new SignInResponse(true, "User successfully logged in.") { JwtBearerToken = JwtBearerTokenService.GetToken(request.UserName, await GetRoleNameByUserName(request.UserName)) };
         }
 
         else return new SignInResponse(false, "Wrong Name or Password");

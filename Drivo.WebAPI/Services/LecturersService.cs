@@ -8,7 +8,7 @@ namespace Drivo.WebAPI.Services;
 
 public class LecturersService
 {
-    public LecturersService(UserManager<UserEntity> userManager, MailsService mailsService, PasswordService passwordService)
+    public LecturersService(UserManager<UserEntity> userManager, MailsService mailsService, PasswordsService passwordService)
     {
         UserManager = userManager;
         MailsService = mailsService;
@@ -17,7 +17,7 @@ public class LecturersService
 
     private UserManager<UserEntity> UserManager { get; }
     private MailsService MailsService { get; }
-    private PasswordService PasswordService { get; }
+    private PasswordsService PasswordService { get; }
 
     public async Task<List<LecturerEntity>> GetLecturersAsync()
     {
@@ -40,7 +40,7 @@ public class LecturersService
 
         var password = PasswordService.GeneratePassword();
 
-        if ((await UserManager.CreateAsync(new LecturerEntity(userName, request.Email, request.FirstName, request.LastName, request.BirthDate), password) is var createResult && createResult.Succeeded == false))
+        if ((await UserManager.CreateAsync(new LecturerEntity(userName, request.Email, request.FirstName, request.LastName, request.BirthDate, request.PhoneNumber), password) is var createResult && createResult.Succeeded == false))
         {
             return new ActionResponse(false, createResult.Errors.First().Description);
         }

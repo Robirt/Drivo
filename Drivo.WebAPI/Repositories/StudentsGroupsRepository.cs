@@ -18,6 +18,11 @@ public class StudentsGroupsRepository
         return await Context.StudentsGroups.ToListAsync();
     }
 
+    public async Task<StudentsGroupEntity> GetStudentsGroupByIdAsync(int studentsGroupId)
+    {
+        return await Context.StudentsGroups.FirstOrDefaultAsync(studentsGroup => studentsGroup.Id == studentsGroupId);
+    }
+
     public async Task<ActionResponse> AddStudentsGroupAsync(StudentsGroupEntity studentsGroup)
     {
         try

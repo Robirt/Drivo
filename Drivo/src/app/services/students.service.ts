@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { StudentEntity } from 'src/entities/StudentEntity';
+import { environment } from 'src/environments/environment';
+import { CreateUserRequest } from 'src/requests/createUser.request';
+import { ActionResponse } from 'src/responses/action.response';
 
 @Injectable({
   providedIn: 'root'
@@ -10,33 +13,24 @@ export class StudentsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public async getStudents(): Promise<Array<StudentEntity>>
-  {
-    return await firstValueFrom(this.httpClient.get<Array<StudentEntity>>("https://localhost:5001/Student"));
+  public async getStudentsAsync(): Promise<Array<StudentEntity>> {
+    return await firstValueFrom(this.httpClient.get<Array<StudentEntity>>(`${environment.apiUri}/Students`));
   }
 
-  public async getStudentByName(name: string): Promise<StudentEntity>
-  {
-    return await firstValueFrom(this.httpClient.get<StudentEntity>(`https://localhost:5001/Student/${name}`));
+  public async getStudentByUserNameAsync(userName: string): Promise<StudentEntity> {
+    return await firstValueFrom(this.httpClient.get<StudentEntity>(`${environment.apiUri}/Students/${userName}`));
   }
 
-  public async searchStudent(searchString: string): Promise<Array<StudentEntity>>
-  {
-    return await firstValueFrom(this.httpClient.get<Array<StudentEntity>>(`https://localhost:5001/Student/Search/${searchString}`));
+  public async searchStudentsByFullNameAsync(searchString: string): Promise<Array<StudentEntity>> {
+    return await firstValueFrom(this.httpClient.get<Array<StudentEntity>>(`${environment.apiUri}/Students/Search/${searchString}`));
   }
 
-  public async postStudent(student: StudentEntity): Promise<StudentEntity>
-  {
-    return await firstValueFrom(this.httpClient.post<StudentEntity>("https://localhost:5001/Student", student));
+  public async createStudentAsync(createUserRequest: CreateUserRequest): Promise<ActionResponse> {
+    return await firstValueFrom(this.httpClient.post<ActionResponse>(`${environment.apiUri}/Students`, createUserRequest));
   }
 
-  public async putStudent(student: StudentEntity): Promise<StudentEntity>
-  {
-    return await firstValueFrom(this.httpClient.put<StudentEntity>("https://localhost:5001/Student", student));
+  public async deleteStudentAsync(studentUserName: string): Promise<ActionResponse> {
+    return await firstValueFrom(this.httpClient.delete<ActionResponse>(`${environment.apiUri}/Students/${studentUserName}`));
   }
 
-  public async deleteStudent(id: number): Promise<StudentEntity>
-  {
-    return await firstValueFrom(this.httpClient.delete<StudentEntity>(`https://localhost:5001/Student/${id}`));
-  }
 }

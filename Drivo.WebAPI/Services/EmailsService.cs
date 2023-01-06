@@ -25,7 +25,7 @@ public class MailsService
             body = body.Replace("[UserName]", user.UserName);
             body = body.Replace("[Password]", password);
 
-            await SmtpClient.SendMailAsync(new MailMessage(new MailAddress(Configuration["Credentials:UserName"], "Drivo"), new MailAddress(user.Email)) { Subject = $"DRIVO - Welcome - {user.FullName}", Body = body, IsBodyHtml = true });
+            await SmtpClient.SendMailAsync(new MailMessage(new MailAddress(Configuration["Smpt:Credentials:UserName"], "Drivo"), new MailAddress(user.Email)) { Subject = $"DRIVO - Welcome - {user.FullName}", Body = body, IsBodyHtml = true });
         }
 
         catch (Exception exception)
