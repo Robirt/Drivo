@@ -2,7 +2,6 @@ using Drivo.Entities;
 using Drivo.WebAPI;
 using Drivo.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder();
@@ -11,13 +10,14 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.Al
 
 builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Drivo")).UseLazyLoadingProxies());
 
-builder.Services.AddIdentity<UserEntity, RoleEntity>().AddEntityFrameworkStores<DatabaseContext>().AddDefaultTokenProviders();
+builder.Services.AddIdentity<UserEntity, RoleEntity>().AddEntityFrameworkStores<DatabaseContext>();
 
+builder.Services.AddScoped<JwtBearerTokensService>();
 builder.Services.AddAuthentication(options => options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => options.ConfigureJwtBearer(builder.Configuration.GetSection("JwtBearerToken")));
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddScoped<PasswordService>();
+builder.Services.AddScoped<PasswordsService>();
 
 builder.Services.AddMailsService(builder.Configuration.GetSection("Smpt"));
 
@@ -41,6 +41,10 @@ application.UseAuthentication();
 
 application.UseAuthorization();
 
+application.MapRoles();
+
 application.MapControllers();
+
+application.CreateSuperAdministrator(application.Configuration.GetSection("SuperAdministrator"));
 
 application.Run();

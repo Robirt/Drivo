@@ -1,7 +1,7 @@
-export class ExternalExamEntity
-{
-    public id: number
-    public startTime: Date
-    public endTime: Date
-    public place: string
+import { EventEntity } from "./event.entity"
+import { StudentEntity } from "./StudentEntity";
+
+export class ExternalExamEntity extends EventEntity {
+    student: StudentEntity | null;
+    studentId: number | null;
 }

@@ -1,45 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { CourseModulEntity } from 'src/entities/CourseModulEntity';
 import { ResourceEntity } from 'src/entities/ResourceEntity';
+import { environment } from 'src/environments/environment';
+import { ActionResponse } from 'src/responses/action.response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResourceService {
 
-  
   constructor(private httpClient: HttpClient) { }
 
-  public async getResources(): Promise<Array<ResourceEntity>>
+  public async addResourceAsync(resource: ResourceEntity): Promise<ActionResponse> {
+    return await firstValueFrom(this.httpClient.post<ActionResponse>(`${environment.apiUri}/Resources`, resource));
+  }
+  
+  public async updateResourceAsync(resource: ResourceEntity): Promise<ResourceEntity>
   {
-    return await firstValueFrom(this.httpClient.get<Array<ResourceEntity>>("https://localhost:5001/Resource"));
+    return await firstValueFrom(this.httpClient.put<ResourceEntity>(`${environment.apiUri}/Resources`, resource));
   }
 
-  public async getResourceByTitle(title: string): Promise<ResourceEntity>
+  public async removeResourceAsync(resourceId: number): Promise<ActionResponse>
   {
-    return await firstValueFrom(this.httpClient.get<ResourceEntity>(`https://localhost:5001/Resource/${title}`));
+    return await firstValueFrom(this.httpClient.delete<ActionResponse>(`${environment.apiUri}/Resources/${resourceId}`));
   }
 
-  public async searchResourceInModuleByTitle(courseModuleName: string, searchString: string): Promise<Array<ResourceEntity>>
-  {
-    return await firstValueFrom(this.httpClient.get<Array<ResourceEntity>>(`https://localhost:5001/Resource/Search/${courseModuleName}/${searchString}`));
-  }
-
-  public async addResourceToModule(courseModuleName: string, resource: ResourceEntity): Promise<CourseModulEntity>
-  {
-    return await firstValueFrom(this.httpClient.post<CourseModulEntity>(`https://localhost:5001/CourseModul/${courseModuleName}`, resource));
-  }
-
-  public async putResource(resource: ResourceEntity): Promise<ResourceEntity>
-  {
-    return await firstValueFrom(this.httpClient.put<ResourceEntity>("https://localhost:5001/Resource", resource));
-  }
-
-  public async deleteResource(title: string): Promise<ResourceEntity>
-  {
-    return await firstValueFrom(this.httpClient.delete<ResourceEntity>(`https://localhost:5001/Student/${title}`));
-  }
 }
 

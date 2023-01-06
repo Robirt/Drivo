@@ -7,7 +7,7 @@
 
         }
 
-        public InstructorEntity(string userName, string email, string firstName, string lastName, DateTime birthDate) : base(userName, email, firstName, lastName, birthDate)
+        public InstructorEntity(string userName, string email, string firstName, string lastName, DateTime birthDate, string phoneNumber) : base(userName, email, firstName, lastName, birthDate, phoneNumber)
         {
 
         }

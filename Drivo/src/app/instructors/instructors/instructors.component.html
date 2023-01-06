@@ -1,0 +1,9 @@
+<section>
+    <section>
+        <app-instructor-form (onCreateInstructor)="createInstructorAsync($event)"></app-instructor-form>
+        <h3>{{ actionResponse.message }}</h3>
+    </section>
+    <section>
+        <app-instructors-table [instructors]="instructors" (onDeleteInstructor)="deleteInstructorAsync($event)"></app-instructors-table>
+    </section>
+</section>

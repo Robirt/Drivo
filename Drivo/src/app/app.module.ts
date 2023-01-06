@@ -10,13 +10,17 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { StudyModule } from './study/study.module';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { StudentModule } from './student/student.module';
-import { InstructorModule } from './instructor/instructor.module';
-import { LecturerModule } from './lecturer/lecturer.module';
-import { AdModule } from './ad/ad.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { StudentsModule } from './students/students.module';
+import { InstructorsModule } from './instructors/instructors.module';
+import { LecturersModule } from './lecturers/lecturers.module';
+
 import { CalendarPageModule } from './calendar/calendar.module';
 import { ResourcesModule } from './resources/resources.module';
+import { JwtBearerTokenInterceptor } from 'src/jwtBearerToken.interceptor';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { SignOutComponent } from './sign-out/sign-out.component';
+import { AdsModule } from './ads/ads.module';
 
 
 
@@ -27,7 +31,9 @@ import { ResourcesModule } from './resources/resources.module';
     HomeComponent,
     HeaderComponent,
     NavMenuComponent,
-    FooterComponent
+    FooterComponent,
+    UnauthorizedComponent,
+    SignOutComponent
   ],
   imports: [
     BrowserModule,
@@ -36,14 +42,14 @@ import { ResourcesModule } from './resources/resources.module';
       HttpClientModule,
       FormsModule,
       StudyModule,
-      StudentModule,
-      InstructorModule,
-      LecturerModule,
-      AdModule,
+      StudentsModule,
+      InstructorsModule,
+      LecturersModule,
+      AdsModule,
       CalendarPageModule,
       ResourcesModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtBearerTokenInterceptor, multi: true }],
   bootstrap: [
     AppComponent
   ]

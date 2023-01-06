@@ -53,7 +53,7 @@ public class AdsController : ControllerBase
 
     [HttpDelete("{adId}")]
     [Authorize(Roles = "Administrator")]
-    public async Task<ActionResult<ActionResponse>> DeleteAdAsync([FromRoute] int adId)
+    public async Task<ActionResult<ActionResponse>> RemoveAdAsync([FromRoute] int adId)
     {
         var response = await AdsService.RemoveAdAsync(adId);
 

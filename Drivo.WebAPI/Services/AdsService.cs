@@ -25,6 +25,8 @@ public class AdsService
 
     public async Task<ActionResponse> AddAdAsync(AdEntity ad)
     {
+        ad.Date = DateTime.Now;
+
         return await AdsRepository.AddAdAsync(ad);
     }
 

@@ -1,7 +1,11 @@
-export class InternalExamEntity
+import { EventEntity } from "./event.entity"
+import { InstructorEntity } from "./InstructorEntity";
+import { StudentEntity } from "./StudentEntity";
+
+export class InternalExamEntity extends EventEntity
 {
-    public id: number
-    public startTime: Date
-    public endTime: Date
-    public place: string
+    student: StudentEntity | null;
+    studentId: number | null;
+    instructor: InstructorEntity | null;
+    instructorId: number | null;
 }

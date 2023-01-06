@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PaymentService } from 'src/app/services/payment.service';
+import { PaymentsService } from 'src/app/services/payments.service';
 import { PaymentEntity } from 'src/entities/PaymentEntity';
 import { StudentEntity } from 'src/entities/StudentEntity';
 
@@ -10,7 +10,7 @@ import { StudentEntity } from 'src/entities/StudentEntity';
 })
 export class PaymentsComponent implements OnInit {
 
-  constructor(private paymentService: PaymentService) { }
+  constructor(private paymentService: PaymentsService) { }
 
   ngOnInit(): void {
   }
@@ -18,36 +18,36 @@ export class PaymentsComponent implements OnInit {
   public payments: Array<PaymentEntity> = new Array<PaymentEntity>();
 public async getPayments(): Promise<void>
 {
-  this.payments = await this.paymentService.getPayments();
+  this.payments = await this.paymentService.getPaymentsAsync();
 }
 
 public async getPaymentByStudent(id: number, name: string): Promise<void>
 {
-  this.payments = await this.paymentService.getPaymentByStudent(id, name);
+  //this.payments = await this.paymentService.getPaymentsByStudentAsync(id, name);
 }
 
 public  async getPaymentsRealized(): Promise<void>
 {
-  this.payments = await this.paymentService.getPaymentsRealized();
+  //this.payments = await this.paymentService.getPaymentsRealized();
 }
 
 public  async getPaymentsUnrealized(): Promise<void>
 {
-  this.payments = await this.paymentService.getPaymentsUnrealized();
+  //this.payments = await this.paymentService.getPaymentsUnrealized();
 }
 
 public  async addPaymentToStudent(payment: PaymentEntity, student: StudentEntity): Promise<void>
 {
-  this.payment = await this.paymentService.addPaymentToStudent(payment, student);
+  //this.payment = await this.paymentService.addPaymentAsync(payment, student);
 }
 
 public async putPayment(payment: PaymentEntity): Promise<void>
 {
-  this.payment = await this.paymentService.putPayment(payment);
+  await this.paymentService.updatePaymentAsync(payment);
 }
 
 public async deletePayment(id: number): Promise<void>
 {
-  this.payment = await this.paymentService.deletePayment(id);
+  await this.paymentService.deletePaymentAsync(id);
 }
 }

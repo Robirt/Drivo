@@ -1,6 +1,6 @@
 export class AdEntity
 {
     public id: number
-    public name: string
+    public content: string
     public date: Date
 }
