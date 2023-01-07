@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StudentsGroupsService } from 'src/app/services/students-groups.service';
 import { StudentsService } from 'src/app/services/students.service';
+import { InstructorEntity } from 'src/entities/InstructorEntity';
 import { StudentEntity } from 'src/entities/StudentEntity';
 import { StudentsGroupEntity } from 'src/entities/StudentsGroupEntity';
 import { ActionResponse } from 'src/responses/action.response';
@@ -21,8 +22,6 @@ export class StudentComponent implements OnInit {
     await this.getStudentByUserNameAsync();
 
     await this.getStudentsGroupsAsync();
-
-    console.log(this.student);
   }
 
   public userName: string = "";
@@ -31,11 +30,15 @@ export class StudentComponent implements OnInit {
 
   public actionResponse: ActionResponse = new ActionResponse();
 
-  public studentsGroups: Array<StudentsGroupEntity> = new Array<StudentsGroupEntity>();
-  public selectedStudentsGroup: StudentsGroupEntity = new StudentsGroupEntity();
+  public studentsGroups: Array<StudentsGroupEntity> = new Array<StudentsGroupEntity>();;
+  public instructors: Array<InstructorEntity> = new Array<InstructorEntity>();
 
   public async getStudentByUserNameAsync(): Promise<void> {
     this.student = await this.studentsService.getStudentByUserNameAsync(this.userName);
+  }
+
+  public async updateStudentAsync(): Promise<void> {
+    this.actionResponse = await this.studentsService.updateStudentAsync(this.student);
   }
 
   public async getStudentsGroupsAsync(): Promise<void> {

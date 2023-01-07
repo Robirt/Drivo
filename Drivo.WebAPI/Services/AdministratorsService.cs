@@ -3,19 +3,22 @@ using Drivo.Requests;
 using Drivo.Responses;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 
 namespace Drivo.WebAPI.Services;
 
 public class AdministratorsService
 {
-    public AdministratorsService(UserManager<UserEntity> userManager, MailsService mailsService, PasswordsService passwordService)
+    public AdministratorsService(UserManager<UserEntity> userManager, DatabaseContext context, MailsService mailsService, PasswordsService passwordService)
     {
         UserManager = userManager;
+        Context = context;
         MailsService = mailsService;
         PasswordService = passwordService;
     }
 
     private UserManager<UserEntity> UserManager { get; }
+    private DatabaseContext Context { get; }
     private MailsService MailsService { get; }
     private PasswordsService PasswordService { get; }
 
@@ -58,6 +61,23 @@ public class AdministratorsService
         }
 
         return new ActionResponse(true, "Administrator was created successfully.");
+    }
+
+    public async Task<ActionResponse> UpdateAdministratorAsync(AdministratorEntity administrator)
+    {
+        try
+        {
+            Context.Entry(administrator).State = EntityState.Modified;
+
+            await Context.SaveChangesAsync();
+        }
+
+        catch (Exception exception)
+        {
+            return new ActionResponse(false, exception.Message ?? exception.InnerException?.Message ?? "An exception occured.");
+        }
+
+        return new ActionResponse(true, "Administrator was updated successfully.");
     }
 
     public async Task<ActionResponse> DeleteAdministratorAsync(string userName)

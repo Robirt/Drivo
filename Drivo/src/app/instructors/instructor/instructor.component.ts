@@ -21,8 +21,6 @@ export class InstructorComponent implements OnInit {
     await this.getInstructorByUserNameAsync();
 
     await this.getStudentsAsync();
-
-    console.log(this.instructor);
   }
 
   public userName: string = "";
@@ -36,6 +34,10 @@ export class InstructorComponent implements OnInit {
 
   public async getInstructorByUserNameAsync(): Promise<void> {
     this.instructor = await this.instructorsService.getInstructorByUserNameAsync(this.userName);
+  }
+
+  public async updateInstructorAsync(): Promise<void> {
+    this.actionResponse = await this.instructorsService.updateInstructorAsync(this.instructor);
   }
 
   public async getStudentsAsync(): Promise<void> {

@@ -43,6 +43,15 @@ public class LecturersController : ControllerBase
         return response.IsSucceeded ? Ok(response) : BadRequest(response);
     }
 
+    [HttpPut]
+    [Authorize(Roles = "Administrator")]
+    public async Task<ActionResult<ActionResponse>> UpdateLecturerAsync([FromBody] LecturerEntity lecturer)
+    {
+        var response = await LecturersService.UpdateLecturerAsync(lecturer);
+
+        return response.IsSucceeded ? Ok(response) : BadRequest(response);
+    }
+
     [HttpDelete("{userName}")]
     [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<ActionResponse>> DeleteLecturerAsync([FromRoute] string userName)

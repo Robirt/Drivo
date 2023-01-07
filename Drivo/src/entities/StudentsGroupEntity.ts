@@ -4,6 +4,6 @@ import { StudentEntity } from "./StudentEntity"
 export class StudentsGroupEntity {
     id: number;
     name: string;
-    students: Array<StudentsGroupEntity> | null;
+    students: Array<StudentEntity> | null;
     lectures: Array<LectureEntity> | null;
 }

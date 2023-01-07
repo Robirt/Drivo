@@ -22,21 +22,7 @@
             <div>{{ lecturer.phoneNumber }}</div>
         </label>
     </form>
-    <form [(ngModel)]="lecturer.studentsGroups">
-        <table>
-            <caption>Grupy kursantów</caption>
-            <thead>
-                <tr><th>Nazwa</th><th>Akcje</th></tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let studentsGroup of lecturer.studentsGroups"><td>{{ studentsGroup.name }}</td><td><a (click)="removeStudentsGroupFromLecturerAsync(studentsGroup)">&#59213;</a></td></tr>
-            </tbody>
-        </table>
-        <div>
-            <select>
-                <option *ngFor="let studentsGroups of studentsGroups">{{ studentsGroups.name }}</option>
-            </select>
-            <input type="submit" value="Przydziel wykładowcę do grupy">
-        </div>
+    <form (ngSubmit)="updateLecturerAsync()">
+        
     </form>
 </section>

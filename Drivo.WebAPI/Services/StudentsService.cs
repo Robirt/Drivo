@@ -8,14 +8,16 @@ namespace Drivo.WebAPI.Services;
 
 public class StudentsService
 {
-    public StudentsService(UserManager<UserEntity> userManager, MailsService mailsService, PasswordsService passwordService)
+    public StudentsService(UserManager<UserEntity> userManager, DatabaseContext context, MailsService mailsService, PasswordsService passwordService)
     {
         UserManager = userManager;
+        Context = context;
         MailsService = mailsService;
         PasswordService = passwordService;
     }
 
     private UserManager<UserEntity> UserManager { get; }
+    private DatabaseContext Context { get; }
     private MailsService MailsService { get; }
     private PasswordsService PasswordService { get; }
 
@@ -60,16 +62,33 @@ public class StudentsService
         return new ActionResponse(true, "Student was created successfully.");
     }
 
+    public async Task<ActionResponse> UpdateStudentAsync(StudentEntity student)
+    {
+        try
+        {
+            Context.Entry(student).State = EntityState.Modified;
+
+            await Context.SaveChangesAsync();
+        }
+
+        catch (Exception exception)
+        {
+            return new ActionResponse(false, exception.Message ?? exception.InnerException?.Message ?? "An exception occured.");
+        }
+
+        return new ActionResponse(true, "Student was updated successfully.");
+    }
+
     public async Task<ActionResponse> DeleteStudent(string userName)
     {
-        var administrator = await GetStudentByUserNameAsync(userName);
+        var Student = await GetStudentByUserNameAsync(userName);
 
-        if (administrator == null)
+        if (Student == null)
         {
             return new ActionResponse(false, "Student was not found.");
         }
 
-        if ((await UserManager.DeleteAsync(administrator)) is var deleteResult && !deleteResult.Succeeded)
+        if ((await UserManager.DeleteAsync(Student)) is var deleteResult && !deleteResult.Succeeded)
         {
             return new ActionResponse(false, deleteResult.Errors.First().Description);
         }

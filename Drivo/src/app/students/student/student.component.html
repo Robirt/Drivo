@@ -22,14 +22,20 @@
             <div>{{ student.phoneNumber }}</div>
         </label>
     </form>
-    <form [(ngModel)]="student.studentsGroup">
-        <div>Grupa kursantów</div>
-        <div>{{ student.studentsGroup?.name }}</div>
+    <form (ngSubmit)="updateStudentAsync()">
         <div>
-            <select>
-                <option *ngFor="let studentsGroups of studentsGroups">{{ studentsGroups.name }}</option>
+            <div>Grupa</div>
+            <select [(ngModel)]="student.studentsGroupId" name="studentsGroup">
+                <option *ngFor="let studentsGroup of studentsGroups" [ngValue]="studentsGroup.id">{{ studentsGroup.name }}</option>
             </select>
-            <input type="submit" value="Przydziel studenta do grupy">
         </div>
+        <div>
+            <div>Instruktor</div>
+            <select [(ngModel)]="student.instructorId" name="instructorId">
+                <option *ngFor="let instructor of instructors" [ngValue]="instructor.id">{{ instructor.fullName }}</option>
+            </select>
+        </div>
+        <input type="submit" value="Zapisz">
+        <h2>{{ actionResponse.message }}</h2>
     </form>
 </section>

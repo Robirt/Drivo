@@ -98,10 +98,18 @@ form > div {
     align-items: center;
 }
 
+form > div > div {
+    text-align: center;
+    font-family: 'Candara';
+    font-weight: 600;
+    font-size: 22.5px;
+    color: #072B89;
+}
+
 form > div > select {
     margin: 10px 0;
 
-    width: 250px;
+    width: 275px;
     height: 32.5px;
 
     border-radius: 15px;
@@ -115,10 +123,10 @@ form > div > select {
     color: #072B89;
 }
 
-form > div > input[type="submit"] {
+input[type="submit"] {
     margin: 10px 0;
 
-    width: 250px;
+    width: 275px;
     height: 32.5px;
 
     border-radius: 15px;
@@ -128,6 +136,7 @@ form > div > input[type="submit"] {
 
     text-align: center;
     font-family: 'Candara';
+    font-weight: 600;
     font-size: 17.5px;
     color: #FFFFFF;
 }

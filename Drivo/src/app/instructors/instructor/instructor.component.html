@@ -22,21 +22,7 @@
             <div>{{ instructor.phoneNumber }}</div>
         </label>
     </form>
-    <form [(ngModel)]="instructor.students">
-        <table>
-            <caption>Studenci</caption>
-            <thead>
-                <tr><th>Student</th><th>Akcje</th></tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let student of instructor.students"><td>{{ student.fullName }}</td><td><a>&#59213;</a></td></tr>
-            </tbody>
-        </table>
-        <div>
-            <select>
-                <option *ngFor="let student of students">{{ student.fullName }}</option>
-            </select>
-            <input type="submit" value="Przydziel studenta do instruktora">
-        </div>
+    <form (ngSubmit)="updateInstructorAsync()">
+        
     </form>
 </section>

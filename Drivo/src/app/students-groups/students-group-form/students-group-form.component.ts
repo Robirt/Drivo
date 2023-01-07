@@ -19,5 +19,7 @@ export class StudentsGroupFormComponent implements OnInit {
 
   public async addStudentsGroupAsync(): Promise<void> {
     this.onAddStudentsGroup.emit(this.studentsGroup);
+
+    this.studentsGroup = new StudentsGroupEntity();
   }
 }
