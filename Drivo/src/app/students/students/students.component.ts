@@ -14,26 +14,27 @@ export class StudentsComponent implements OnInit {
   constructor(private studentsService: StudentsService) { }
 
   async ngOnInit(): Promise<void> {
+    await this.getStudentsAsync();
   }
 
   public students: Array<StudentEntity> = new Array<StudentEntity>(); 
 
   public actionResponse: ActionResponse = new ActionResponse();
 
-  public async getStudents(): Promise<void> {
+  public async getStudentsAsync(): Promise<void> {
     this.students = await this.studentsService.getStudentsAsync();
   }
 
   public async createStudentAsync(createUserRequest: CreateUserRequest): Promise<void> {
     this.actionResponse = await this.studentsService.createStudentAsync(createUserRequest);
 
-    await this.getStudents();
+    await this.getStudentsAsync();
   }
 
   public async deleteStudentAsync(student: StudentEntity): Promise<void> {
     this.actionResponse = await this.studentsService.deleteStudentAsync(student.userName);
 
-    await this.getStudents();
+    await this.getStudentsAsync();
   }
 
 }

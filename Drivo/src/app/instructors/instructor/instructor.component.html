@@ -1,0 +1,42 @@
+<section>
+    <form [(ngModel)]="instructor">
+        <h2>Instruktor {{ instructor.fullName }}</h2>
+        <label for="firstName">
+            <div>Imię</div>
+            <div>{{ instructor.firstName }}</div>
+        </label>
+        <label for="lastName">
+            <div>Nazwisko</div>
+            <div>{{ instructor.lastName }}</div>
+        </label>
+        <label for="birthDate">
+            <div>Data urodzenia</div>
+            <div>{{ instructor.birthDate | date: 'dd.MM.YYYY' }}</div>
+        </label>
+        <label for="email">
+            <div>Email</div>
+            <div>{{ instructor.email }}</div>
+        </label>
+        <label for="phoneNumber">
+            <div>Numer telefonu</div>
+            <div>{{ instructor.phoneNumber }}</div>
+        </label>
+    </form>
+    <form [(ngModel)]="instructor.students">
+        <table>
+            <caption>Studenci</caption>
+            <thead>
+                <tr><th>Student</th><th>Akcje</th></tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let student of instructor.students"><td>{{ student.fullName }}</td><td><a>&#59213;</a></td></tr>
+            </tbody>
+        </table>
+        <div>
+            <select>
+                <option *ngFor="let student of students">{{ student.fullName }}</option>
+            </select>
+            <input type="submit" value="Przydziel studenta do instruktora">
+        </div>
+    </form>
+</section>

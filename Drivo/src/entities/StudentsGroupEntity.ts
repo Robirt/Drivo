@@ -1,12 +1,9 @@
-import { DrivingEntity } from "./DrivingEntity"
 import { LectureEntity } from "./LectureEntity"
 import { StudentEntity } from "./StudentEntity"
 
-export class StudentsGroupEntity
-{
-    public id: number
-    public name: string
-    public students: StudentEntity[]
-    public lecture: Array<LectureEntity>
-    public driving: Array<DrivingEntity>
+export class StudentsGroupEntity {
+    id: number;
+    name: string;
+    students: Array<StudentsGroupEntity> | null;
+    lectures: Array<LectureEntity> | null;
 }

@@ -10,27 +10,20 @@ namespace Drivo.WebAPI.Controllers;
 [ApiController]
 [Route("[Controller]")]
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-public class PaymentsControllers : ControllerBase
+public class PaymentsController : ControllerBase
 {
-    public PaymentsControllers(PaymentsService paymentsService)
+    public PaymentsController(PaymentsService paymentsService)
     {
         PaymentsService = paymentsService;
     }
 
     private PaymentsService PaymentsService { get; }
 
-    [HttpGet("{studentUserName}")]
-    [Authorize(Roles = "Administrator")]
-    public async Task<ActionResult<List<PaymentEntity>>> GetPaymentsByStudentAsync([FromRoute] string studentUserName)
-    {
-        return Ok(await PaymentsService.GetPaymentsByStudentAsync(studentUserName));
-    }
-
     [HttpGet]
-    [Authorize(Roles = "Student")]
-    public async Task<ActionResult<List<PaymentEntity>>> GetPaymentsByStudentAsync()
+    [Authorize(Roles = "Administrator")]
+    public async Task<List<PaymentEntity>> GetPaymentsAsync()
     {
-        return Ok(await PaymentsService.GetPaymentsByStudentAsync(User.Identity.Name));
+        return await PaymentsService.GetPaymentsAsync();
     }
 
     [HttpPost]

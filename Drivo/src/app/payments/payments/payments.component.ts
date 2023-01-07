@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PaymentsService } from 'src/app/services/payments.service';
+import { StudentsService } from 'src/app/services/students.service';
 import { PaymentEntity } from 'src/entities/PaymentEntity';
 import { StudentEntity } from 'src/entities/StudentEntity';
+import { ActionResponse } from 'src/responses/action.response';
 
 @Component({
   selector: 'app-payments',
@@ -10,44 +12,45 @@ import { StudentEntity } from 'src/entities/StudentEntity';
 })
 export class PaymentsComponent implements OnInit {
 
-  constructor(private paymentService: PaymentsService) { }
+  constructor(private paymentsService: PaymentsService, private studentsService: StudentsService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.getPaymentsAsync();
+
+    await this.getStudentsAsync();
   }
-  public payment: PaymentEntity
+
   public payments: Array<PaymentEntity> = new Array<PaymentEntity>();
-public async getPayments(): Promise<void>
-{
-  this.payments = await this.paymentService.getPaymentsAsync();
-}
 
-public async getPaymentByStudent(id: number, name: string): Promise<void>
-{
-  //this.payments = await this.paymentService.getPaymentsByStudentAsync(id, name);
-}
+  public actionResponse = new ActionResponse();
 
-public  async getPaymentsRealized(): Promise<void>
-{
-  //this.payments = await this.paymentService.getPaymentsRealized();
-}
+  public students: Array<StudentEntity> = new Array<StudentEntity>();
 
-public  async getPaymentsUnrealized(): Promise<void>
-{
-  //this.payments = await this.paymentService.getPaymentsUnrealized();
-}
+  public async getPaymentsAsync(): Promise<void> {
+    this.payments = await this.paymentsService.getPaymentsAsync()
+  }
 
-public  async addPaymentToStudent(payment: PaymentEntity, student: StudentEntity): Promise<void>
-{
-  //this.payment = await this.paymentService.addPaymentAsync(payment, student);
-}
+  public async addPaymentAsync(payment: PaymentEntity): Promise<void> {
+    this.actionResponse = await this.paymentsService.addPaymentAsync(payment);
 
-public async putPayment(payment: PaymentEntity): Promise<void>
-{
-  await this.paymentService.updatePaymentAsync(payment);
-}
+    await this.getPaymentsAsync();
+  }
 
-public async deletePayment(id: number): Promise<void>
-{
-  await this.paymentService.deletePaymentAsync(id);
-}
+  public async updatePaymentAsync(payment: PaymentEntity): Promise<void> {
+    this.actionResponse = await this.paymentsService.updatePaymentAsync(payment);
+
+    console.log(payment);
+
+    await this.getPaymentsAsync();
+  }
+
+  public async removePaymentAsync(payment: PaymentEntity): Promise<void> {
+    this.actionResponse = await this.paymentsService.deletePaymentAsync(payment.id);
+
+    await this.getPaymentsAsync();
+  }
+
+  public async getStudentsAsync(): Promise<void> {
+    this.students = await this.studentsService.getStudentsAsync();
+  }
 }

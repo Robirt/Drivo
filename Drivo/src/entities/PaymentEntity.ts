@@ -1,8 +1,12 @@
-export class PaymentEntity
-{
-    public id: number
-    public date: Date
-    public endTime: Date
-    public quantity: number
-    public sum: number
+import { StudentEntity } from "./StudentEntity";
+
+export class PaymentEntity {
+    id: number;
+    date: Date;
+    endDate: Date;
+    number: number;
+    ammount: number;
+    isApproved: boolean;
+    student: StudentEntity | null;
+    studentId: number | null;
 }

@@ -26,7 +26,7 @@ public class StudentsService
 
     public async Task<StudentEntity> GetStudentByUserNameAsync(string userName)
     {
-        return await UserManager.Users.OfType<StudentEntity>().SingleAsync(user => user.UserName == userName);
+        return await UserManager.Users.OfType<StudentEntity>().FirstOrDefaultAsync(user => user.UserName == userName);
     }
 
     public async Task<ActionResponse> CreateStudentAsync(CreateUserRequest request)
@@ -40,7 +40,7 @@ public class StudentsService
 
         var password = PasswordService.GeneratePassword();
 
-        if ((await UserManager.CreateAsync(new AdministratorEntity(userName, request.Email, request.FirstName, request.LastName, request.BirthDate, request.PhoneNumber), password) is var createResult && createResult.Succeeded == false))
+        if ((await UserManager.CreateAsync(new StudentEntity(userName, request.Email, request.FirstName, request.LastName, request.BirthDate, request.PhoneNumber), password) is var createResult && createResult.Succeeded == false))
         {
             return new ActionResponse(false, createResult.Errors.First().Description);
         }

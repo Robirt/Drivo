@@ -1,0 +1,33 @@
+<figure>
+    <figcaption>
+        <div></div>
+        <div><a (click)="removePaymentAsync()">&#59213;</a></div>
+    </figcaption>
+    <form [(ngModel)]="payment" (ngSubmit)="updatePaymentAsync()">
+        <label>
+            <div>Data</div>
+            <div>{{ payment.date | date: 'dd.MM.YYYY' }}</div>
+        </label>
+        <label>
+            <div>Data końcowa</div>
+            <div>{{ payment.endDate | date: 'dd.MM.YYYY' }}</div>
+        </label>
+        <label>
+            <div>Numer</div>
+            <div>{{ payment.number }}</div>
+        </label>
+        <label>
+            <div>Suma</div>
+            <input type="number" [(ngModel)]="payment.ammount" name="ammount">
+        </label>
+        <label>
+            <div>Jest potwierdzony</div>
+            <input type="checkbox" [(ngModel)]="payment.isApproved" name="isApproved">
+        </label>
+        <label>
+            <div>Kursant</div>
+            <div>{{ payment.student?.fullName }}</div>
+        </label>
+        <input type="submit" value="Zapisz">
+    </form>
+</figure>

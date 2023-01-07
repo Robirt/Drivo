@@ -1,1 +1,4 @@
-<p>payments works!</p>
+<section>
+    <h3>{{ actionResponse.message }}</h3>
+    <payments-grid [payments]="payments" (onAddPayment)="addPaymentAsync($event)" (onUpdatePayment)="updatePaymentAsync($event)" (onRemovePayment)="removePaymentAsync($event)" [students]="students"></payments-grid>
+</section>

@@ -21,6 +21,8 @@ import { JwtBearerTokenInterceptor } from 'src/jwtBearerToken.interceptor';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { SignOutComponent } from './sign-out/sign-out.component';
 import { AdsModule } from './ads/ads.module';
+import { StudentsGroupsModule } from './students-groups/students-groups.module';
+import { PaymentsModule } from './payments/payments.module';
 
 
 
@@ -47,7 +49,9 @@ import { AdsModule } from './ads/ads.module';
       LecturersModule,
       AdsModule,
       CalendarPageModule,
-      ResourcesModule
+      ResourcesModule,
+      StudentsGroupsModule,
+      PaymentsModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtBearerTokenInterceptor, multi: true }],
   bootstrap: [

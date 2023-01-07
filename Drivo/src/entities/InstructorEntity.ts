@@ -1,6 +1,10 @@
-import { StudentsGroupEntity } from "./StudentsGroupEntity"
+import { DrivingEntity } from "./DrivingEntity";
+import { InternalExamEntity } from "./InternalExamEntity";
+import { StudentEntity } from "./StudentEntity";
 import { UserEntity } from "./user.entity"
 
 export class InstructorEntity extends UserEntity {
-    public studentsGroup: Array<StudentsGroupEntity>;
+    students: Array<StudentEntity>;
+    drivings: Array<DrivingEntity>;
+    internalExams: Array<InternalExamEntity>;
 }

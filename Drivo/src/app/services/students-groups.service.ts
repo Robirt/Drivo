@@ -29,7 +29,7 @@ export class StudentsGroupsService {
   }
 
   public async removeStudentsGroupAsync(studentsGroupId: number): Promise<ActionResponse> {
-    return await firstValueFrom(this.httpClient.delete<ActionResponse>(`${environment.apiUri}/StudentsGrous/${studentsGroupId}`));
+    return await firstValueFrom(this.httpClient.delete<ActionResponse>(`${environment.apiUri}/StudentsGroups/${studentsGroupId}`));
   }
 
 }

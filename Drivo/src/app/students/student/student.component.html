@@ -1,0 +1,35 @@
+<section>
+    <form [(ngModel)]="student">
+        <h2>Student {{ student.fullName }}</h2>
+        <label for="firstName">
+            <div>Imię</div>
+            <div>{{ student.firstName }}</div>
+        </label>
+        <label for="lastName">
+            <div>Nazwisko</div>
+            <div>{{ student.lastName }}</div>
+        </label>
+        <label for="birthDate">
+            <div>Data urodzenia</div>
+            <div>{{ student.birthDate | date: 'dd.MM.YYYY' }}</div>
+        </label>
+        <label for="email">
+            <div>Email</div>
+            <div>{{ student.email }}</div>
+        </label>
+        <label for="phoneNumber">
+            <div>Numer telefonu</div>
+            <div>{{ student.phoneNumber }}</div>
+        </label>
+    </form>
+    <form [(ngModel)]="student.studentsGroup">
+        <div>Grupa kursantów</div>
+        <div>{{ student.studentsGroup?.name }}</div>
+        <div>
+            <select>
+                <option *ngFor="let studentsGroups of studentsGroups">{{ studentsGroups.name }}</option>
+            </select>
+            <input type="submit" value="Przydziel studenta do grupy">
+        </div>
+    </form>
+</section>
