@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { InstructorsService } from 'src/app/services/instructors.service';
 import { StudentsGroupsService } from 'src/app/services/students-groups.service';
 import { StudentsService } from 'src/app/services/students.service';
 import { InstructorEntity } from 'src/entities/InstructorEntity';
@@ -14,7 +15,7 @@ import { ActionResponse } from 'src/responses/action.response';
 })
 export class StudentComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute, private studentsService: StudentsService, private studentsGroupService: StudentsGroupsService) {
+  constructor(private activatedRoute: ActivatedRoute, private studentsService: StudentsService, private studentsGroupService: StudentsGroupsService, private instructorsService: InstructorsService) {
     this.activatedRoute.params.subscribe((params) => { this.userName = params['userName']; });
    }
 
@@ -22,6 +23,7 @@ export class StudentComponent implements OnInit {
     await this.getStudentByUserNameAsync();
 
     await this.getStudentsGroupsAsync();
+    await this.getInstructorsAsync();
   }
 
   public userName: string = "";
@@ -43,6 +45,10 @@ export class StudentComponent implements OnInit {
 
   public async getStudentsGroupsAsync(): Promise<void> {
     this.studentsGroups = await this.studentsGroupService.getStudentsGroupsAsync();
+  }
+
+  public async getInstructorsAsync(): Promise<void> {
+    this.instructors = await this.instructorsService.getInstructorsAsync();
   }
 
 }

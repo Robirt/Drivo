@@ -21,8 +21,6 @@ export class LecturerComponent implements OnInit {
     await this.getLecturerByUserNameAsync();
 
     await this.getStudentsGroupsAsync();
-
-    console.log(this.lecturer);
   }
 
   public userName: string = "";

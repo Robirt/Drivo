@@ -23,8 +23,6 @@ export class SignInComponent implements OnInit {
     public async signInAsync(): Promise<void> {
         this.signInResponse = await this.userService.signInAsync(this.signInRequest);
 
-        console.log(this.signInResponse);
-
         if (this.signInResponse.isSucceeded) this.router.navigate(['']); 
     }
     

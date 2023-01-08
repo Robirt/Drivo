@@ -101,7 +101,7 @@ form > div {
 form > div > select {
     margin: 10px 0;
 
-    width: 250px;
+    width: 225px;
     height: 32.5px;
 
     border-radius: 15px;
@@ -111,14 +111,14 @@ form > div > select {
 
     text-align: center;
     font-family: 'Candara';
-    font-size: 17.5px;
+    font-size: 15px;
     color: #072B89;
 }
 
-form > div > input[type="submit"] {
-    margin: 10px 0;
+form > div > input[type="button"] {
+    margin: 5px 0;
 
-    width: 250px;
+    width: 225px;
     height: 32.5px;
 
     border-radius: 15px;
@@ -128,6 +128,25 @@ form > div > input[type="submit"] {
 
     text-align: center;
     font-family: 'Candara';
+    font-weight: 600;
+    font-size: 15px;
+    color: #FFFFFF;
+}
+
+input[type="submit"] {
+    margin: 10px 0;
+
+    width: 275px;
+    height: 32.5px;
+
+    border-radius: 15px;
+    border: none;
+
+    background-color: #072B89;
+
+    text-align: center;
+    font-family: 'Candara';
+    font-weight: 600;
     font-size: 17.5px;
     color: #FFFFFF;
 }

@@ -23,6 +23,22 @@
         </label>
     </form>
     <form (ngSubmit)="updateInstructorAsync()">
-        
+        <div>
+            <table [(ngModel)]="instructor.students">
+                <caption>Kursanci</caption>
+                <thead>
+                    <tr><th>Kursant</th><th>Akcje</th></tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of instructor.students"><td>{{ student.fullName }}</td><td><a (click)="removeStudentFromInstructorAsync(student)">&#59213;</a></td></tr>
+                </tbody>
+            </table>
+            <select [(ngModel)]="selectedStudent" name="students">
+                <option *ngFor="let student of students" [ngValue]="student">{{ student.fullName }}</option>
+            </select>
+            <input type="button" value="Przypisz studenta do instruktora" (click)="addStudentToInstructorAsync()">
+        </div>
+        <input type="submit" value="Zapisz">
+        <h2>{{ actionResponse.message }}</h2>
     </form>
 </section>

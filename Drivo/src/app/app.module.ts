@@ -16,7 +16,6 @@ import { InstructorsModule } from './instructors/instructors.module';
 import { LecturersModule } from './lecturers/lecturers.module';
 
 import { CalendarPageModule } from './calendar/calendar.module';
-import { ResourcesModule } from './resources/resources.module';
 import { JwtBearerTokenInterceptor } from 'src/jwtBearerToken.interceptor';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { SignOutComponent } from './sign-out/sign-out.component';
@@ -49,7 +48,6 @@ import { PaymentsModule } from './payments/payments.module';
       LecturersModule,
       AdsModule,
       CalendarPageModule,
-      ResourcesModule,
       StudentsGroupsModule,
       PaymentsModule
   ],

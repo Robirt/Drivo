@@ -15,12 +15,14 @@ import { SignOutComponent } from './sign-out/sign-out.component';
 import { StudentsGroupsComponent } from './students-groups/students-groups/students-groups.component';
 import { StudentComponent } from './students/student/student.component';
 import { StudentsComponent } from './students/students/students.component';
+import { CourseModuleComponent } from './study/course-module/course-module.component';
 import { StudyComponent } from './study/study/study.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 const routes: Routes = [
   { component: HomeComponent, path: "", canActivate: [IsAuthenticatedGuard] },
-  { component: StudyComponent, path: "Study", canActivate: [IsAuthenticatedGuard, IsInRoleGuard], data: { roles: ['Lecturer'] } },
+  { component: StudyComponent, path: "Study", canActivate: [IsAuthenticatedGuard], data: { roles: ['Lecturer'] } },
+  { component: CourseModuleComponent, path: "Study/:courseModuleName", canActivate: [IsAuthenticatedGuard] },
   { component: SignInComponent, path: "SignIn" },
   { component: StudentsComponent, path: "Students", canActivate: [IsAuthenticatedGuard] },
   { component: StudentComponent, path: "Students/:userName", canActivate: [IsAuthenticatedGuard, IsInRoleGuard], data: { roles: ['Administrator'] } },

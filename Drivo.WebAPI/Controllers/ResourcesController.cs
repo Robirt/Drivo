@@ -10,16 +10,17 @@ namespace Drivo.WebAPI.Controllers;
 [ApiController]
 [Route("[Controller]")]
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
-public class ResourcesControllers : ControllerBase
+public class ResourcesController : ControllerBase
 {
-    public ResourcesControllers(ResourcesService resourcesService)
+    public ResourcesController(ResourcesService resourcesService)
     {
         ResourcesService = resourcesService;
     }
 
     private ResourcesService ResourcesService { get; }
 
-    public async Task<ActionResult<ActionResponse>> AddResourceAsync(ResourceEntity resource)
+    [HttpPost]
+    public async Task<ActionResult<ActionResponse>> AddResourceAsync([FromBody] ResourceEntity resource)
     {
         var response = await ResourcesService.AddResourceAsync(resource);
 
@@ -27,7 +28,7 @@ public class ResourcesControllers : ControllerBase
     }
 
     [HttpPut]
-    public async Task<ActionResult<ActionResponse>> UpdateResourceAsync(ResourceEntity resource)
+    public async Task<ActionResult<ActionResponse>> UpdateResourceAsync([FromBody] ResourceEntity resource)
     {
         var response = await ResourcesService.UpdateResourceAsync(resource);
 
@@ -35,7 +36,7 @@ public class ResourcesControllers : ControllerBase
     }
 
     [HttpDelete("{resourceId}")]
-    public async Task<ActionResult<ActionResponse>> RemoveResourceAsync(int resourceId)
+    public async Task<ActionResult<ActionResponse>> RemoveResourceAsync([FromRoute] int resourceId)
     {
         var response = await ResourcesService.RemoveResourceAsync(resourceId);
 
