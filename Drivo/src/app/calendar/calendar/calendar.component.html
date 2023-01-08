@@ -1,17 +1,7 @@
-<div id="main">
 <section>
-    <section>
-        <p-calendar [inline]="true"></p-calendar>
-    </section>
-    <section>
-    <form>
-        
-        <input type="submit" value="Dodaj">
-    </form>
+    <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;"><p-calendar [inline]="true"></p-calendar></div>
+    <calendar-form></calendar-form>
 </section>
+<section>
+    <calendar-table></calendar-table>
 </section>
-
-<div id="history">
-    <app-calendar-history></app-calendar-history>
-</div>
-</div>

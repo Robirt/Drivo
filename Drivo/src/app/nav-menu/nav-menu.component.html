@@ -1,13 +1,13 @@
 <nav>
     <ul>
-        <li [routerLink]="['']">Strona Główna</li>
-        <li [routerLink]="['Students']">Kursanci</li>
-        <li [routerLink]="['StudentsGroups']">Grupy kursantów</li>
-        <li [routerLink]="['Lecturers']">Wykładowcy</li>
-        <li [routerLink]="['Instructors']">Instruktorzy</li>
-        <li [routerLink]="['Study']">Nauka </li>
-        <li [routerLink]="['Calendar']">Kalendarz</li>
-        <li [routerLink]="['Payments']">Płatności</li>
-        <li [routerLink]="['Ads']">Tablica ogłoszeń</li>
+        <li [routerLink]="['']" routerLinkActive="activeRouterLink" [routerLinkActiveOptions]="{ exact: true }">Strona Główna</li>
+        <li [routerLink]="['Students']" routerLinkActive="activeRouterLink">Kursanci</li>
+        <li [routerLink]="['StudentsGroups']" routerLinkActive="activeRouterLink">Grupy kursantów</li>
+        <li [routerLink]="['Lecturers']" routerLinkActive="activeRouterLink">Wykładowcy</li>
+        <li [routerLink]="['Instructors']" routerLinkActive="activeRouterLink">Instruktorzy</li>
+        <li [routerLink]="['Study']" routerLinkActive="activeRouterLink">Nauka </li>
+        <li [routerLink]="['Calendar']" routerLinkActive="activeRouterLink">Kalendarz</li>
+        <li [routerLink]="['Payments']" routerLinkActive="activeRouterLink">Płatności</li>
+        <li [routerLink]="['Ads']" routerLinkActive="activeRouterLink">Tablica ogłoszeń</li>
     </ul>
 </nav>

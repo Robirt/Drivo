@@ -1,133 +1,27 @@
-
-#main
-{
+:host {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    overflow-y: scroll;
-    width: 100%;
-    height: calc(100vh - 360px);
 
+    width: 100%;
+    height: 100%;
+
+    flex-direction: column;
 }
 
-section 
-{
+section {
     display: flex;
-    justify-content: center;
-    align-items: center;
+
     flex-direction: row;
 
     width: 100%;
     height: 100%;
 }
 
-section > section
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 60%;
-
-} 
-section> section:nth-child(2)
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 30%;
-
-}
-#history
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction:column;
+section > section {
     width: 100%;
-    height: 100%;
+    height: 50%;
 
-}
-form
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-#text
-{
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
-    width: 380px;
-}
-#text > span
-{
-    display: flex;
-    justify-content:center;
-    align-items: center;
     flex-direction: row;
     
-}
-#radio
-{
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
-    margin: 10px;
-}
- 
-
-label
-{
-    font-family: Candara;
-    color: #072b89;
-    font-size: 25px;
-    color: #072b89;
-    margin: 10px;
-    width: 90px;
-    
-}
-
-input[type="text"]
-{
-  
-    border-style: none;
-    border-bottom: 2px solid #072b89;
-    font-size: 20px;
-    color: #072b89;
-    width: 180px;
-
-
-}
-input[type="text"]:focus
-{ 
-    font-family: Candara;
-    font-size: 20px;
-    color: #072b89;
-    outline: none;
-    width: 200px;
-
-}
-input[type="submit"]
-{
-    display: flex;
-    align-items: center;
     justify-content: center;
-    height: 50px;
-    width:140px;
-    border: #072b89 2px solid;
-    border-radius: 20px;
-    box-shadow: 4px 3px 5px rgb(204, 202, 202);
-    font-family: Candara;
-    background-color: #072b89;
-    color: white;
-    font-size: 18px;
-    font-weight: 700;
-    margin: 10px;
+    align-items: center;
 }

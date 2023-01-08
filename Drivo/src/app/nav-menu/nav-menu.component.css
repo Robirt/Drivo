@@ -19,7 +19,7 @@ li
 {
     padding: 20px;
 }
-li:hover
+li:hover, li.activeRouterLink
 {
     text-shadow: 2px 5px 5px gray;
     font-weight: 800;

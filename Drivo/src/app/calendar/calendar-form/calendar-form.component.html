@@ -1,0 +1,85 @@
+<section>
+    <nav>
+        <button (click)="selectFormMode('Lecture')" [ngClass]="formMode == 'Lecture' ? 'active' : ''">Wykład</button>
+        <button (click)="selectFormMode('Driving')" [ngClass]="formMode == 'Driving' ? 'active' : ''">Jazda</button>
+        <button (click)="selectFormMode('InternalExam')" [ngClass]="formMode == 'InternalExam' ? 'active' : ''">Egzamin wewnętrzny</button>
+    </nav>
+    <form *ngIf="formMode == 'Lecture'" [(ngModel)]="lecture">
+        <h3>Wykład</h3>
+        <label>
+            <div>Nazwa</div>
+            <input type="text" [(ngModel)]="lecture.name">
+        </label>
+        <label>
+            <div>Początek</div>
+            <input type="datetime-local" [(ngModel)]="lecture.startDate">
+        </label>
+        <label>
+            <div>Koniec</div>
+            <input type="datetime-local" [(ngModel)]="lecture.endDate">
+        </label>
+        <label>
+            <div>Miejsce</div>
+            <input type="text" [(ngModel)]="lecture.place">
+        </label>
+        <label>
+            <div>Grupa kursantów</div>
+            <select>
+                <option></option>
+            </select>
+        </label>
+        <input type="submit" value="Dodaj">
+    </form>
+    <form *ngIf="formMode == 'Driving'" [(ngModel)]="driving">
+        <h3>Jazda</h3>
+        <label>
+            <div>Nazwa</div>
+            <input type="text" [(ngModel)]="driving.name">
+        </label>
+        <label>
+            <div>Początek</div>
+            <input type="datetime-local" [(ngModel)]="driving.startDate">
+        </label>
+        <label>
+            <div>Koniec</div>
+            <input type="datetime-local" [(ngModel)]="driving.endDate">
+        </label>
+        <label>
+            <div>Miejsce</div>
+            <input type="text" [(ngModel)]="driving.place">
+        </label>
+        <label>
+            <div>Kursant</div>
+            <select>
+                <option></option>
+            </select>
+        </label>
+        <input type="submit" value="Dodaj">
+    </form>
+    <form *ngIf="formMode == 'InternalExam'" [(ngModel)]="internalExam">
+        <h3>Egzamin wewnętrzny</h3>
+        <label>
+            <div>Nazwa</div>
+            <input type="text" [(ngModel)]="internalExam.name">
+        </label>
+        <label>
+            <div>Początek</div>
+            <input type="datetime-local" [(ngModel)]="internalExam.startDate">
+        </label>
+        <label>
+            <div>Koniec</div>
+            <input type="datetime-local" [(ngModel)]="internalExam.endDate">
+        </label>
+        <label>
+            <div>Miejsce</div>
+            <input type="text" [(ngModel)]="internalExam.place">
+        </label>
+        <label>
+            <div>Kursant</div>
+            <select>
+                <option></option>
+            </select>
+        </label>
+        <input type="submit" value="Dodaj">
+    </form>
+</section>
