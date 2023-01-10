@@ -14,7 +14,7 @@
             <td>{{ event.startDate | date: 'dd.MM.YYYY HH:mm' }}</td>
             <td>{{ event.endDate | date: 'dd.MM.YYYY HH:mm' }}</td>
             <td>{{ event.place }}</td>
-            <td></td>
+            <td><a (click)="removeEventAsync(event)">&#59213;</a></td>
         </tr>
     </tbody>
 </table>

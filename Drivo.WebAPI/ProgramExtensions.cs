@@ -103,7 +103,7 @@ public static class ProgramExtensions
         {
             var administratorsService = serviceScope.ServiceProvider.GetRequiredService<AdministratorsService>();
 
-            administratorsService.CreateAdministratorAsync(configuration.Get<CreateUserRequest>()).Wait();
+            //administratorsService.CreateAdministratorAsync(configuration.Get<CreateUserRequest>()).Wait();
         }
 
         return app;

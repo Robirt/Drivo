@@ -27,3 +27,7 @@ th, td {
     height: 30px;
     width: 250px;
 }
+
+a {
+    font-family: 'Segoe MDL2 Assets';
+}

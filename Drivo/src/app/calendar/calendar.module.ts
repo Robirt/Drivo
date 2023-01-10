@@ -5,6 +5,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { FormsModule } from '@angular/forms';
 import { CalendarFormComponent } from './calendar-form/calendar-form.component';
 import { CalendarTableComponent } from './calendar-table/calendar-table.component';
+import { CalendarGridComponent } from './calendar-grid/calendar-grid.component';
 
 
 
@@ -13,6 +14,7 @@ import { CalendarTableComponent } from './calendar-table/calendar-table.componen
     CalendarComponent,
     CalendarFormComponent,
     CalendarTableComponent,
+    CalendarGridComponent,
   ],
   imports: [
     CommonModule,

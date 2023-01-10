@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { EventEntity } from 'src/entities/event.entity';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DayModel } from 'src/models/day.model';
 
 @Component({
   selector: 'calendar-table',
@@ -13,6 +13,13 @@ export class CalendarTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @Input() events: Array<EventEntity>;
+  @Input() events: Array<any>;
 
+  @Input() selectedDay: DayModel;
+
+  @Output() onRemoveEvent: EventEmitter<any> = new EventEmitter<any>();
+
+  public async removeEventAsync(event: any): Promise<void> {
+    
+  }
 }

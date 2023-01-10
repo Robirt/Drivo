@@ -1,7 +1,7 @@
 <section>
-    <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;"><p-calendar [inline]="true"></p-calendar></div>
-    <calendar-form></calendar-form>
+    <calendar-grid [days]="days" [(selectedDay)]="selectedDay" (selectedDayChange)="onSelectedDayChangeAsync($event)"></calendar-grid>
+    <calendar-form [role]="userModel?.role" [studentsGroups]="studentsGroups" [students]="students" (onAddLecture)="addLectureAsync($event)" (onAddDriving)="addDrivingAsync($event)" (onAddInternalExam)="addInternalExamAsync($event)"></calendar-form>
 </section>
 <section>
-    <calendar-table></calendar-table>
+    <calendar-table [events]="events" [selectedDay]="selectedDay" (onRemoveEvent)="removeEventAsync($event)"></calendar-table>
 </section>
