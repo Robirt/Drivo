@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { InstructorEntity } from 'src/entities/InstructorEntity';
 import { CreateUserRequest } from 'src/requests/createUser.request';
 
 @Component({

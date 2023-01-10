@@ -1,4 +1,3 @@
 <section>
-    <study-grid [studies]="studies"></study-grid>
-
+    <course-modules-grid [courseModules]="courseModules" (onAddCourseModule)="addCourseModuleAsync($event)" (onRemoveCourseModule)="removeCourseModuleAsync($event)"></course-modules-grid>
 </section>

@@ -4,6 +4,8 @@ import { StudentsTableComponent } from './students-table/students-table.componen
 import { StudentsComponent } from './students/students.component';
 import { StudentFormComponent } from './student-form/student-form.component';
 import { FormsModule } from '@angular/forms';
+import { StudentComponent } from './student/student.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -11,10 +13,12 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     StudentsTableComponent,
     StudentsComponent,
-    StudentFormComponent
+    StudentFormComponent,
+    StudentComponent
   ],
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule
   ]
 })

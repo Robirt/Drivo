@@ -4,8 +4,10 @@ footer
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 120px;
+    height: 75px;
     width: 100%;
     color: white;
+    font-family: 'Candara';
+    font-size: 15px;
     background-color: #072b89;
 }

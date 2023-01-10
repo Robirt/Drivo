@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { AdministratorEntity } from 'src/entities/AdministratorEntity';
 import { environment } from 'src/environments/environment';
+import { CreateUserRequest } from 'src/requests/createUser.request';
 import { ActionResponse } from 'src/responses/action.response';
 
 @Injectable({
@@ -24,8 +25,12 @@ export class AdministratorsService {
     return await firstValueFrom(this.httpClient.get<Array<AdministratorEntity>>(`${environment.apiUri}/Administrators/Search/${searchString}`));
   }
 
-  public async createAdministratorAsync(administrator: AdministratorEntity): Promise<ActionResponse> {
-    return await firstValueFrom(this.httpClient.post<ActionResponse>(`${environment.apiUri}/Administrators`, administrator));
+  public async createAdministratorAsync(createUserRequest: CreateUserRequest): Promise<ActionResponse> {
+    return await firstValueFrom(this.httpClient.post<ActionResponse>(`${environment.apiUri}/Administrators`, createUserRequest));
+  }
+
+  public async updateAdministratorAsync(administrator: AdministratorEntity): Promise<ActionResponse> {
+    return await firstValueFrom(this.httpClient.put<ActionResponse>(`${environment.apiUri}/Administrators`, administrator));
   }
 
   public async deleteAdministratorAsync(administratorUserName: string): Promise<ActionResponse> {

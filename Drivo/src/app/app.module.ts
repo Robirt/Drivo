@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,12 +16,13 @@ import { InstructorsModule } from './instructors/instructors.module';
 import { LecturersModule } from './lecturers/lecturers.module';
 
 import { CalendarPageModule } from './calendar/calendar.module';
-import { ResourcesModule } from './resources/resources.module';
 import { JwtBearerTokenInterceptor } from 'src/jwtBearerToken.interceptor';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { SignOutComponent } from './sign-out/sign-out.component';
 import { AdsModule } from './ads/ads.module';
-
+import { StudentsGroupsModule } from './students-groups/students-groups.module';
+import { PaymentsModule } from './payments/payments.module';
+import '@angular/common/locales/global/pl';
 
 
 @NgModule({
@@ -47,9 +48,10 @@ import { AdsModule } from './ads/ads.module';
       LecturersModule,
       AdsModule,
       CalendarPageModule,
-      ResourcesModule
+      StudentsGroupsModule,
+      PaymentsModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtBearerTokenInterceptor, multi: true }],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtBearerTokenInterceptor, multi: true }, { provide: LOCALE_ID, useValue: "pl-PL" }],
   bootstrap: [
     AppComponent
   ]

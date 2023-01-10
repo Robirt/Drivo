@@ -13,6 +13,11 @@ public class PaymentsRepository
 
     private DatabaseContext Context { get; }
 
+    public async Task<List<PaymentEntity>> GetPaymentsAsync()
+    {
+        return await Context.Payments.ToListAsync();
+    }
+
     public async Task<List<PaymentEntity>> GetPaymentsByStudentAsync(StudentEntity student)
     {
         return await Context.Payments.Where(payment => payment.StudentId == student.Id).ToListAsync();
@@ -44,7 +49,7 @@ public class PaymentsRepository
     {
         try
         {
-            Context.Payments.Update(payment);
+            Context.Entry(payment).State = EntityState.Modified;
 
             await Context.SaveChangesAsync();
         }

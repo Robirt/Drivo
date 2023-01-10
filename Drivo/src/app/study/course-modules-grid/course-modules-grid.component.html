@@ -1,0 +1,4 @@
+<section>
+    <course-module-form (onAddCourseModule)="addCourseModuleAsync($event)"></course-module-form>
+    <course-module-tile *ngFor="let courseModule of courseModules" [courseModule]="courseModule" (onRemoveCourseModule)="removeCourseModuleAsync($event)"></course-module-tile>
+</section>

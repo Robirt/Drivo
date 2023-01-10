@@ -1,50 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { CourseModulesService } from 'src/app/services/course-modules.service';
-import { CourseModulEntity } from 'src/entities/CourseModulEntity';
+import { CourseModuleEntity } from 'src/entities/course-module.entity';
+import { ActionResponse } from 'src/responses/action.response';
 
 @Component({
-  selector: 'study-study',
+  selector: 'study',
   templateUrl: './study.component.html',
   styleUrls: ['./study.component.css']
 })
 export class StudyComponent implements OnInit {
 
-  constructor(private courseModul: CourseModulesService ) { }
+  constructor(private courseModuleService: CourseModulesService ) { }
 
   async ngOnInit(): Promise<void> {
-    
-
+    await this.getCourseModulesAsync();
   }
-public studies: Array<CourseModulEntity> = new Array<CourseModulEntity>();
-public study: CourseModulEntity;
-public async getCourseModuls(): Promise<void>
-{
- this.studies = await this.courseModul.getCourseModulesAsync();
-}
+  
+  public courseModules: Array<CourseModuleEntity> = new Array<CourseModuleEntity>();
 
-public async getCourseModulByTitle(title: string): Promise<void>
-{
-  this.study = await this.courseModul.getCourseModuleByNameAsync(title);
-}
+  public actionResponse: ActionResponse = new ActionResponse();
 
-public async searchCourseModulByTitle(searchString: string): Promise<void>
-{
-  this.studies= await this.courseModul.searchCourseModuleByNameAsync(searchString);
-}
+  public async getCourseModulesAsync(): Promise<void> {
+    this.courseModules = await this.courseModuleService.getCourseModulesAsync();
+  }
 
-public async addCourseModul(courseModul: CourseModulEntity): Promise<void>
-{
-  await this.courseModul.addCourseModuleAsync(courseModul);
-}
+  public async addCourseModuleAsync(courseModule: CourseModuleEntity): Promise<void> {
+    this.actionResponse = await this.courseModuleService.addCourseModuleAsync(courseModule);
 
-public async putCourseModul(courseModul: CourseModulEntity): Promise<void>
-{
-  await this.courseModul.updateCourseModuleAsync(courseModul);
-}
+    await this.getCourseModulesAsync();
+  }
+  
+  public async updateCourseModuleAsync(courseModule: CourseModuleEntity): Promise<void> {
+    this.actionResponse = await this.courseModuleService.updateCourseModuleAsync(courseModule);
 
-public async deleteCourseModul(id: number): Promise<void>
-{
-  //await this.courseModul.removeCourseModuleAsync(id);
-}
+    await this.getCourseModulesAsync();
+  }
+
+  public async removeCourseModuleAsync(courseModule: CourseModuleEntity): Promise<void> {
+    this.actionResponse = await this.courseModuleService.removeCourseModuleAsync(courseModule);
+
+    await this.getCourseModulesAsync();
+  }
 }

@@ -15,14 +15,14 @@ public class PaymentsService
     private PaymentsRepository PaymentsRepository { get; }
     private StudentsService StudentsService { get; }
 
+    public async Task<List<PaymentEntity>> GetPaymentsAsync()
+    {
+        return await PaymentsRepository.GetPaymentsAsync();
+    }
+
     public async Task<PaymentEntity> GetPaymentByIdAsync(int paymentId)
     {
         return await PaymentsRepository.GetPaymentByIdAsync(paymentId);
-    }
-
-    public async Task<List<PaymentEntity>> GetPaymentsByStudentAsync(string studentUserName)
-    {
-        return await PaymentsRepository.GetPaymentsByStudentAsync(await StudentsService.GetStudentByUserNameAsync(studentUserName));
     }
 
     public async Task<ActionResponse> AddPaymentAsync(PaymentEntity payment)

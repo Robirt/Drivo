@@ -16,7 +16,7 @@
             <td>{{ student.birthDate | date: 'dd.MM.YYYY' }}</td>
             <td>{{ student.email }}</td>
             <td>{{ student.phoneNumber }}</td>
-            <td><a>&#59151;</a><a (click)="deleteStudentAsync(student)">&#59213;</a></td>
+            <td><a [routerLink]="['/Students', student.userName]">&#59151;</a><a (click)="deleteStudentAsync(student)">&#59213;</a></td>
          </tr>
     </tbody>
 </table>

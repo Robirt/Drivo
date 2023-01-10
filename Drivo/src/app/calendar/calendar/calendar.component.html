@@ -1,17 +1,7 @@
-<div id="main">
 <section>
-    <section>
-        <p-calendar [inline]="true"></p-calendar>
-    </section>
-    <section>
-    <form>
-        
-        <input type="submit" value="Dodaj">
-    </form>
+    <calendar-grid [days]="days" [(selectedDay)]="selectedDay" (selectedDayChange)="onSelectedDayChangeAsync($event)"></calendar-grid>
+    <calendar-form [role]="userModel?.role" [studentsGroups]="studentsGroups" [students]="students" (onAddLecture)="addLectureAsync($event)" (onAddDriving)="addDrivingAsync($event)" (onAddInternalExam)="addInternalExamAsync($event)"></calendar-form>
 </section>
+<section>
+    <calendar-table [events]="events" [selectedDay]="selectedDay" (onRemoveEvent)="removeEventAsync($event)"></calendar-table>
 </section>
-
-<div id="history">
-    <app-calendar-history></app-calendar-history>
-</div>
-</div>

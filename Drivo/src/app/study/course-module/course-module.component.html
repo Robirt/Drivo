@@ -1,0 +1,4 @@
+<section>
+    <h2>{{ courseModule.name }}</h2>
+    <resources-grid [resources]="courseModule.resources" (onAddResource)="addResourceAsync($event)" (onUpdateResource)="updateResourceAsync($event)" (onRemoveResource)="removeResourceAsync($event)"></resources-grid>
+</section>

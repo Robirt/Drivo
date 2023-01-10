@@ -1,0 +1,4 @@
+<section>
+    <payment-form [students]="students" (onAddPayment)="addPaymentAsync($event)"></payment-form>
+    <payment *ngFor="let payment of payments" [payment]="payment" (onUpdatePayment)="updatePaymentAsync($event)" (onRemovePayment)="removePaymentAsync($event)"></payment>
+</section>

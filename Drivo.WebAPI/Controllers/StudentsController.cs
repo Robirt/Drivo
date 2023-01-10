@@ -45,6 +45,15 @@ namespace Drivo.WebAPI.Controllers
             return response.IsSucceeded ? Ok(response) : BadRequest(response);
         }
 
+        [HttpPut]
+        [Authorize(Roles = "Administrator")]
+        public async Task<ActionResult<ActionResponse>> UpdateStudentAsync([FromBody] StudentEntity student)
+        {
+            var response = await StudentsService.UpdateStudentAsync(student);
+
+            return response.IsSucceeded ? Ok(response) : BadRequest(response);
+        }
+
         [HttpDelete("{userName}")]
         [Authorize(Roles = "Administrator")]
         public async Task<ActionResult<ActionResponse>> DeleteStudentAsync([FromRoute] string userName)

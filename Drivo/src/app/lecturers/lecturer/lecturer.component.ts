@@ -21,8 +21,6 @@ export class LecturerComponent implements OnInit {
     await this.getLecturerByUserNameAsync();
 
     await this.getStudentsGroupsAsync();
-
-    console.log(this.lecturer);
   }
 
   public userName: string = "";
@@ -38,16 +36,12 @@ export class LecturerComponent implements OnInit {
     this.lecturer = await this.lecturersService.getLecturerByUserNameAsync(this.userName);
   }
 
+  public async updateLecturerAsync(): Promise<void> {
+    this.actionResponse = await this.lecturersService.updateLecturerAsync(this.lecturer);
+  }
+
   public async getStudentsGroupsAsync(): Promise<void> {
     this.studentsGroups = await this.studentsGroupService.getStudentsGroupsAsync();
-  }
-
-  public async removeStudentsGroupFromLecturerAsync(studentsGroup: StudentsGroupEntity): Promise<void> {
-    this.lecturer.studentsGroups.push(studentsGroup);
-  }
-
-  public async addSelectedStudentsGroupToLecturerAsync(): Promise<void> {
-    this.lecturer.studentsGroups.push(this.selectedStudentsGroup);
   }
 
 }

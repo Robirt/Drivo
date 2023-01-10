@@ -29,6 +29,10 @@ export class InstructorsService {
     return await firstValueFrom(this.httpClient.post<ActionResponse>(`${environment.apiUri}/Instructors`, createUserRequest));
   }
 
+  public async updateInstructorAsync(instructor: InstructorEntity): Promise<ActionResponse> {
+    return await firstValueFrom(this.httpClient.put<ActionResponse>(`${environment.apiUri}/Instructors`, instructor));
+  }
+
   public async deleteInstructor(instructorUserName: string): Promise<ActionResponse> {
     return await firstValueFrom(this.httpClient.delete<ActionResponse>(`${environment.apiUri}/Instructors/${instructorUserName}`));
   }

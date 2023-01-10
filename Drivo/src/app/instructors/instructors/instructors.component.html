@@ -4,6 +4,6 @@
         <h3>{{ actionResponse.message }}</h3>
     </section>
     <section>
-        <app-instructors-table [instructors]="instructors" (onDeleteInstructor)="deleteInstructorAsync($event)"></app-instructors-table>
+        <app-instructors-table *ngIf="instructors.length" [instructors]="instructors" (onDeleteInstructor)="deleteInstructorAsync($event)"></app-instructors-table>
     </section>
 </section>
