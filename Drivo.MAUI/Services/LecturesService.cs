@@ -10,12 +10,10 @@ public class LecturesService
         HttpClient = httpClient;
     }
 
-    private HttpClient HttpClient { get; }
-
+    private HttpClient HttpClient { get; } 
 
     public async Task<List<LectureEntity>> GetLecturesAsync()
     {
         return await HttpClient.GetFromJsonAsync<List<LectureEntity>>("/Lectures");
     }
-
 }

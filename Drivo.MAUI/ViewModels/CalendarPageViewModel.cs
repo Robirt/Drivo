@@ -1,13 +1,12 @@
 ﻿using Drivo.Entities;
-using static Android.Provider.CalendarContract;
 
 namespace Drivo.MAUI.ViewModels;
 
-public class CalendarPageViewModel: ViewModelBase
+public class CalendarPageViewModel : ViewModelBase
 {
     public CalendarPageViewModel()
     {
-       Ads = new List<AdEntity>();
+        Ads = new List<AdEntity>();
 
     }
 

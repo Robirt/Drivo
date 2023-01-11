@@ -6,9 +6,6 @@
     <ContentPage.Resources>
         <ResourceDictionary Source="../Resources/ProfilePageResourceDictionary.xaml"/>
     </ContentPage.Resources>
-    <ContentPage.BindingContext>
-        <ViewModels:ProfilePageViewModel/>
-    </ContentPage.BindingContext>
     <FlexLayout Direction="Column" JustifyContent="Center" AlignItems="Center">
         <Border>
             <Grid RowDefinitions="6*, 6*" >

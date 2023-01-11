@@ -6,9 +6,6 @@
     <ContentPage.Resources>
         <ResourceDictionary Source="../Resources/CalendarPageResourceDictionary.xaml"/>
     </ContentPage.Resources>
-    <ContentPage.BindingContext>
-        <ViewModels:CalendarViewModel/>
-    </ContentPage.BindingContext>
 
     <StackLayout>
         

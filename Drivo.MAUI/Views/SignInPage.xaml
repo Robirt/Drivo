@@ -7,9 +7,6 @@
     <ContentPage.Resources>
         <ResourceDictionary Source="../Resources/SignInPageResourceDictionary.xaml"/>
     </ContentPage.Resources>
-    <ContentPage.BindingContext>
-        <ViewModels:SignInPageViewModel/>
-    </ContentPage.BindingContext>
     <ContentPage.Content>
         <FlexLayout Direction="Column" JustifyContent="Center" AlignItems="Center">
             <StackLayout>

@@ -7,9 +7,6 @@
     <ContentPage.Resources>
         <ResourceDictionary Source="../Resources/ResourcesPageResourceDictionary.xaml" />
     </ContentPage.Resources>
-    <ContentPage.BindingContext>
-        <ViewModels:ResourcesPageViewModel/>
-    </ContentPage.BindingContext>
     <FlexLayout Direction="Column" JustifyContent="SpaceBetween" AlignItems="Center">
         <CarouselView ItemsSource="{Binding Resources}" ItemTemplate="{StaticResource ResourceDataTemplate}" IndicatorView="Indicator"></CarouselView>
         <IndicatorView HeightRequest="50" x:Name="Indicator" IndicatorColor="DarkGray" SelectedIndicatorColor="{StaticResource AccentColor}" IndicatorSize="12"/>

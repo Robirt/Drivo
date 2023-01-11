@@ -7,7 +7,6 @@ namespace Drivo.MAUI
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(SignInPage), typeof(SignInPage));
         }
     }
 }

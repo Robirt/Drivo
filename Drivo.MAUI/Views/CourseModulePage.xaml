@@ -7,9 +7,6 @@
     <ContentPage.Resources>
         <ResourceDictionary Source="../Resources/CourseModulePageResourceDictionary.xaml"/>
     </ContentPage.Resources>
-    <ContentPage.BindingContext>
-        <ViewModels:CourseModulesPageViewModel/>
-    </ContentPage.BindingContext>
     <Grid Margin="0">
         <ScrollView>
             <FlexLayout Wrap="Wrap" JustifyContent="Center" AlignItems="Center"  Direction="Row" >

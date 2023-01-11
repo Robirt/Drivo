@@ -20,6 +20,11 @@ public class PaymentsService
         return await PaymentsRepository.GetPaymentsAsync();
     }
 
+    public async Task<List<PaymentEntity>> GetPaymentsByUserName(string studentUserName)
+    {
+        return await PaymentsRepository.GetPaymentsByStudentAsync(await StudentsService.GetStudentByUserNameAsync(studentUserName));
+    }
+
     public async Task<PaymentEntity> GetPaymentByIdAsync(int paymentId)
     {
         return await PaymentsRepository.GetPaymentByIdAsync(paymentId);

@@ -47,10 +47,9 @@ public class SignInPageViewModel : ViewModelBase
         }
         else
         {
-            Error = Response.Message;
+
         }
 
-        Error = string.Empty;
         SignInRequest = new SignInRequest();
     }
 

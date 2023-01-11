@@ -1,9 +1,13 @@
+using Drivo.MAUI.ViewModels;
+
 namespace Drivo.MAUI.Views;
 
 public partial class ProfilePage : ContentPage
 {
-	public ProfilePage()
+	public ProfilePage(ProfilePageViewModel profilePageViewModel)
 	{
 		InitializeComponent();
+
+		BindingContext = profilePageViewModel;
 	}
 }

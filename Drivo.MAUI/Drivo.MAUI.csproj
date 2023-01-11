@@ -40,6 +40,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\calendar_icon.png" />
+	  <None Remove="Resources\Images\driving_background_image.png" />
+	  <None Remove="Resources\Images\external_exam_background_image.png" />
+	  <None Remove="Resources\Images\home_icon.png" />
+	  <None Remove="Resources\Images\internal_exam_background_image.png" />
+	  <None Remove="Resources\Images\lecture_background_image.png" />
+	  <None Remove="Resources\Images\profile_icon.png" />
+	  <None Remove="Resources\Images\study_icon.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#FFFFFF" />
 
@@ -90,6 +101,9 @@
 	  <MauiXaml Update="Views\CourseModulePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\CourseModulesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ProfilePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -99,6 +113,27 @@
 	  <MauiXaml Update="Views\SignInPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Resources\Icons\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\calendar_icon.png" />
+	  <MauiImage Include="Resources\Images\external_exam_background_image.png" />
+	  <MauiImage Include="Resources\Images\internal_exam_background_image.png" />
+	  <MauiImage Include="Resources\Images\lecture_background_image.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\driving_background_image.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\home_icon.png" />
+	  <MauiImage Include="Resources\Images\profile_icon.png" />
+	  <MauiImage Include="Resources\Images\study_icon.png" />
 	</ItemGroup>
 
 </Project>
