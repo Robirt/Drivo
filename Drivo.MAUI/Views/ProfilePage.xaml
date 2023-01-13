@@ -42,16 +42,6 @@
             </Grid>
         </Border>
     
-    <StackLayout Orientation="Horizontal" >
-            <Border HeightRequest="100" WidthRequest="175" >
-                <Label Text="{Binding Lectures.Count, StringFormat='WYKŁADY {0}/30'}" Style="{StaticResource CaptionLabel}"/>
-                
-            </Border>
-            <Border HeightRequest="100" WidthRequest="175" >
-                <Label Text="{Binding Drivings.Count, StringFormat='JAZDY {0}/30'}" Style="{StaticResource CaptionLabel}"/>
-            </Border>
-     </StackLayout>
-
         <Border HeightRequest="140" WidthRequest="350">
             <Grid RowDefinitions="6*">
                 <StackLayout Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center">

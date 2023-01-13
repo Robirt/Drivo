@@ -16,6 +16,7 @@ public static class MauiProgramExtensions
         services.AddSingleton<CourseModulesPage>();
         services.AddSingleton<CourseModulePage>();
         services.AddSingleton<ProfilePage>();
+        services.AddSingleton<ExternalExamAddPage>();
 
         return services;
     }
@@ -29,6 +30,7 @@ public static class MauiProgramExtensions
         services.AddSingleton<CourseModulesPageViewModel>();
         services.AddSingleton<CourseModulePageViewModel>();
         services.AddSingleton<ProfilePageViewModel>();
+        services.AddSingleton<ExternalExamAddPageViewModel>();
 
         return services;
     }

@@ -9,8 +9,8 @@ public class CourseModulesPageViewModel : ViewModelBase
     {
         CourseModulesService = courseModulesService;
 
-        GoToCourseModulePageCommand = new Command<string>((string name) => {
-            Shell.Current.DisplayAlert(name, "s", "ok");        
+        GoToCourseModulePageCommand = new Command<string>(async (string name) => {
+            await Shell.Current.GoToAsync($"CourseModule?CourseModuleName={name}");        
         });
 
         GetCourseModulesAsync();

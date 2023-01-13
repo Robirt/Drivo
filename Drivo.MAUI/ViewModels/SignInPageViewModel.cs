@@ -14,18 +14,28 @@ public class SignInPageViewModel : ViewModelBase
 
         SignInRequest = new SignInRequest();
         SignInResponse = new SignInResponse();
-        SignInCommand = new Command(SignIn);
-    }
+        SignInCommand = new Command(SignInAsync);
 
-    private SignInRequest signInRequest;
+        CheckIsUserSignedIn();
+    }
 
     private UserService UserService { get; }
 
     private HttpClient HttpClient { get; }
+
+    private SignInRequest signInRequest;
     public SignInRequest SignInRequest
     {
-        get { return signInRequest; }
-        set { OnPropertyChanged(nameof(SignInRequest)); }
+        get
+        {
+            return signInRequest;
+        }
+        set
+        {
+            if (signInRequest == value) return;
+            signInRequest = value;
+            OnPropertyChanged(nameof(SignInRequest));
+        }
     }
     private SignInResponse signInResponse;
     public SignInResponse SignInResponse
@@ -35,23 +45,25 @@ public class SignInPageViewModel : ViewModelBase
     }
 
     public Command SignInCommand { get; set; }
-    private async void SignIn()
+    private async void SignInAsync()
     {
-        var Response = await UserService.SignInAsync(SignInRequest);
-        if (Response.IsSucceeded)
+        var response = await UserService.SignInAsync(SignInRequest);
+        if (response.IsSucceeded)
         {
-            await SecureStorage.SetAsync("Token", Response.JwtBearerToken);
+            await SecureStorage.SetAsync("Token", response.JwtBearerToken);
 
-            HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Response.JwtBearerToken);
+            HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", response.JwtBearerToken);
             await Shell.Current.GoToAsync("//HomePage");
-        }
-        else
-        {
-
         }
 
         SignInRequest = new SignInRequest();
     }
 
-
+    private async Task CheckIsUserSignedIn()
+    {
+        SecureStorage.SetAsync("Token", "Elo");
+        var xd =await  SecureStorage.GetAsync("Token");
+        if (await SecureStorage.GetAsync("Token") is not null)
+            await Shell.Current.GoToAsync("//Tabs");
+    }
 }

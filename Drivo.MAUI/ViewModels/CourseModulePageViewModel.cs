@@ -3,6 +3,7 @@ using Drivo.MAUI.Services;
 
 namespace Drivo.MAUI.ViewModels;
 
+[QueryProperty(nameof(CourseModuleName), "CourseModuleName")]
 public class CourseModulePageViewModel : ViewModelBase
 {
     public CourseModulePageViewModel(CourseModulesService courseModulesService)
@@ -15,11 +16,17 @@ public class CourseModulePageViewModel : ViewModelBase
     private string courseModuleName;
     public string CourseModuleName
     {
+        get
+        {
+            return courseModuleName;
+        }
+
         set
         {
             if (courseModuleName == value) return;
             courseModuleName = value;
             OnPropertyChanged(nameof(CourseModuleName));
+            Shell.Current.DisplayAlert("Siema", CourseModuleName, "Ok");
         }
     }
 

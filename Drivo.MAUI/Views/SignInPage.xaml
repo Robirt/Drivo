@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ViewModels="clr-namespace:Drivo.MAUI.ViewModels"
              x:Class="Drivo.MAUI.Views.SignInPage"
-             Title="SignInPage">
+             Shell.TabBarIsVisible="False">
     <ContentPage.Resources>
         <ResourceDictionary Source="../Resources/SignInPageResourceDictionary.xaml"/>
     </ContentPage.Resources>

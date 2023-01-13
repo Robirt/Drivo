@@ -6,7 +6,9 @@ namespace Drivo.MAUI
     {
         public AppShell()
         {
+            Routing.RegisterRoute("SignIn", typeof(SignInPage));
             Routing.RegisterRoute("CourseModule", typeof(CourseModulePage));
+            Routing.RegisterRoute("ExternalExamAdd", typeof(ExternalExamAddPage));
 
             InitializeComponent();
         }

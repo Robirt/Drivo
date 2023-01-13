@@ -1,100 +1,65 @@
 using Drivo.Entities;
 using Drivo.MAUI.Services;
-using Drivo.Requests;
 
 namespace Drivo.MAUI.ViewModels;
 
 public class ProfilePageViewModel : ViewModelBase
 {
-	public ProfilePageViewModel(UserService userService, HttpClient httpClient)
-	{
-		UserService = userService;
-        HttpClient = httpClient;    
-        SignOutCommand = new Command(SignOut);
-        GoToCalendarPageCommand = new Command(GoToCalendarPage);
+    public ProfilePageViewModel(UserService userService)
+    {
+        UserService = userService;
 
-
+        GoToCalendarPageCommand = new Command(GoToExternalExamAddPageAsync);
+        SignOutCommand = new Command(SignOutAsync);
     }
+
     private UserService UserService { get; }
-    private HttpClient HttpClient { get; }
+
     private UserEntity user;
     public UserEntity User
     {
-        get { return user; }
-        set { OnPropertyChanged(nameof(user)); }
+        get
+        {
+            return user;
+        }
+
+        set
+        {
+            if (user == value) return;
+            user = value;
+            OnPropertyChanged(nameof(User));
+        }
     }
+
     public Command SignOutCommand { get; set; }
-    private async void SignOut()
-    {
-        await UserService.SignOutAsync();
-    }
 
     public Command GoToCalendarPageCommand { get; set; }
-    private async void GoToCalendarPage()
-    {
-        await Shell.Current.GoToAsync("//CalendarPage");
-    }
 
-    private PaymentEntity nextPayment;
-    public PaymentEntity NextPayment
+    private List<PaymentEntity> payments;
+    public List<PaymentEntity> Payments
     {
         get
         {
-            return nextPayment;
+            return payments;
         }
 
         set
         {
-            if (nextPayment == value) return;
-            nextPayment = value;
-            OnPropertyChanged(nameof(NextPayment));
-        }
-    }
-    private List<LectureEntity> lectures;
-    public List<LectureEntity> Lectures
-    {
-        get
-        {
-            return lectures;
-        }
-
-        set
-        {
-            if (lectures == value) return;
-            lectures = value;
-            OnPropertyChanged(nameof(Lectures));
+            if (payments == value) return;
+            payments = value;
+            OnPropertyChanged(nameof(Payments));
         }
     }
 
-    private LectureEntity firstLecture;
-    public LectureEntity FirstLecture
+    private async void GoToExternalExamAddPageAsync()
     {
-        get
-        {
-            return firstLecture;
-        }
-
-        set
-        {
-            if (firstLecture == value) return;
-            firstLecture = value;
-            OnPropertyChanged(nameof(FirstLecture));
-        }
+        await Shell.Current.GoToAsync("ExternalExamAdd");
     }
 
-    private List<DrivingEntity> drivings;
-    public List<DrivingEntity> Drivings
+    private async void SignOutAsync()
     {
-        get
-        {
-            return drivings;
-        }
+        await UserService.SignOutAsync();
 
-        set
-        {
-            if (drivings == value) return;
-            drivings = value;
-            OnPropertyChanged(nameof(Drivings));
-        }
+        await Shell.Current.GoToAsync("//SignIn");
     }
 }
