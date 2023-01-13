@@ -11,8 +11,8 @@ public partial class CourseModulePage : ContentPage
 		BindingContext = courseModulePageViewModel;
 	}
 
-    protected async override void OnAppearing()
+    protected override async void OnAppearing()
     {
-		await (BindingContext as CourseModulePageViewModel).GetCourseModuleByNameAsync();
+        base.OnAppearing();
     }
 }

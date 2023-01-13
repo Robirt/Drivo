@@ -19,9 +19,9 @@ public class UserService
         return await (await HttpClient.PostAsJsonAsync("/Users/SignIn", request)).Content.ReadFromJsonAsync<SignInResponse>();
     }
 
-    public async Task<UserEntity> GetUser()
+    public async Task<StudentEntity> GetUserAsync()
     {
-        return await HttpClient.GetFromJsonAsync<UserEntity>("/Users");
+        return await HttpClient.GetFromJsonAsync<StudentEntity>("/Users");
     }
 
     public async Task SignOutAsync()

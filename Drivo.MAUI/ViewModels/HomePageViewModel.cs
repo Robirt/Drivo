@@ -1,76 +1,78 @@
 ﻿using Drivo.Entities;
+using Drivo.MAUI.Services;
 
 namespace Drivo.MAUI.ViewModels;
 
 public class HomePageViewModel : ViewModelBase
 {
-    public HomePageViewModel()
+    public HomePageViewModel(UserService userService)
     {
-        
-        
+        UserService = userService;
+
+        GetUserAsync();
     }
-    private LectureEntity nextLecture;
-    public LectureEntity NextLecture
+
+    private UserService UserService { get; }
+
+    private StudentEntity user;
+    public StudentEntity User
     {
         get
         {
-            return nextLecture;
+            return user;
         }
 
         set
         {
-            if (nextLecture == value) return;
-            nextLecture = value;
-            OnPropertyChanged(nameof(NextLecture));
+            if (user == value) return;
+            user = value;
+            OnPropertyChanged(nameof(User));
         }
     }
 
-    private DrivingEntity nextDriving;
-    public DrivingEntity NextDriving
+    public LectureEntity NextLecture => User.StudentsGroup.Lectures.LastOrDefault();
+
+    public DrivingEntity NextDriving => User.Drivings.LastOrDefault();
+
+    public InternalExamEntity NextInternalExam => User.InternalExams.LastOrDefault();
+
+    public ExternalExamEntity NextExternalExam => User.ExternalExams.LastOrDefault();
+
+    public async Task GetUserAsync()
     {
-        get
-        {
-            return nextDriving;
-        }
+        //Student = await UserService.GetUserAsync();
 
-        set
+        User = new StudentEntity();
+        User.StudentsGroup = new StudentsGroupEntity()
         {
-            if (nextDriving == value) return;
-            nextDriving = value;
-            OnPropertyChanged(nameof(NextDriving));
-        }
-    }
+            Lectures = new List<LectureEntity>()
+            {
+                new LectureEntity(){ Place = "D", StartDate = DateTime.Now }
+            }
+        };
 
-    private PaymentEntity nextPayment;
-    public PaymentEntity NextPayment
-    {
-        get
+        User.InternalExams = new List<InternalExamEntity>()
         {
-            return nextPayment;
-        }
+            new InternalExamEntity()
+            {
+                Place = "sa",
+                StartDate = DateTime.Now
+            }
+        };
 
-        set
+        User.ExternalExams = new List<ExternalExamEntity>()
         {
-            if (nextPayment == value) return;
-            nextPayment = value;
-            OnPropertyChanged(nameof(NextPayment));
-        }
-    }
-    private AdEntity lastAd;
-    public AdEntity LastAd
-    {
-        get
-        {
-            return lastAd;
-        }
+            new ExternalExamEntity{ Place = "sa", StartDate = DateTime.Now}
+        };
 
-        set
+        User.Drivings = new List<DrivingEntity>()
         {
-            if (lastAd == value) return;
-            lastAd = value;
-            OnPropertyChanged(nameof(LastAd));
-        }
+            new DrivingEntity(){Place = "Dupa", StartDate = DateTime.Now}
+        };
+
+        OnPropertyChanged(nameof(NextLecture));
+        OnPropertyChanged(nameof(NextDriving));
+        OnPropertyChanged(nameof(NextInternalExam));
+        OnPropertyChanged(nameof(NextExternalExam));
     }
 }
-
-

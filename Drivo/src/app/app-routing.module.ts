@@ -32,7 +32,7 @@ const routes: Routes = [
   { component: LecturersComponent, path: "Lecturers", canActivate: [IsInRoleGuard], data: { roles: ['Administrator'] }  },
   { component: LecturerComponent, path: "Lecturers/:userName", canActivate: [IsInRoleGuard], data: { roles: ['Administrator'] } },
   { component: AdsComponent, path: "Ads", canActivate: [IsAuthenticatedGuard] },
-  { component: CalendarComponent, path: "Calendar", canActivate: [IsAuthenticatedGuard]},
+  { component: CalendarComponent, path: "Calendar", canActivate: [IsInRoleGuard], data: { roles: ['Lecturer', 'Instructor'] }},
   { component: PaymentsComponent, path: "Payments", canActivate: [IsInRoleGuard, IsAuthenticatedGuard], data: { roles: ['Administrator'] } }, 
   { component: UnauthorizedComponent, path: "Unauthorized" },
   { component: SignOutComponent, path: "SignOut" }

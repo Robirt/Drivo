@@ -1,33 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ViewModels="clr-namespace:Drivo.MAUI.ViewModels"
-             x:Class="Drivo.MAUI.Views.CourseModulePage"
-             Title="CourseModulePage">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Drivo.MAUI.Views.CourseModulePage">
     <ContentPage.Resources>
-        <ResourceDictionary Source="../Resources/CourseModulePageResourceDictionary.xaml"/>
+        <ResourceDictionary Source="../Resources/CourseModulePageResourceDictionary.xaml" />
     </ContentPage.Resources>
-    <Grid Margin="0">
-        <ScrollView>
-            <FlexLayout Wrap="Wrap" JustifyContent="Center" AlignItems="Center"  Direction="Row" >
-                <ListView ItemsSource="{Binding CourseModules}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate >
-                            <Border>
-                                <StackLayout>
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding GoToResourcesPage}"/>
-                                    </StackLayout.GestureRecognizers>
-                                    <Image Source="{Binding Image}" Aspect="Fill"/>
-                                    <Label Text="{Binding Name}" />
-                                </StackLayout>
-                            </Border>
-
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-     
-            </FlexLayout>
-        </ScrollView>
-    </Grid>
+    <FlexLayout Direction="Column" JustifyContent="SpaceBetween" AlignItems="Center">
+        <CarouselView ItemsSource="{Binding Resources}" ItemTemplate="{StaticResource ResourceDataTemplate}" IndicatorView="Indicator"></CarouselView>
+        <IndicatorView HeightRequest="50" x:Name="Indicator" IndicatorColor="DarkGray" SelectedIndicatorColor="{StaticResource AccentColor}" IndicatorSize="12"/>
+    </FlexLayout>
 </ContentPage>

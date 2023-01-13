@@ -6,6 +6,8 @@ namespace Drivo.MAUI
     {
         public AppShell()
         {
+            Routing.RegisterRoute("CourseModule", typeof(CourseModulePage));
+
             InitializeComponent();
         }
     }

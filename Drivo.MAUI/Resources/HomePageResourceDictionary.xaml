@@ -17,9 +17,21 @@
         <Setter Property="VerticalTextAlignment" Value="Center"/>
         <Setter Property="HorizontalTextAlignment" Value="Center"/>
         <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="TextColor" Value="{StaticResource SecondaryBackgroundColor}"/>
+        <Setter Property="Shadow">
+            <Setter.Value>
+                <Shadow Brush="#000000" Offset="0, 10" Radius="25" Opacity="0.75"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Label" x:Key="BorderCaption">
+        <Setter Property="Margin" Value="5, 0"/>
+        <Setter Property="VerticalTextAlignment" Value="Center"/>
+        <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="TextColor" Value="{StaticResource SecondaryBackgroundColor}"/>
     </Style>
-
-
 </ResourceDictionary>

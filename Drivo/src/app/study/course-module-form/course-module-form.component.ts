@@ -27,6 +27,8 @@ export class CourseModuleFormComponent implements OnInit {
     let fileReader = new FileReader();
     fileReader.readAsDataURL(event.target.files[0]);
     fileReader.onload = () => {
+      console.log(fileReader.result?.toString());
+      console.log(fileReader.result?.toString().split(',')[1]);
       this.courseModule.image = String(fileReader.result?.toString().split(',')[1]);
     };
   }

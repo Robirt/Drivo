@@ -14,6 +14,7 @@ public static class MauiProgramExtensions
         services.AddSingleton<HomePage>();
         services.AddSingleton<CalendarPage>();
         services.AddSingleton<CourseModulesPage>();
+        services.AddSingleton<CourseModulePage>();
         services.AddSingleton<ProfilePage>();
 
         return services;
@@ -25,7 +26,8 @@ public static class MauiProgramExtensions
 
         services.AddSingleton<HomePageViewModel>();
         services.AddSingleton<CalendarPageViewModel>();
-        services.AddSingleton<CourseModulesService>();
+        services.AddSingleton<CourseModulesPageViewModel>();
+        services.AddSingleton<CourseModulePageViewModel>();
         services.AddSingleton<ProfilePageViewModel>();
 
         return services;

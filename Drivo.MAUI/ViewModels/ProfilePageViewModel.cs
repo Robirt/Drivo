@@ -13,7 +13,6 @@ public class ProfilePageViewModel : ViewModelBase
         SignOutCommand = new Command(SignOut);
         GoToCalendarPageCommand = new Command(GoToCalendarPage);
 
-        FirstLecture = Lectures.First();
 
     }
     private UserService UserService { get; }
