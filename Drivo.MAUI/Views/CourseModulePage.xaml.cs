@@ -13,6 +13,8 @@ public partial class CourseModulePage : ContentPage
 
     protected override async void OnAppearing()
     {
+		await (BindingContext as CourseModulePageViewModel).GetCourseModuleByNameAsync();
+
         base.OnAppearing();
     }
 }

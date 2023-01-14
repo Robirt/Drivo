@@ -53,7 +53,7 @@ public class SignInPageViewModel : ViewModelBase
             await SecureStorage.SetAsync("Token", response.JwtBearerToken);
 
             HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", response.JwtBearerToken);
-            await Shell.Current.GoToAsync("//HomePage");
+            await Shell.Current.GoToAsync("//Tabs");
         }
 
         SignInRequest = new SignInRequest();
@@ -61,9 +61,7 @@ public class SignInPageViewModel : ViewModelBase
 
     private async Task CheckIsUserSignedIn()
     {
-        SecureStorage.SetAsync("Token", "Elo");
-        var xd =await  SecureStorage.GetAsync("Token");
-        if (await SecureStorage.GetAsync("Token") is not null)
-            await Shell.Current.GoToAsync("//Tabs");
+        await SecureStorage.SetAsync("Token", "Dance");
+        if (await SecureStorage.GetAsync("Token") is not null) await Shell.Current.GoToAsync("//Tabs");
     }
 }

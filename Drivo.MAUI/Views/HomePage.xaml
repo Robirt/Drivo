@@ -17,7 +17,7 @@
                             <Label Text="{Binding NextLecture.StartDate, StringFormat='{0:HH:mm}'}"/>
                             <Label Text="{Binding NextLecture.Place}"/>
                         </FlexLayout>
-                        <FlexLayout BackgroundColor="{StaticResource AccentColor}" Grid.Row="1" Direction="Row" JustifyContent="Start" AlignItems="Center">
+                        <FlexLayout BackgroundColor="{StaticResource AccentColor}" Grid.Row="1" Direction="Row" JustifyContent="End" AlignItems="Center">
                             <Label Text="Najbliższy wykład" Style="{StaticResource BorderCaption}"/>
                         </FlexLayout>
                     </Grid>
@@ -43,7 +43,7 @@
                             <Label Text="{Binding NextInternalExam.StartDate, StringFormat='{0:HH:mm}'}"/>
                             <Label Text="{Binding NextInternalExam.Place}"/>
                         </FlexLayout>
-                        <FlexLayout BackgroundColor="{StaticResource AccentColor}" Grid.Row="1" Direction="Row" JustifyContent="Start" AlignItems="Center">
+                        <FlexLayout BackgroundColor="{StaticResource AccentColor}" Grid.Row="1" Direction="Row" JustifyContent="End" AlignItems="Center">
                             <Label Text="Egzamin wewnętrzny" Style="{StaticResource BorderCaption}"/>
                         </FlexLayout>
                     </Grid>
@@ -53,7 +53,7 @@
                         <Image Source="external_exam_background_image.png" Aspect="AspectFill" />
                         <FlexLayout Grid.Row="0" Direction="Column" JustifyContent="Center" AlignItems="Center">
                             <Label Text="{Binding NextExternalExam.StartDate, StringFormat='{}{0:dd.MM.yyyy}'}"/>
-                            <Label Text="{Binding NextExternalExam.StartDate}"/>
+                            <Label Text="{Binding NextExternalExam.StartDate, StringFormat='{0:HH:mm}'}"/>
                             <Label Text="{Binding NextInternalExam.Place}"/>
                         </FlexLayout>
                         <FlexLayout BackgroundColor="{StaticResource AccentColor}" Grid.Row="1" Direction="Row" JustifyContent="Start" AlignItems="Center">

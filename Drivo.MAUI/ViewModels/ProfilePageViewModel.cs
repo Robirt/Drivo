@@ -9,14 +9,17 @@ public class ProfilePageViewModel : ViewModelBase
     {
         UserService = userService;
 
-        GoToCalendarPageCommand = new Command(GoToExternalExamAddPageAsync);
+        GoToExternalExamAddPageCommand = new Command(GoToExternalExamAddPageAsync);
         SignOutCommand = new Command(SignOutAsync);
+
+        User = new StudentEntity();
+        GetUserAsync();
     }
 
     private UserService UserService { get; }
 
-    private UserEntity user;
-    public UserEntity User
+    private StudentEntity user;
+    public StudentEntity User
     {
         get
         {
@@ -33,22 +36,23 @@ public class ProfilePageViewModel : ViewModelBase
 
     public Command SignOutCommand { get; set; }
 
-    public Command GoToCalendarPageCommand { get; set; }
+    public Command GoToExternalExamAddPageCommand { get; set; }
 
-    private List<PaymentEntity> payments;
-    public List<PaymentEntity> Payments
+    public PaymentEntity NextPayment => User.Payments.LastOrDefault();
+
+    public async Task GetUserAsync()
     {
-        get
-        {
-            return payments;
-        }
+        //User = await UserService.GetUserAsync();
+        User = new StudentEntity();
+        User.FirstName = "James";
+        User.LastName = "Doe";
+        User.BirthDate = DateTime.Now;
+        User.Email = "Siema";
+        User.PhoneNumber = "500500500";
+        User.Payments = new List<PaymentEntity>();
+        User.Payments.Add(new PaymentEntity() { EndDate = DateTime.Now, Ammount = 250, IsApproved = true });
 
-        set
-        {
-            if (payments == value) return;
-            payments = value;
-            OnPropertyChanged(nameof(Payments));
-        }
+        OnPropertyChanged(nameof(User));
     }
 
     private async void GoToExternalExamAddPageAsync()

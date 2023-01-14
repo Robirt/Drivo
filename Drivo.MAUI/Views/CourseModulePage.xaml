@@ -2,12 +2,30 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Drivo.MAUI.Views.CourseModulePage">
+    x:Class="Drivo.MAUI.Views.CourseModulePage"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <ContentPage.Resources>
         <ResourceDictionary Source="../Resources/CourseModulePageResourceDictionary.xaml" />
+        <ResourceDictionary>
+            <toolkit:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+        </ResourceDictionary>
     </ContentPage.Resources>
     <FlexLayout Direction="Column" JustifyContent="SpaceBetween" AlignItems="Center">
-        <CarouselView ItemsSource="{Binding Resources}" ItemTemplate="{StaticResource ResourceDataTemplate}" IndicatorView="Indicator"></CarouselView>
-        <IndicatorView HeightRequest="50" x:Name="Indicator" IndicatorColor="DarkGray" SelectedIndicatorColor="{StaticResource AccentColor}" IndicatorSize="12"/>
+        <CarouselView ItemsSource="{Binding CourseModule.Resources}" IndicatorView="Indicator">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Border>
+                        <FlexLayout Direction="Column" JustifyContent="SpaceEvenly" AlignItems="Center">
+                            <Border WidthRequest="250" HeightRequest="250" StrokeThickness="3">
+                                <Image Source="{Binding Image, Mode=TwoWay, Converter={StaticResource ByteArrayToImageSourceConverter}}"/>
+                            </Border>
+                            <Label Text="{Binding Title}" Style="{StaticResource TitleLabel}"/>
+                            <Label Text="{Binding Content}" Style="{StaticResource ContentLabel}"/>
+                        </FlexLayout>
+                    </Border>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <IndicatorView HeightRequest="50" x:Name="Indicator" IndicatorColor="{StaticResource PrimaryForegroundColor}" SelectedIndicatorColor="{StaticResource AccentColor}" IndicatorSize="12"/>
     </FlexLayout>
 </ContentPage>

@@ -6,10 +6,23 @@
     <ContentPage.Resources>
         <ResourceDictionary Source="../Resources/ExternalExamAddPageResourceDictionary.xaml"/>
     </ContentPage.Resources>
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <FlexLayout Direction="Column" JustifyContent="SpaceEvenly" AlignItems="Center">
+        <VerticalStackLayout>
+            <Label Text="Nazwa"/>
+            <Entry Text="{Binding ExternalExam.Name, Mode=TwoWay}"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Początek (Data)"/>
+            <DatePicker Date="{Binding ExternalExam.StartDate.Date}"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Początek (Godzina)"/>
+            <TimePicker Time="{Binding ExternalExam.StartDate.Time}"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Miejsce"/>
+            <Entry Text="{Binding ExternalExam.Place, Mode=TwoWay}"/>
+        </VerticalStackLayout>
+        <Button Text="Zapisz" Command="{Binding AddExternaExamCommand}"/>
+    </FlexLayout>
 </ContentPage>

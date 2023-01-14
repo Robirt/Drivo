@@ -11,8 +11,8 @@ export class StudentEntity extends UserEntity {
     studentsGroupId: number | null;
     instructor: InstructorEntity | null;
     instructorId: number | null;
-    drivings: Array<DrivingEntity>;
-    internalExams: Array<InternalExamEntity>;
-    externalExams: Array<ExternalExamEntity>;
-    payments: Array<PaymentEntity>;
+    drivings: Array<DrivingEntity> | null;
+    internalExams: Array<InternalExamEntity> | null;
+    externalExams: Array<ExternalExamEntity> | null;
+    payments: Array<PaymentEntity> | null;
 }

@@ -12,7 +12,7 @@
 
         }
 
-        public virtual List<StudentsGroupEntity> StudentsGroups { get; set; }
-        public virtual List<LectureEntity> Lectures { get; set; }
+        public virtual List<StudentsGroupEntity>? StudentsGroups { get; set; }
+        public virtual List<LectureEntity>? Lectures { get; set; }
     }
 }

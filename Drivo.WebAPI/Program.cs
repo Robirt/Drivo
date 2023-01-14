@@ -41,6 +41,8 @@ application.UseAuthentication();
 
 application.UseAuthorization();
 
+application.MigrateDatabase();
+
 application.MapRoles();
 
 application.MapControllers();

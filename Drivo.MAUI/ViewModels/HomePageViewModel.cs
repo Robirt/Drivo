@@ -69,10 +69,5 @@ public class HomePageViewModel : ViewModelBase
         {
             new DrivingEntity(){Place = "Dupa", StartDate = DateTime.Now}
         };
-
-        OnPropertyChanged(nameof(NextLecture));
-        OnPropertyChanged(nameof(NextDriving));
-        OnPropertyChanged(nameof(NextInternalExam));
-        OnPropertyChanged(nameof(NextExternalExam));
     }
 }

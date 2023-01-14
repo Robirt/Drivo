@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Drivo.MAUI.Views.CourseModulesPage"
-             x:Name="CourseModulesReference"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Drivo.MAUI.Views.CourseModulesPage"
+    x:Name="CourseModulesReference"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <ContentPage.Resources>
         <ResourceDictionary Source="../Resources/CourseModulesPageResourceDictionary.xaml"/>
         <ResourceDictionary>
@@ -21,7 +22,9 @@
                                     <TapGestureRecognizer Command="{Binding Path=BindingContext.GoToCourseModulePageCommand, Source={x:Reference Name=CourseModulesReference}}" CommandParameter="{Binding Name}"/>
                                 </Border.GestureRecognizers>
                                 <FlexLayout Direction="Column" JustifyContent="SpaceEvenly" AlignItems="Center">
-                                    <Image Source="{Binding Image, Mode=TwoWay, Converter={StaticResource ByteArrayToImageSourceConverter}}"/>
+                                    <Border WidthRequest="100" HeightRequest="100" StrokeThickness="3">
+                                        <Image Source="{Binding Image, Mode=TwoWay, Converter={StaticResource ByteArrayToImageSourceConverter}}"/>
+                                    </Border>
                                     <Label Text="{Binding Name}"/>
                                 </FlexLayout>
                             </Border>

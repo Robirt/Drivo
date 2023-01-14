@@ -55,7 +55,5 @@ public class CourseModulesPageViewModel : ViewModelBase
 
 
         };
-
-        var image = CourseModules.FirstOrDefault().Image;
     }
 }

@@ -10,4 +10,11 @@ public partial class ProfilePage : ContentPage
 
 		BindingContext = profilePageViewModel;
 	}
+
+    protected async override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        await (BindingContext as ProfilePageViewModel).GetUserAsync();
+    }
 }
