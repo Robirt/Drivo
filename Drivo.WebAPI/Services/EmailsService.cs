@@ -1,18 +1,18 @@
 ﻿using Drivo.Entities;
 using Drivo.Responses;
-using System.Net.Mail;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using MimeKit;
 
 namespace Drivo.WebAPI.Services;
 
 public class MailsService
 {
-    public MailsService(SmtpClient smtpClient, IConfiguration configuration)
+    public MailsService(IConfiguration configuration)
     {
-        SmtpClient = smtpClient;
         Configuration = configuration;
     }
 
-    private SmtpClient SmtpClient { get; }
     private IConfiguration Configuration { get; }
 
     public async Task<ActionResponse> SendWelcomeMail(UserEntity user, string password)
@@ -25,7 +25,23 @@ public class MailsService
             body = body.Replace("[UserName]", user.UserName);
             body = body.Replace("[Password]", password);
 
-            await SmtpClient.SendMailAsync(new MailMessage(new MailAddress(Configuration["Smpt:Credentials:UserName"], "Drivo"), new MailAddress(user.Email)) { Subject = $"DRIVO - Welcome - {user.FullName}", Body = body, IsBodyHtml = true });
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("Drivo", Configuration.GetValue<string>("Smpt:Credentials:UserName")));
+            message.To.Add(new MailboxAddress(user.FullName, user.Email));
+            message.Subject = $"Witaj, {user.FullName}!";
+            var bodyBuilder = new BodyBuilder();
+            bodyBuilder.HtmlBody = body;
+            message.Body = bodyBuilder.ToMessageBody();
+
+            using (var client = new SmtpClient())
+            {
+                client.Connect(Configuration.GetValue<string>("Smpt:Host"), Configuration.GetValue<int>("Smpt:Port"), SecureSocketOptions.StartTls);
+
+                client.Authenticate(Configuration.GetValue<string>("Smpt:Credentials:UserName"), Configuration.GetValue<string>("Smpt:Credentials:Password"));
+
+                client.Send(message);
+                client.Disconnect(true);
+            }
         }
 
         catch (Exception exception)
@@ -56,8 +72,6 @@ public class MailsService
             }
 
             body = body.Replace("[Notifications]", notifications);
-
-            await SmtpClient.SendMailAsync(new MailMessage(new MailAddress(Configuration["Credentials:UserName"], "Drivo"), new MailAddress(user.Email)) { Subject = $"DRIVO - Notifications - {user.FullName}", Body = body, IsBodyHtml = true });
         }
 
         catch (Exception exception)

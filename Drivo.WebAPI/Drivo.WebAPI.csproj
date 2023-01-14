@@ -7,12 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="MailsTemplates\NotificationsMail.html" />
+    <None Remove="MailsTemplates\WelcomeMail.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="3.4.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.11">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="MimeKit" Version="3.4.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +40,15 @@
     <ProjectReference Include="..\Drivo.Entities\Drivo.Entities.csproj" />
     <ProjectReference Include="..\Drivo.Requests\Drivo.Requests.csproj" />
     <ProjectReference Include="..\Drivo.Responses\Drivo.Responses.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="MailsTemplates\NotificationsMail.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="MailsTemplates\WelcomeMail.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
