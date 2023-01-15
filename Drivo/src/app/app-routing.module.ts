@@ -20,7 +20,7 @@ import { StudyComponent } from './study/study/study.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 const routes: Routes = [
-  { component: HomeComponent, path: "", canActivate: [IsAuthenticatedGuard] },
+  { component: HomeComponent, path: "" },
   { component: StudyComponent, path: "Study", canActivate: [IsAuthenticatedGuard], data: { roles: ['Lecturer'] } },
   { component: CourseModuleComponent, path: "Study/:courseModuleName", canActivate: [IsAuthenticatedGuard] },
   { component: SignInComponent, path: "SignIn" },

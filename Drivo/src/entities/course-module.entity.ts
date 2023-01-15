@@ -5,5 +5,5 @@ export class CourseModuleEntity
     id: number;
     name: string;
     image: string;
-    resources: Array<ResourceEntity> | null;
+    resources: Array<ResourceEntity>;
 }

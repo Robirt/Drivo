@@ -38,13 +38,9 @@ public class ExternalExamAddPageViewModel : ViewModelBase
 
     private async void AddExternalExamAsync()
     {
-        //ExternalExam.StudentId = (await UserService.GetUserAsync()).Id;
+        ExternalExam.StudentId = (await UserService.GetUserAsync()).Id;
 
-        //var actionResponse = await ExternalExamsService.AddExternalExamsAsync(ExternalExam);
-
-        //if (actionResponse.IsSucceeded) await Shell.Current.GoToAsync("Profile");
-
-        await Shell.Current.DisplayAlert("Tak", ExternalExam.Name, "Ok");
+        var actionResponse = await ExternalExamsService.AddExternalExamsAsync(ExternalExam);
+        if (actionResponse.IsSucceeded) await Shell.Current.GoToAsync("Profile");
     }
-
 }

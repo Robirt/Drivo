@@ -1,5 +1,6 @@
 using Drivo.Entities;
 using Drivo.MAUI.Services;
+using System.Collections.ObjectModel;
 
 namespace Drivo.MAUI.ViewModels;
 
@@ -12,9 +13,8 @@ public class ProfilePageViewModel : ViewModelBase
         GoToExternalExamAddPageCommand = new Command(GoToExternalExamAddPageAsync);
         SignOutCommand = new Command(SignOutAsync);
 
-        User = new StudentEntity();
         GetUserAsync();
-    }
+}
 
     private UserService UserService { get; }
 
@@ -38,21 +38,14 @@ public class ProfilePageViewModel : ViewModelBase
 
     public Command GoToExternalExamAddPageCommand { get; set; }
 
-    public PaymentEntity NextPayment => User.Payments.LastOrDefault();
+    public ObservableCollection<PaymentEntity> Payments
+    {
+        get => new ObservableCollection<PaymentEntity>(User.Payments);
+    }
 
     public async Task GetUserAsync()
     {
-        //User = await UserService.GetUserAsync();
-        User = new StudentEntity();
-        User.FirstName = "James";
-        User.LastName = "Doe";
-        User.BirthDate = DateTime.Now;
-        User.Email = "Siema";
-        User.PhoneNumber = "500500500";
-        User.Payments = new List<PaymentEntity>();
-        User.Payments.Add(new PaymentEntity() { EndDate = DateTime.Now, Ammount = 250, IsApproved = true });
-
-        OnPropertyChanged(nameof(User));
+        User = await UserService.GetUserAsync();
     }
 
     private async void GoToExternalExamAddPageAsync()

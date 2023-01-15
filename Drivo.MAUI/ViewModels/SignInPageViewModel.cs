@@ -61,7 +61,10 @@ public class SignInPageViewModel : ViewModelBase
 
     private async Task CheckIsUserSignedIn()
     {
-        await SecureStorage.SetAsync("Token", "Dance");
-        if (await SecureStorage.GetAsync("Token") is not null) await Shell.Current.GoToAsync("//Tabs");
+        if (await SecureStorage.GetAsync("Token") is not null)
+        {
+            HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", (await SecureStorage.GetAsync("Token")));
+            await Shell.Current.GoToAsync("//Tabs");
+        }
     }
 }

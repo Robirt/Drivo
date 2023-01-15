@@ -30,7 +30,9 @@
     </Style>
 
     <Style TargetType="Label" x:Key="BorderCaption">
-        <Setter Property="Margin" Value="5, 0"/>
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="WidthRequest" Value="170"
+                />
         <Setter Property="VerticalTextAlignment" Value="Center"/>
         <Setter Property="HorizontalTextAlignment" Value="Center"/>
         <Setter Property="FontAttributes" Value="Bold"/>

@@ -12,9 +12,6 @@ public class CalendarPageViewModel : ViewModelBase
 
         GetUserAsync();
 
-        Events = new List<EventEntity>();
-        GetEventsAsync();
-
         Ads = new List<AdEntity>();
         GetAdsAsync();
     }
@@ -50,7 +47,7 @@ public class CalendarPageViewModel : ViewModelBase
         {
             if (events == value) return;
             events = value;
-            OnPropertyChanged(nameof(events));
+            OnPropertyChanged(nameof(Events));
         }
     }
 
@@ -73,27 +70,16 @@ public class CalendarPageViewModel : ViewModelBase
     public async Task GetUserAsync()
     {
         User = await UserService.GetUserAsync();
-    }
 
-    public async Task GetEventsAsync()
-    {
-        for (int i = 0; i < 12; i++)
-        {
-            Events.Add(new DrivingEntity() { Name = "Siema", StartDate = DateTime.Now, Place = "Elo", EndDate = DateTime.Now.AddHours(3) });
-        }
+        Events = new List<EventEntity>();
+        Events.AddRange(User.StudentsGroup.Lectures);
+        Events.AddRange(User.Drivings);
+        Events.AddRange(User.InternalExams);
+        Events.AddRange(User.ExternalExams);
     }
 
     public async Task GetAdsAsync()
     {
-        //Ads = await AdsService.GetAdsAsync();
-        Ads.Add(new AdEntity() { Content = "Witam serdecznie, co tam u państwa słychać, ja się bawię wyśmienicie, nie wiem jak wy. Przedni fun, naprawdę. Dajcie mi już wszyscy kurwa, święty spokój.", Date = DateTime.Now });
-        Ads.Add(new AdEntity() { Content = "Siema", Date = DateTime.Now });
-        Ads.Add(new AdEntity() { Content = "Siema", Date = DateTime.Now });
-        Ads.Add(new AdEntity() { Content = "Siema", Date = DateTime.Now });
-        Ads.Add(new AdEntity() { Content = "Siema", Date = DateTime.Now });
-        Ads.Add(new AdEntity() { Content = "Siema", Date = DateTime.Now });
-        Ads.Add(new AdEntity() { Content = "Siema", Date = DateTime.Now });
-        Ads.Add(new AdEntity() { Content = "Siema", Date = DateTime.Now });
-        Ads.Add(new AdEntity() { Content = "Siema", Date = DateTime.Now });
+        Ads = await AdsService.GetAdsAsync();
     }
 }

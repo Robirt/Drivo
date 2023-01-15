@@ -14,7 +14,7 @@ public static class MauiProgram
 
         builder.Services.AddViewModels();
 
-        builder.Services.AddScoped(httpClient => new HttpClient() { BaseAddress = new Uri("https://localhost:5001")});
+        builder.Services.AddScoped(httpClient => new HttpClient() { BaseAddress = new Uri("https://drivo.azurewebsites.net") });
 
         builder.Services.AddServices();
        

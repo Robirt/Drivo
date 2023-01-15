@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Drivo.Entities.AdEntity">
+    <Position X="9.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAgAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>AdEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Drivo.Entities.AdministratorEntity">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AdministratorEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Drivo.Entities.CourseModuleEntity">
+    <Position X="12.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAIAAAAAAAAAAAAAQAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>CourseModuleEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Drivo.Entities.DrivingEntity">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAACAAAAAAAAQAAAACAAA=</HashCode>
+      <FileName>DrivingEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Drivo.Entities.ExternalExamEntity">
+    <Position X="10.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>ExternalExamEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Drivo.Entities.InstructorEntity">
+    <Position X="4.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>InstructorEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Drivo.Entities.InternalExamEntity">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAACAAAAAAAAQAAAACAAA=</HashCode>
+      <FileName>InternalExamEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Drivo.Entities.LectureEntity">
+    <Position X="3" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAgAAAEAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>LectureEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Drivo.Entities.LecturerEntity">
+    <Position X="1.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LecturerEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

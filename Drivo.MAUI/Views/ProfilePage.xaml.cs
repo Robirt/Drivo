@@ -8,7 +8,15 @@ public partial class ProfilePage : ContentPage
 	{
 		InitializeComponent();
 
-		BindingContext = profilePageViewModel;
+        try
+        {
+            BindingContext = profilePageViewModel;
+        }
+
+        catch (Exception exception)
+        {
+  
+        }
 	}
 
     protected async override void OnAppearing()

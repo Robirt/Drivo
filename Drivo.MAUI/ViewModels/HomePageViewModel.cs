@@ -1,9 +1,11 @@
 ﻿using Drivo.Entities;
 using Drivo.MAUI.Services;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Drivo.MAUI.ViewModels;
 
-public class HomePageViewModel : ViewModelBase
+public class HomePageViewModel : INotifyPropertyChanged
 {
     public HomePageViewModel(UserService userService)
     {
@@ -15,6 +17,9 @@ public class HomePageViewModel : ViewModelBase
     private UserService UserService { get; }
 
     private StudentEntity user;
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
     public StudentEntity User
     {
         get
@@ -26,48 +31,43 @@ public class HomePageViewModel : ViewModelBase
         {
             if (user == value) return;
             user = value;
-            OnPropertyChanged(nameof(User));
+            OnPropertyChanged();
         }
     }
 
     public LectureEntity NextLecture => User.StudentsGroup.Lectures.LastOrDefault();
 
-    public DrivingEntity NextDriving => User.Drivings.LastOrDefault();
+    private DrivingEntity nextDriving;
+    public DrivingEntity NextDriving
+    {
+        get
+        {
+            return nextDriving;
+        }
 
-    public InternalExamEntity NextInternalExam => User.InternalExams.LastOrDefault();
+        set
+        {
+            if (nextDriving == value) return;
+            nextDriving = value;
+            OnPropertyChanged();
+        }
+    }
 
     public ExternalExamEntity NextExternalExam => User.ExternalExams.LastOrDefault();
 
     public async Task GetUserAsync()
     {
-        //Student = await UserService.GetUserAsync();
+        User = await UserService.GetUserAsync();
 
-        User = new StudentEntity();
-        User.StudentsGroup = new StudentsGroupEntity()
-        {
-            Lectures = new List<LectureEntity>()
-            {
-                new LectureEntity(){ Place = "D", StartDate = DateTime.Now }
-            }
-        };
+        User = User;
 
-        User.InternalExams = new List<InternalExamEntity>()
-        {
-            new InternalExamEntity()
-            {
-                Place = "sa",
-                StartDate = DateTime.Now
-            }
-        };
+        NextDriving = User.Drivings.LastOrDefault();
 
-        User.ExternalExams = new List<ExternalExamEntity>()
-        {
-            new ExternalExamEntity{ Place = "sa", StartDate = DateTime.Now}
-        };
+        OnPropertyChanged();
+    }
 
-        User.Drivings = new List<DrivingEntity>()
-        {
-            new DrivingEntity(){Place = "Dupa", StartDate = DateTime.Now}
-        };
+    protected void OnPropertyChanged([CallerMemberName] string name = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }

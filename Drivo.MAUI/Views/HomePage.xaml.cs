@@ -8,7 +8,15 @@ public partial class HomePage : ContentPage
     {
         InitializeComponent();
         
-         BindingContext = homePageViewModel;
+        try
+        {
+            BindingContext = homePageViewModel;
+        }
+
+        catch
+        {
+            
+        }
     }
 
     protected async override void OnAppearing()

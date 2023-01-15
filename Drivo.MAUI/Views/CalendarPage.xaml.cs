@@ -10,4 +10,11 @@ public partial class CalendarPage : ContentPage
 
 		BindingContext = calendarPageViewModel;
 	}
+
+    protected async override void OnAppearing()
+    {
+		await (BindingContext as CalendarPageViewModel).GetUserAsync();
+
+        base.OnAppearing();
+    }
 }
