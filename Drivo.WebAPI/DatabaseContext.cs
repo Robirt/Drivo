@@ -41,7 +41,7 @@ public class DatabaseContext : IdentityDbContext<UserEntity, RoleEntity, int>
 	{
 		base.OnConfiguring(optionsBuilder);
 
-		optionsBuilder.UseSqlServer("Server=(LocalDB)\\MSSQLLocalDB;Database=Drivo;Integrated Security=True;").UseLazyLoadingProxies();
+		optionsBuilder.UseSqlServer(Configuration.GetConnectionString("Drivo")).UseLazyLoadingProxies();
     }
 
 	protected override void OnModelCreating(ModelBuilder builder)
@@ -53,5 +53,9 @@ public class DatabaseContext : IdentityDbContext<UserEntity, RoleEntity, int>
         builder.Entity<LectureEntity>().Ignore(lecture => lecture.NumberOfHours);
 
         builder.Entity<DrivingEntity>().Ignore(driving => driving.NumberOfHours);
+
+		builder.Entity<InternalExamEntity>().Ignore(internalExam => internalExam.NumberOfHours);
+
+		builder.Entity<ExternalExamEntity>().Ignore(externalExam => externalExam.NumberOfHours);
     }
 }

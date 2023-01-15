@@ -1,7 +1,4 @@
-﻿
-using Drivo.Entities;
-using Drivo.MAUI.ViewModels;
-using Drivo.Responses;
+﻿using Drivo.Entities;
 using System.Net.Http.Json;
 
 namespace Drivo.MAUI.Services;
@@ -20,10 +17,8 @@ public class CourseModulesService
         return await HttpClient.GetFromJsonAsync<List<CourseModuleEntity>>("/CourseModules");
     }
 
-    public async Task<CourseModuleEntity> GetCourseModulesByNameAsync(string courseModuleName)
+    public async Task<CourseModuleEntity> GetCourseModuleByNameAsync(string courseModuleName)
     {
         return await HttpClient.GetFromJsonAsync<CourseModuleEntity>($"/CourseModules/{courseModuleName}");
     }
-
- 
 }

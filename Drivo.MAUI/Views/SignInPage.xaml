@@ -3,13 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ViewModels="clr-namespace:Drivo.MAUI.ViewModels"
              x:Class="Drivo.MAUI.Views.SignInPage"
-             Title="SignInPage">
+             Shell.TabBarIsVisible="False">
     <ContentPage.Resources>
         <ResourceDictionary Source="../Resources/SignInPageResourceDictionary.xaml"/>
     </ContentPage.Resources>
-    <ContentPage.BindingContext>
-        <ViewModels:SignInPageViewModel/>
-    </ContentPage.BindingContext>
     <ContentPage.Content>
         <FlexLayout Direction="Column" JustifyContent="Center" AlignItems="Center">
             <StackLayout>
@@ -19,18 +16,16 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <StackLayout Margin="10, 0">
-                    <Label Text="{Binding SignInRequest.UserName, StringFormat='Nazwa użytkownika: {0}'}"/>
-                    <Label Text="{Binding SignInRequest.Password, StringFormat='Hasło: {0}'}"/>
+                    <Label Text="Nazwa użytkownika"/>
+                    <Label Text="Hasło:"/>
                 </StackLayout>
                 <StackLayout Margin="10, 0">
-                    <Entry/>
-                    <Entry IsPassword="True"/>
+                    <Entry Text="{Binding SignInRequest.UserName}"/>
+                    <Entry Text="{Binding SignInRequest.Password}" IsPassword="True"/>
                 </StackLayout>
             </StackLayout>
             <Label Text="{Binding SignInResponse.Message}" Style="{StaticResource ErrorLabel}"/>
             <Button Text="Zaloguj się" Command="{Binding SignInCommand}"/>
         </FlexLayout>
-        
-  
     </ContentPage.Content>
 </ContentPage>

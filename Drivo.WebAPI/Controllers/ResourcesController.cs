@@ -9,7 +9,7 @@ namespace Drivo.WebAPI.Controllers;
 
 [ApiController]
 [Route("[Controller]")]
-[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Lecturer")]
 public class ResourcesController : ControllerBase
 {
     public ResourcesController(ResourcesService resourcesService)

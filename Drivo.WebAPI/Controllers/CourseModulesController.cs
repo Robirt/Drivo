@@ -22,6 +22,8 @@ public class CourseModulesController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<CourseModuleEntity>>> GetCourseModulesAsync()
     {
+        var xd = await CourseModulesService.GetCourseModulesAsync();
+
         return Ok(await CourseModulesService.GetCourseModulesAsync());
     }
 

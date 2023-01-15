@@ -5,18 +5,24 @@ namespace Drivo.MAUI.ViewModels;
 
 public class CourseModulesPageViewModel : ViewModelBase
 {
-    public CourseModulesPageViewModel(UserService userService, HttpClient httpClient)
+    public CourseModulesPageViewModel(CourseModulesService courseModulesService)
     {
-        UserService = userService;
-        HttpClient = httpClient;
-        GoToResourcesPageCommand = new Command(GoToResourcesPage);
+        CourseModulesService = courseModulesService;
+
+        GoToCourseModulePageCommand = new Command<string>(async (string name) => {
+            await Shell.Current.GoToAsync($"CourseModule?CourseModuleName={name}");        
+        });
+
+        GetCourseModulesAsync();
     }
-    private UserService UserService { get; }
-    private HttpClient HttpClient { get; }
+
+    private CourseModulesService CourseModulesService { get; }
+
+    public Command<string> GoToCourseModulePageCommand { get; set; }
+
     private List<CourseModuleEntity> courseModules;
     public List<CourseModuleEntity> CourseModules
     {
- 
         get
         {
             return courseModules;
@@ -29,9 +35,9 @@ public class CourseModulesPageViewModel : ViewModelBase
             OnPropertyChanged(nameof(CourseModules));
         }
     }
-    public Command GoToResourcesPageCommand { get; set; }
-    private async void GoToResourcesPage()
+
+    public async Task GetCourseModulesAsync()
     {
-        await Shell.Current.GoToAsync("//ResourcesPage");
+        CourseModules = await CourseModulesService.GetCourseModulesAsync();
     }
 }

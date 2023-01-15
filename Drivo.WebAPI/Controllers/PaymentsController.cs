@@ -20,10 +20,12 @@ public class PaymentsController : ControllerBase
     private PaymentsService PaymentsService { get; }
 
     [HttpGet]
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator, Student")]
     public async Task<List<PaymentEntity>> GetPaymentsAsync()
     {
-        return await PaymentsService.GetPaymentsAsync();
+        if (User.IsInRole("Administrator")) return await PaymentsService.GetPaymentsAsync();
+
+        return await PaymentsService.GetPaymentsByUserName(User.Identity.Name);
     }
 
     [HttpPost]

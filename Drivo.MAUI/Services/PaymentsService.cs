@@ -1,5 +1,4 @@
 ﻿using Drivo.Entities;
-using Drivo.Responses;
 using System.Net.Http.Json;
 
 namespace Drivo.MAUI.Services;
@@ -17,5 +16,4 @@ public class PaymentsService
     {
         return await HttpClient.GetFromJsonAsync<List<PaymentEntity>>("/Payments");
     }
-
 }

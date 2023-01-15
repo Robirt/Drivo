@@ -8,11 +8,11 @@
     Shell.BackgroundColor="{StaticResource SecondaryBackgroundColor}"
     Shell.TitleColor="{StaticResource AccentColor}"
     Shell.UnselectedColor="{StaticResource SecondaryForegroundColor}">
-    <TabBar>
-       
-        <ShellContent Title="Strona Główna" Icon="learning" ContentTemplate="{DataTemplate Views:HomePage}"/>
-        <ShellContent Title="Kalendarz" Icon="Icons/Calendar.png" ContentTemplate="{DataTemplate Views:ResourcesPage}"/>
-        <ShellContent Title="Nauka" Icon="Icons/Learning.png" ContentTemplate="{DataTemplate Views:CourseModulePage}"/>
-        <ShellContent Title="Profil" Icon="Icons/Profile.png" ContentTemplate="{DataTemplate Views:ProfilePage}" />
+    <ShellContent Title="Zaloguj się" Route="SignIn" ContentTemplate="{DataTemplate Views:SignInPage}"/>
+    <TabBar Route="Tabs">
+        <ShellContent Title="Start" Icon="home_icon.png" Route="Start" ContentTemplate="{DataTemplate Views:HomePage}"/>
+        <ShellContent Title="Kalendarz" Icon="calendar_icon.png" Route="Calendar" ContentTemplate="{DataTemplate Views:CalendarPage}"/>
+        <ShellContent Title="Nauka" Icon="study_icon.png" Route="Study" ContentTemplate="{DataTemplate Views:CourseModulesPage}"/>
+        <ShellContent Title="Profil" Icon="profile_icon.png" Route="Profile" ContentTemplate="{DataTemplate Views:ProfilePage}" />
     </TabBar>
 </Shell>

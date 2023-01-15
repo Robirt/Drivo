@@ -20,7 +20,7 @@ import { StudyComponent } from './study/study/study.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 const routes: Routes = [
-  { component: HomeComponent, path: "", canActivate: [IsAuthenticatedGuard] },
+  { component: HomeComponent, path: "" },
   { component: StudyComponent, path: "Study", canActivate: [IsAuthenticatedGuard], data: { roles: ['Lecturer'] } },
   { component: CourseModuleComponent, path: "Study/:courseModuleName", canActivate: [IsAuthenticatedGuard] },
   { component: SignInComponent, path: "SignIn" },
@@ -32,7 +32,7 @@ const routes: Routes = [
   { component: LecturersComponent, path: "Lecturers", canActivate: [IsInRoleGuard], data: { roles: ['Administrator'] }  },
   { component: LecturerComponent, path: "Lecturers/:userName", canActivate: [IsInRoleGuard], data: { roles: ['Administrator'] } },
   { component: AdsComponent, path: "Ads", canActivate: [IsAuthenticatedGuard] },
-  { component: CalendarComponent, path: "Calendar", canActivate: [IsAuthenticatedGuard]},
+  { component: CalendarComponent, path: "Calendar", canActivate: [IsInRoleGuard], data: { roles: ['Lecturer', 'Instructor'] }},
   { component: PaymentsComponent, path: "Payments", canActivate: [IsInRoleGuard, IsAuthenticatedGuard], data: { roles: ['Administrator'] } }, 
   { component: UnauthorizedComponent, path: "Unauthorized" },
   { component: SignOutComponent, path: "SignOut" }

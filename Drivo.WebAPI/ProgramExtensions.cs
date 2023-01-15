@@ -1,10 +1,12 @@
 ﻿using Drivo.Entities;
 using Drivo.Requests;
+using Drivo.WebAPI;
 using Drivo.WebAPI.Repositories;
 using Drivo.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Net;
 using System.Net.Mail;
@@ -79,6 +81,16 @@ public static class ProgramExtensions
         options.JsonSerializerOptions.WriteIndented = true;
     }
 
+    public static IApplicationBuilder MigrateDatabase(this IApplicationBuilder app)
+    {
+        using (IServiceScope serviceScope = app.ApplicationServices.CreateScope())
+        {
+            serviceScope.ServiceProvider.GetRequiredService<DatabaseContext>().Database.Migrate();
+        }
+
+        return app;
+    }
+
     public static IApplicationBuilder MapRoles(this IApplicationBuilder app)
     {
         using (IServiceScope serviceScope = app.ApplicationServices.CreateScope())
@@ -103,7 +115,10 @@ public static class ProgramExtensions
         {
             var administratorsService = serviceScope.ServiceProvider.GetRequiredService<AdministratorsService>();
 
-            //administratorsService.CreateAdministratorAsync(configuration.Get<CreateUserRequest>()).Wait();
+            if (administratorsService.GetAdministratorsAsync().Result is var administrators && administrators is null || !administrators.Any())
+            {
+                administratorsService.CreateAdministratorAsync(configuration.Get<CreateUserRequest>()).Wait();
+            }
         }
 
         return app;

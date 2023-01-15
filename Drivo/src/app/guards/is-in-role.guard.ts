@@ -13,6 +13,8 @@ export class IsInRoleGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     var user = this.userService.getUser();
     if (user == null || !route.data['roles'].includes(user.role)) {
+      console.log(route.data['roles'].includes(user?.role));
+      console.log(user?.role);
       this.router.navigate(['Unauthorized']);
 
       return false;

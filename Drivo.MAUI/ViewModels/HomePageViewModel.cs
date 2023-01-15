@@ -1,29 +1,41 @@
 ﻿using Drivo.Entities;
+using Drivo.MAUI.Services;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Drivo.MAUI.ViewModels;
 
-public class HomePageViewModel : ViewModelBase
+public class HomePageViewModel : INotifyPropertyChanged
 {
-    public HomePageViewModel()
+    public HomePageViewModel(UserService userService)
     {
-        
-        
+        UserService = userService;
+
+        GetUserAsync();
     }
-    private LectureEntity nextLecture;
-    public LectureEntity NextLecture
+
+    private UserService UserService { get; }
+
+    private StudentEntity user;
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    public StudentEntity User
     {
         get
         {
-            return nextLecture;
+            return user;
         }
 
         set
         {
-            if (nextLecture == value) return;
-            nextLecture = value;
-            OnPropertyChanged(nameof(NextLecture));
+            if (user == value) return;
+            user = value;
+            OnPropertyChanged();
         }
     }
+
+    public LectureEntity NextLecture => User.StudentsGroup.Lectures.LastOrDefault();
 
     private DrivingEntity nextDriving;
     public DrivingEntity NextDriving
@@ -37,40 +49,25 @@ public class HomePageViewModel : ViewModelBase
         {
             if (nextDriving == value) return;
             nextDriving = value;
-            OnPropertyChanged(nameof(NextDriving));
+            OnPropertyChanged();
         }
     }
 
-    private PaymentEntity nextPayment;
-    public PaymentEntity NextPayment
-    {
-        get
-        {
-            return nextPayment;
-        }
+    public ExternalExamEntity NextExternalExam => User.ExternalExams.LastOrDefault();
 
-        set
-        {
-            if (nextPayment == value) return;
-            nextPayment = value;
-            OnPropertyChanged(nameof(NextPayment));
-        }
+    public async Task GetUserAsync()
+    {
+        User = await UserService.GetUserAsync();
+
+        User = User;
+
+        NextDriving = User.Drivings.LastOrDefault();
+
+        OnPropertyChanged();
     }
-    private AdEntity lastAd;
-    public AdEntity LastAd
-    {
-        get
-        {
-            return lastAd;
-        }
 
-        set
-        {
-            if (lastAd == value) return;
-            lastAd = value;
-            OnPropertyChanged(nameof(LastAd));
-        }
+    protected void OnPropertyChanged([CallerMemberName] string name = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }
-
-

@@ -1,36 +1,31 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ViewModels="clr-namespace:Drivo.MAUI.ViewModels"
-             x:Class="Drivo.MAUI.Views.CourseModulePage"
-             Title="CourseModulePage">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Drivo.MAUI.Views.CourseModulePage"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <ContentPage.Resources>
-        <ResourceDictionary Source="../Resources/CourseModulePageResourceDictionary.xaml"/>
+        <ResourceDictionary Source="../Resources/CourseModulePageResourceDictionary.xaml" />
+        <ResourceDictionary>
+            <toolkit:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+        </ResourceDictionary>
     </ContentPage.Resources>
-    <ContentPage.BindingContext>
-        <ViewModels:CourseModulesPageViewModel/>
-    </ContentPage.BindingContext>
-    <Grid Margin="0">
-        <ScrollView>
-            <FlexLayout Wrap="Wrap" JustifyContent="Center" AlignItems="Center"  Direction="Row" >
-                <ListView ItemsSource="{Binding CourseModules}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate >
-                            <Border>
-                                <StackLayout>
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding GoToResourcesPage}"/>
-                                    </StackLayout.GestureRecognizers>
-                                    <Image Source="{Binding Image}" Aspect="Fill"/>
-                                    <Label Text="{Binding Name}" />
-                                </StackLayout>
+    <FlexLayout Direction="Column" JustifyContent="SpaceBetween" AlignItems="Center">
+        <CarouselView ItemsSource="{Binding CourseModule.Resources}" IndicatorView="Indicator">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Border>
+                        <FlexLayout Direction="Column" JustifyContent="SpaceEvenly" AlignItems="Center">
+                            <Border WidthRequest="250" HeightRequest="250" StrokeThickness="3">
+                                <Image Source="{Binding Image, Mode=TwoWay, Converter={StaticResource ByteArrayToImageSourceConverter}}"/>
                             </Border>
-
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-     
-            </FlexLayout>
-        </ScrollView>
-    </Grid>
+                            <Label Text="{Binding Title}" Style="{StaticResource TitleLabel}"/>
+                            <Label Text="{Binding Content}" Style="{StaticResource ContentLabel}"/>
+                        </FlexLayout>
+                    </Border>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <IndicatorView HeightRequest="50" x:Name="Indicator" IndicatorColor="{StaticResource PrimaryForegroundColor}" SelectedIndicatorColor="{StaticResource AccentColor}" IndicatorSize="12"/>
+    </FlexLayout>
 </ContentPage>

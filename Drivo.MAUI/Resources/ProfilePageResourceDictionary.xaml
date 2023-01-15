@@ -16,8 +16,8 @@
     </Style>
 
     <Style TargetType="Image">
-        <Setter Property="WidthRequest" Value="100"/>
-        <Setter Property="HeightRequest" Value="100"/>
+        <Setter Property="WidthRequest" Value="75"/>
+        <Setter Property="HeightRequest" Value="75"/>
 
     </Style>
     <Style TargetType="Label">
@@ -44,15 +44,16 @@
         <Setter Property="HorizontalTextAlignment" Value="Start"/>
         <Setter Property="VerticalTextAlignment" Value="Start"/>
         <Setter Property="FontAttributes" Value="Bold"/>
-        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontSize" Value="10"/>
         <Setter Property="TextColor" Value="{StaticResource AccentColor}"/>
     </Style>
     <Style TargetType="Button">
         <Setter Property="Margin" Value="2"/>
         <Setter Property="CornerRadius" Value="20"/>
-        <Setter Property="BorderColor" Value="{StaticResource AccentColor}"/>
+        <Setter Property="BorderColor" Value="{StaticResource PrimaryBackgroundColor}"/>
         <Setter Property="BorderWidth" Value="1"/>
-        <Setter Property="TextColor" Value="{StaticResource AccentColor}"/>
+        <Setter Property="TextColor" Value="{StaticResource SecondaryBackgroundColor}"/>
+        <Setter Property="Background" Value="{StaticResource AccentColor}"/>
         <Setter Property="WidthRequest" Value="250"/>
         <Setter Property="HeightRequest" Value="35"/>
     </Style>

@@ -1,8 +1,11 @@
 using Drivo.Entities;
 using Drivo.WebAPI;
 using Drivo.WebAPI.Services;
+using MailKit.Net.Smtp;
+using MailKit.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using MimeKit;
 
 var builder = WebApplication.CreateBuilder();
 
@@ -40,6 +43,8 @@ application.UseCors();
 application.UseAuthentication();
 
 application.UseAuthorization();
+
+application.MigrateDatabase();
 
 application.MapRoles();
 

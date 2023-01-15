@@ -43,17 +43,17 @@ export class InstructorComponent implements OnInit {
   public async getStudentsAsync(): Promise<void> {
     this.students = await this.studentsService.getStudentsAsync();
 
-    this.students = this.students.filter(student => !this.instructor.students.includes(student));
+    this.students = this.students.filter(student => !this.instructor.students?.includes(student));
   }
 
   public async removeStudentFromInstructorAsync(student: StudentEntity): Promise<void> {
-    this.instructor.students.splice(this.instructor.students.findIndex(s => s == student), 1);
+    this.instructor.students?.splice(this.instructor.students.findIndex(s => s == student), 1);
 
     await this.getStudentsAsync();
   }
 
   public async addStudentToInstructorAsync(): Promise<void> {
-    this.instructor.students.push(this.selectedStudent);
+    this.instructor.students?.push(this.selectedStudent);
 
     await this.getStudentsAsync();
 

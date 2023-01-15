@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Drivo.WebAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230108144509_Intiial")]
-    partial class Intiial
+    [Migration("20230114190546_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

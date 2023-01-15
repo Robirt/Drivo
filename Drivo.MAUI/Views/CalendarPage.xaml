@@ -1,16 +1,66 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ViewModels="clr-namespace:Drivo.MAUI.ViewModels"
-             x:Class="Drivo.MAUI.Views.CalendarPage">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Drivo.MAUI.Views.CalendarPage">
     <ContentPage.Resources>
         <ResourceDictionary Source="../Resources/CalendarPageResourceDictionary.xaml"/>
     </ContentPage.Resources>
-    <ContentPage.BindingContext>
-        <ViewModels:CalendarViewModel/>
-    </ContentPage.BindingContext>
-
-    <StackLayout>
-        
-    </StackLayout>
+    <ContentPage.Content>
+        <Grid RowDefinitions="*, *">
+            <ScrollView Grid.Row="0">
+                <CollectionView Grid.Row="0" ItemsSource="{Binding Events}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.Header>
+                        <FlexLayout HeightRequest="50" JustifyContent="Center" AlignItems="Center">
+                            <Label Text="Wydarzenia" Style="{StaticResource SectionTitle}"/>
+                        </FlexLayout>
+                    </CollectionView.Header>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource EventBorder}">
+                                <FlexLayout Direction="Column" JustifyContent="SpaceEvenly" AlignItems="Center">
+                                    <Label Text="{Binding Name}" Style="{StaticResource EventNameLabel}"/>
+                                    <Label Text="{Binding StartDate, StringFormat='{}{0:dd.MM.yyyy}'}" Style="{StaticResource DateLabel}"/>
+                                    <Label Style="{StaticResource DateLabel}">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}{0:HH:mm} - {1:HH:mm}">
+                                                <Binding Path="StartDate" />
+                                                <Binding Path="EndDate" />
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+                                    <Label Text="{Binding Place}" Style="{StaticResource EventPlaceLabel}"/>
+                                </FlexLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+            <ScrollView Grid.Row="1">
+                <CollectionView ItemsSource="{Binding Ads}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="2" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.Header>
+                        <FlexLayout HeightRequest="50" JustifyContent="Center" AlignItems="Center">
+                            <Label Text="Ogłoszenia" Style="{StaticResource SectionTitle}"/>
+                        </FlexLayout>
+                    </CollectionView.Header>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource AdBorder}">
+                                <FlexLayout Margin="0, 10" Direction="Column" JustifyContent="Center" AlignItems="Center">
+                                    <Label Text="{Binding Date, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}" Style="{StaticResource DateLabel}"/>
+                                    <Label Text="{Binding Content}" Style="{StaticResource ContentLabel}"/>
+                                </FlexLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>

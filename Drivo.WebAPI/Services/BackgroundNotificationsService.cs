@@ -11,15 +11,6 @@ public class BackgroundNotificationsService : BackgroundService
 
     protected async override Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        using (PeriodicTimer timer = new PeriodicTimer(TimeSpan.FromDays(1)))
-        {
-            while (!stoppingToken.IsCancellationRequested && await timer.WaitForNextTickAsync(stoppingToken))
-            {
-                using (IServiceScope serviceScope = ServiceProvider.CreateAsyncScope())
-                {
 
-                }
-            }
-        }
     }
 }

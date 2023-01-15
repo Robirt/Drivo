@@ -18,8 +18,8 @@ public class AdsService
         return await HttpClient.GetFromJsonAsync<List<AdEntity>>("/Ads");
     }
 
-    public async Task<ActionResponse> GetAdByIdAsync(int adId)
+    public async Task<AdEntity> GetAdByIdAsync(int adId)
     {
-        return await HttpClient.GetFromJsonAsync<ActionResponse>($"/Ads/{adId}");
+        return await HttpClient.GetFromJsonAsync<AdEntity>($"/Ads/{adId}");
     }
 }
