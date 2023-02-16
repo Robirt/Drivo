@@ -1,0 +1,85 @@
+<section>
+    <nav>
+        <button *ngIf="role == 'Lecturer'" (click)="selectFormMode('Lecture')" [ngClass]="formMode == 'Lecture' ? 'active' : ''">Wykład</button>
+        <button *ngIf="role == 'Instructor'" (click)="selectFormMode('Driving')" [ngClass]="formMode == 'Driving' ? 'active' : ''">Jazda</button>
+        <button *ngIf="role == 'Instructor'" (click)="selectFormMode('InternalExam')" [ngClass]="formMode == 'InternalExam' ? 'active' : ''">Egzamin wewnętrzny</button>
+    </nav>
+    <form *ngIf="formMode == 'Lecture'" [(ngModel)]="lecture" (ngSubmit)="addLectureAsync()">
+        <h3>Wykład</h3>
+        <label>
+            <div>Nazwa</div>
+            <input type="text" [(ngModel)]="lecture.name" name="name">
+        </label>
+        <label>
+            <div>Początek</div>
+            <input type="datetime-local" [(ngModel)]="lecture.startDate" name="startDate">
+        </label>
+        <label>
+            <div>Koniec</div>
+            <input type="datetime-local" [(ngModel)]="lecture.endDate" name="endDate">
+        </label>
+        <label>
+            <div>Miejsce</div>
+            <input type="text" [(ngModel)]="lecture.place" name="place">
+        </label>
+        <label>
+            <div>Grupa kursantów</div>
+            <select [(ngModel)]="lecture.studentsGroupId" name="studentsGroupId">
+                <option *ngFor="let studentsGroup of studentsGroups" [ngValue]="studentsGroup.id">{{ studentsGroup.name }}</option>
+            </select>
+        </label>
+        <input type="submit" value="Dodaj">
+    </form>
+    <form *ngIf="formMode == 'Driving'" [(ngModel)]="driving" (ngSubmit)="addDrivingAsync()">
+        <h3>Jazda</h3>
+        <label>
+            <div>Nazwa</div>
+            <input type="text" [(ngModel)]="driving.name" name="name">
+        </label>
+        <label>
+            <div>Początek</div>
+            <input type="datetime-local" [(ngModel)]="driving.startDate" name="startDate">
+        </label>
+        <label>
+            <div>Koniec</div>
+            <input type="datetime-local" [(ngModel)]="driving.endDate" name="endDate">
+        </label>
+        <label>
+            <div>Miejsce</div>
+            <input type="text" [(ngModel)]="driving.place" name="place">
+        </label>
+        <label>
+            <div>Kursant</div>
+            <select [(ngModel)]="driving.studentId" name="studentId">
+                <option *ngFor="let student of students" [ngValue]="student.id">{{ student.fullName }}</option>
+            </select>
+        </label>
+        <input type="submit" value="Dodaj">
+    </form>
+    <form *ngIf="formMode == 'InternalExam'" [(ngModel)]="internalExam" (ngSubmit)="addInternalExamAsync()">
+        <h3>Egzamin wewnętrzny</h3>
+        <label>
+            <div>Nazwa</div>
+            <input type="text" [(ngModel)]="internalExam.name" name="name">
+        </label>
+        <label>
+            <div>Początek</div>
+            <input type="datetime-local" [(ngModel)]="internalExam.startDate" name="startDate">
+        </label>
+        <label>
+            <div>Koniec</div>
+            <input type="datetime-local" [(ngModel)]="internalExam.endDate" name="endDate">
+        </label>
+        <label>
+            <div>Miejsce</div>
+            <input type="text" [(ngModel)]="internalExam.place" name="place">
+        </label>
+        <label>
+            <div>Kursant</div>
+            <select [(ngModel)]="internalExam.studentId" name="studentId">
+                <option *ngFor="let student of students" [ngValue]="student.id">{{ student.id }}</option>
+            </select>
+        </label>
+        <input type="submit" value="Dodaj">
+    </form>
+</section>

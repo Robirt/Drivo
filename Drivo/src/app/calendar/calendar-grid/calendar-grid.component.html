@@ -1,0 +1,11 @@
+<section>
+    <figure *ngFor="let day of days" (click)="selectDayAsync(day)">
+        <figcaption>{{ day.date | date: 'EEEE (dd.MM)' }} </figcaption>
+        <div>
+            <label *ngFor="let event of day.events">
+                <span>{{ event.name }}</span>
+                <span>{{ event.startDate | date: 'HH:mm' }}</span>
+            </label>
+        </div>
+    </figure>
+</section>

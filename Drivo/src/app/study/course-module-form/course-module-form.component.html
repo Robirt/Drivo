@@ -1,0 +1,12 @@
+<figure>
+    <section>
+        <img *ngIf="courseModule.image != null" [src]="'data:image/jpeg;base64,' + this.courseModule.image" alt="Course Module Image">
+    </section>
+    <form [(ngModel)]="courseModule" (ngSubmit)="addCourseModuleAsync()">
+        <input type="file" name="courseModuleImage" (change)="changeCourseModuleImageAsync($event)" #courseModuleImageInput>
+        <div><input type="button" value="&#59544;" (click)="courseModuleImageInput.click()"></div>
+        <caption><input type="text" [(ngModel)]="courseModule.name" name="courseModuleName"></caption>
+        <div><input type="submit" value="&#59214;"></div>
+    </form>
+</figure>
+    

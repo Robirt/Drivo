@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Drivo.MAUI.Views.HomePage">
+    <ContentPage.Resources>
+        <ResourceDictionary Source="../Resources/HomePageResourceDictionary.xaml"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <FlexLayout Direction="Column" JustifyContent="SpaceEvenly" AlignItems="Center">
+                <Border>
+                    <Grid RowDefinitions="3*, *">
+                        <Image Source="lecture_background_image.png" Aspect="AspectFill" />
+                        <FlexLayout Grid.Row="0" Direction="Column" JustifyContent="Center" AlignItems="Center">
+                            <Label Text="{Binding NextLecture.StartDate, StringFormat='{}{0:dd.MM.yyyy}'}"/>
+                            <Label Text="{Binding NextLecture.StartDate, StringFormat='{0:HH:mm}'}"/>
+                            <Label Text="{Binding NextLecture.Place}"/>
+                        </FlexLayout>
+                        <FlexLayout BackgroundColor="{StaticResource AccentColor}" Grid.Row="1" Direction="Row" JustifyContent="End" AlignItems="Center">
+                            <Label Text="Najbliższy wykład" Style="{StaticResource BorderCaption}"/>
+                        </FlexLayout>
+                    </Grid>
+                </Border>
+                <Border>
+                    <Grid RowDefinitions="3*, *">
+                        <Image Source="driving_background_image.png" Aspect="AspectFill" />
+                        <FlexLayout Grid.Row="0" Direction="Column" JustifyContent="Center" AlignItems="Center">
+                            <Label Text="{Binding NextDriving.StartDate, StringFormat='{}{0:dd.MM.yyyy}'}"/>
+                            <Label Text="{Binding NextDriving.StartDate, StringFormat='{0:HH:mm}'}"/>
+                            <Label Text="{Binding NextDriving.Place}"/>
+                        </FlexLayout>
+                        <FlexLayout BackgroundColor="{StaticResource AccentColor}" Grid.Row="1" Direction="Row" JustifyContent="Start" AlignItems="Center">
+                            <Label Text="Najbliższa jazda" Style="{StaticResource BorderCaption}"/>
+                        </FlexLayout>
+                    </Grid>
+                </Border>
+                <Border>
+                    <Grid RowDefinitions="3*, *">
+                        <Image Source="internal_exam_background_image.png" Aspect="AspectFill" />
+                        <FlexLayout Grid.Row="0" Direction="Column" JustifyContent="Center" AlignItems="Center">
+                            <Label Text="{Binding NextInternalExam.StartDate, StringFormat='{}{0:dd.MM.yyyy}'}"/>
+                            <Label Text="{Binding NextInternalExam.StartDate, StringFormat='{0:HH:mm}'}"/>
+                            <Label Text="{Binding NextInternalExam.Place}"/>
+                        </FlexLayout>
+                        <FlexLayout BackgroundColor="{StaticResource AccentColor}" Grid.Row="1" Direction="Row" JustifyContent="End" AlignItems="Center">
+                            <Label Text="Egzamin wewnętrzny" Style="{StaticResource BorderCaption}"/>
+                        </FlexLayout>
+                    </Grid>
+                </Border>
+                <Border>
+                    <Grid RowDefinitions="3*, *">
+                        <Image Source="external_exam_background_image.png" Aspect="AspectFill" />
+                        <FlexLayout Grid.Row="0" Direction="Column" JustifyContent="Center" AlignItems="Center">
+                            <Label Text="{Binding NextExternalExam.StartDate, StringFormat='{}{0:dd.MM.yyyy}'}"/>
+                            <Label Text="{Binding NextExternalExam.StartDate, StringFormat='{0:HH:mm}'}"/>
+                            <Label Text="{Binding NextInternalExam.Place}"/>
+                        </FlexLayout>
+                        <FlexLayout BackgroundColor="{StaticResource AccentColor}" Grid.Row="1" Direction="Row" JustifyContent="Start" AlignItems="Center">
+                            <Label Text="Egzamin zewnętrzny" Style="{StaticResource BorderCaption}"/>
+                        </FlexLayout>
+                    </Grid>
+                </Border>
+            </FlexLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

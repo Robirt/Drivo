@@ -1,0 +1,16 @@
+section {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+}
+
+h2 {
+    text-align: center;
+    font-family: Candara;
+    font-size: 32.5px;
+    color: #072b89;
+}

@@ -1,0 +1,4 @@
+<section>
+    <students-group-form (onAddStudentsGroup)="addStudentsGroupAsync($event)"></students-group-form>
+    <students-group *ngFor="let studentsGroup of studentsGroups" [studentsGroup]="studentsGroup" (onRemoveStudentsGroup)="removeStudentsGroupAsync($event)"></students-group>
+</section>

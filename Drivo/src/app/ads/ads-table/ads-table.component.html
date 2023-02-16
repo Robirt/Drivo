@@ -1,0 +1,16 @@
+<table>
+    <thead>
+        <tr>
+            <th>Treść</th>
+            <th>Data</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let ad of ads">
+            <td>{{ ad.content }}</td>
+            <td>{{ ad.date | date: 'dd-MM-YYYY HH:mm' }}</td>
+            <td><a (click)="removeAdAsync(ad)">&#59213;</a></td>
+        </tr>
+    </tbody>
+</table>

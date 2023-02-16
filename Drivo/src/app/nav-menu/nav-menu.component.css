@@ -1,0 +1,26 @@
+nav
+{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 70px;
+}
+ul
+{
+   list-style: none;
+   display: flex;
+   font-family: Candara;
+   color: #072b89;
+   font-size: 23px;
+   flex-direction: row;
+   height: 30px;
+}
+li
+{
+    padding: 20px;
+}
+li:hover, li.activeRouterLink
+{
+    text-shadow: 2px 5px 5px gray;
+    font-weight: 800;
+}

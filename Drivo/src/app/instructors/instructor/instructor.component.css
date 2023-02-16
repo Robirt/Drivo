@@ -1,0 +1,152 @@
+section {
+    display: flex;
+
+    width: 100%;
+    height: 100%;
+
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+
+    width: 50%;
+    height: 100%;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    margin: 10px 0;
+
+    text-align: center;
+    font-family: 'Candara';
+    font-size: 25px;
+    color:#072B89;
+}
+
+label {
+    display: flex;
+
+    margin: 5px 0;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+label > div {
+    font-family: 'Candara';
+}
+
+label > div:first-child {
+    font-size: 22.5px;
+    color: #072B89;
+}
+
+label > div:last-child {
+    font-size: 20px;
+    color: #000000;
+}
+
+table {
+    margin: 20px 0;
+
+    border-collapse: collapse;
+
+    font-family: 'Candara';
+    font-size: 20px;
+}
+
+caption {
+    text-align: center;
+    font-weight: 600;
+    font-size: 25px;
+    color: #072B89;
+}
+
+th, td {
+    width: 225px;
+    height: 20px;
+
+    border: solid 1px #E6ECFA;
+
+    text-align: center;
+}
+
+th {
+    color: #072B89;
+}
+
+table a {
+    font-family: 'Segoe MDL2 Assets';
+}
+
+form > div {
+    display: flex;
+
+    margin: 20px 0;
+
+    flex-direction: column;
+
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+form > div > select {
+    margin: 10px 0;
+
+    width: 225px;
+    height: 32.5px;
+
+    border-radius: 15px;
+    border: solid 2px #000000;
+
+    background-color: #FFFFFF;
+
+    text-align: center;
+    font-family: 'Candara';
+    font-size: 15px;
+    color: #072B89;
+}
+
+form > div > input[type="button"] {
+    margin: 5px 0;
+
+    width: 225px;
+    height: 32.5px;
+
+    border-radius: 15px;
+    border: none;
+
+    background-color: #072B89;
+
+    text-align: center;
+    font-family: 'Candara';
+    font-weight: 600;
+    font-size: 15px;
+    color: #FFFFFF;
+}
+
+input[type="submit"] {
+    margin: 10px 0;
+
+    width: 275px;
+    height: 32.5px;
+
+    border-radius: 15px;
+    border: none;
+
+    background-color: #072B89;
+
+    text-align: center;
+    font-family: 'Candara';
+    font-weight: 600;
+    font-size: 17.5px;
+    color: #FFFFFF;
+}

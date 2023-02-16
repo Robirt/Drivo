@@ -1,0 +1,4 @@
+<section>
+    <resource-form (onAddResource)="addResourceAsync($event)"></resource-form>
+    <resource-tile *ngFor="let resource of resources" [resource]="resource" (onUpdateResource)="updateResourceAsync($event)" (onRemoveResource)="removeResourceAsync($event)"></resource-tile>
+</section>

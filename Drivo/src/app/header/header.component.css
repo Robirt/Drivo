@@ -1,0 +1,48 @@
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    font-family: Candara;
+    font-size: 17.5px;
+    color: #072b89;
+    width: 100%;
+    height: 170px;
+
+}
+
+section > div {
+    display: flex;
+
+    padding: 10px;
+
+    width: 100%;
+    height: 75px;
+
+    justify-content: flex-end;
+    align-items: center;
+}
+
+span {
+    margin: 0 10px;
+
+    font-weight: 600;
+}
+
+a, a:visited, a:link {
+    text-align: center;
+    text-decoration: none;
+    color: #072b89;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img
+{
+    padding: 10px;
+    border-radius: 50px;
+    width: 25%;
+}

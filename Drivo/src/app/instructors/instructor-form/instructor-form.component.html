@@ -1,0 +1,30 @@
+<section>
+    <section>
+        <p>Dodaj nowego instruktora</p>
+    </section>
+    <section>
+        <form (ngSubmit)="createInstructorAsync()" [(ngModel)]="createUserRequest" > 
+            <span>
+                <label>Imię:</label>
+                <input type="text" [(ngModel)]="createUserRequest.firstName" name="firstName">
+            </span>
+            <span>
+                <label>Nazwisko:</label>
+                <input type="text" [(ngModel)]="createUserRequest.lastName" name="surname">
+            </span>
+            <span>
+                <label>Data urodzenia:</label>
+                <input type="date" [(ngModel)]="createUserRequest.birthDate" name="birthDate">
+            </span>
+            <span>
+                <label>Email:</label>
+                <input type="email" [(ngModel)]="createUserRequest.email" name="email">
+            </span>
+            <span>
+                <label>Numer telefonu:</label>
+                <input type="tel" [(ngModel)]="createUserRequest.phoneNumber" name="birthDate">
+            </span>
+            <input type="submit" value= "Dodaj" />
+        </form>
+    </section>
+</section>

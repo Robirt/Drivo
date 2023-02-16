@@ -1,0 +1,9 @@
+<section>
+    <section>
+        <app-student-form (onCreateStudent)="createStudentAsync($event)"></app-student-form>
+        <h3>{{ actionResponse.message }}</h3>
+    </section>
+    <section>
+        <app-student-table *ngIf="students.length" [students]="students" (onDeleteStudent)="deleteStudentAsync($event)"></app-student-table>
+    </section>
+</section>
