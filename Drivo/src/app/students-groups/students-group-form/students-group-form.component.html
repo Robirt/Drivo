@@ -1,0 +1,12 @@
+<figure>
+    <figcaption>
+        <caption>Dodaj</caption>
+    </figcaption>
+    <form [(ngModel)]="studentsGroup" (ngSubmit)="addStudentsGroupAsync()">
+        <label>
+            <div>Nazwa</div>
+            <input type="text" [(ngModel)]="studentsGroup.name" name="name">
+        </label>
+        <input type="submit" value="Dodaj">
+    </form>
+</figure>

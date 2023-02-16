@@ -1,0 +1,19 @@
+<section>
+    <section> 
+        <div id="header">
+            <p>Zaloguj się!</p>
+        </div>
+    </section>
+    <form #ngForm="ngForm" [(ngModel)]="signInRequest" (ngSubmit)="signInAsync()">
+        <span>
+            <label>Nazwa użytkownika:</label>
+        </span>
+        <input type="text" name="userName" #userName="ngModel" [(ngModel)]="signInRequest.userName"/>
+        <span>
+            <label>Hasło:</label>
+        </span>
+        <input type="password" name="password" #password="ngModel" [(ngModel)]="signInRequest.password"/>
+        <input type="submit" value="Zaloguj się" />
+        <div>{{ signInResponse.message }}</div>
+    </form>
+</section>

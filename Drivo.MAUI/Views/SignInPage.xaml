@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModels="clr-namespace:Drivo.MAUI.ViewModels"
+             x:Class="Drivo.MAUI.Views.SignInPage"
+             Shell.TabBarIsVisible="False">
+    <ContentPage.Resources>
+        <ResourceDictionary Source="../Resources/SignInPageResourceDictionary.xaml"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <FlexLayout Direction="Column" JustifyContent="Center" AlignItems="Center">
+            <StackLayout>
+                <Label Text="Drivo" Style="{StaticResource Title}"/>
+                <Label Text="Witamy Cię w Drivo!"/>
+                <Label Text="Dzięki tej aplikacji będziesz mógł korzystać z zasobów mających na celu przygotowanie Cię do egzaminu teoretycznego na prawo jazdy, a także w prosty sposób będziesz mógł kontrolować terminy wykładów oraz jazd." Style="{StaticResource Description}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <StackLayout Margin="10, 0">
+                    <Label Text="Nazwa użytkownika"/>
+                    <Label Text="Hasło:"/>
+                </StackLayout>
+                <StackLayout Margin="10, 0">
+                    <Entry Text="{Binding SignInRequest.UserName}"/>
+                    <Entry Text="{Binding SignInRequest.Password}" IsPassword="True"/>
+                </StackLayout>
+            </StackLayout>
+            <Label Text="{Binding SignInResponse.Message}" Style="{StaticResource ErrorLabel}"/>
+            <Button Text="Zaloguj się" Command="{Binding SignInCommand}"/>
+        </FlexLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,12 @@
+<section>
+    <div>
+        <ng-template [ngIf]="!isUserAuthorized()">
+            <a [routerLink]="['/SignIn']">Zaloguj się</a>
+        </ng-template>
+        <ng-template [ngIf]="isUserAuthorized()">
+            <span>{{ getUserName() }}</span>
+            <a [routerLink]="['/SignOut']">Wyloguj się</a>
+        </ng-template>
+    </div>
+    <img src="../../assets/logo.png">
+</section>

@@ -1,0 +1,28 @@
+<section>
+    <form [(ngModel)]="lecturer">
+        <h2>Wykładowca {{ lecturer.fullName }}</h2>
+        <label for="firstName">
+            <div>Imię</div>
+            <div>{{ lecturer.firstName }}</div>
+        </label>
+        <label for="lastName">
+            <div>Nazwisko</div>
+            <div>{{ lecturer.lastName }}</div>
+        </label>
+        <label for="birthDate">
+            <div>Data urodzenia</div>
+            <div>{{ lecturer.birthDate | date: 'dd.MM.YYYY' }}</div>
+        </label>
+        <label for="email">
+            <div>Email</div>
+            <div>{{ lecturer.email }}</div>
+        </label>
+        <label for="phoneNumber">
+            <div>Numer telefonu</div>
+            <div>{{ lecturer.phoneNumber }}</div>
+        </label>
+    </form>
+    <form (ngSubmit)="updateLecturerAsync()">
+        
+    </form>
+</section>

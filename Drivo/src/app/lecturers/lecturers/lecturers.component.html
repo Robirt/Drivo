@@ -1,0 +1,9 @@
+<section>
+    <section>
+        <lecturers-form (onCreateLecturer)="createLecturerAsync($event)"></lecturers-form>
+        <h3>{{ actionResponse.message }}</h3>
+    </section>
+    <section>
+        <app-lecturers-table *ngIf="lecturers.length" [lecturers]="lecturers" (onDeleteLecturer)="deleteLecturerAsync($event)"></app-lecturers-table>
+    </section>
+</section>

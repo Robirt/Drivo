@@ -1,0 +1,12 @@
+<figure>
+    <figcaption>
+        <div></div>
+        <caption>{{ studentsGroup.name }}</caption>
+        <div (click)="removeStudentsGroupAsync()"><a>&#59213;</a></div>
+    </figcaption>
+    <section>
+        <ul>
+            <li *ngFor="let student of studentsGroup.students">{{ student.fullName }}</li>
+        </ul>
+    </section>
+</figure>

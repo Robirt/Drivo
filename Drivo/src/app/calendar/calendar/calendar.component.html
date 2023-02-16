@@ -1,0 +1,7 @@
+<section>
+    <calendar-grid [days]="days" [(selectedDay)]="selectedDay" (selectedDayChange)="onSelectedDayChangeAsync($event)"></calendar-grid>
+    <calendar-form [role]="userModel?.role" [studentsGroups]="studentsGroups" [students]="students" (onAddLecture)="addLectureAsync($event)" (onAddDriving)="addDrivingAsync($event)" (onAddInternalExam)="addInternalExamAsync($event)"></calendar-form>
+</section>
+<section>
+    <calendar-table [events]="events" [selectedDay]="selectedDay" (onRemoveEvent)="removeEventAsync($event)"></calendar-table>
+</section>

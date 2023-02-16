@@ -1,0 +1,15 @@
+<figure>
+    <section>
+        <img *ngIf="resource.image != null" [src]="'data:image/jpeg;base64,' + this.resource.image" alt="Resource Image">
+    </section>
+    <form [(ngModel)]="resource" (ngSubmit)="addResourceAsync()">
+        <input type="file" name="courseModuleImage" (change)="changeResourceImageAsync($event)" name="resourceImageInput" #resourceImageInput>
+        <div><input type="button" value="&#59544;" (click)="resourceImageInput.click()"></div>
+        <caption>
+            <input type="text" [(ngModel)]="resource.title" placeholder="Tytuł" name="resourceName">
+            <textarea [(ngModel)]="resource.content" placeholder="Treść" name="resourceContent"></textarea>
+        </caption>
+        <div><input type="submit" value="&#59214;"></div>
+    </form>
+</figure>
+    

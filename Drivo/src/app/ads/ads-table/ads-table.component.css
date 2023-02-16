@@ -1,0 +1,19 @@
+table {
+    border-collapse: collapse;
+
+    text-align: center;
+    font-family: 'Candara';
+    font-size: 15px;
+    color: #072B89;
+}
+
+th, td {
+    width: 250px;
+    height: 50px;
+
+    border: solid 2.5px #E6ECFA;
+}
+
+a {
+    font-family: 'Segoe MDL2 Assets';
+}

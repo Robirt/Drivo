@@ -1,0 +1,11 @@
+<figure>
+    <section>
+        <img [src]="'data:image/jpeg;base64,' + this.courseModule.image" alt="Course Module Image">
+    </section>
+    <figcaption>
+        <div><a [routerLink]="['/Study', courseModule.name]">&#59151;</a></div>
+        <caption>{{ courseModule.name }}</caption>
+        <div><a (click)="removeCourseModuleAsync()">&#59213;</a></div>
+    </figcaption>
+</figure>
+    

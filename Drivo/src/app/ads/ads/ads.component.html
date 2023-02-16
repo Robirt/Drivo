@@ -1,0 +1,8 @@
+<section>
+    <section>
+        <h2>Ogłoszenia</h2>
+        <app-ads-table [ads]="ads" (onRemoveAdAsync)="removeAdAsync($event)"></app-ads-table>
+        <app-ad-form (onAdd)="addAdAsync($event)"></app-ad-form>
+        <h3>{{ actionResponse.message }}</h3>
+    </section>
+</section>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Drivo.MAUI.Views.ExternalExamAddPage">
+    <ContentPage.Resources>
+        <ResourceDictionary Source="../Resources/ExternalExamAddPageResourceDictionary.xaml"/>
+    </ContentPage.Resources>
+    <FlexLayout Direction="Column" JustifyContent="SpaceEvenly" AlignItems="Center">
+        <VerticalStackLayout>
+            <Label Text="Nazwa"/>
+            <Entry Text="{Binding ExternalExam.Name, Mode=TwoWay}"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Początek (Data)"/>
+            <DatePicker Date="{Binding ExternalExam.StartDate.Date}"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Początek (Godzina)"/>
+            <TimePicker Time="{Binding ExternalExam.StartDate.Time}"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Miejsce"/>
+            <Entry Text="{Binding ExternalExam.Place, Mode=TwoWay}"/>
+        </VerticalStackLayout>
+        <Button Text="Zapisz" Command="{Binding AddExternaExamCommand}"/>
+    </FlexLayout>
+</ContentPage>
